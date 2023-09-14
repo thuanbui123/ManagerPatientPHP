@@ -26,7 +26,7 @@
         ?>
         <div class="aside">
             <?php
-                include_once './MVC/Views/Pages/'.$data['page'];
+                include_once './MVC/Views/Pages/'.$data['page'].'.php';
             ?>
         </div>
     </div>

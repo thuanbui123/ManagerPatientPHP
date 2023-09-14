@@ -1,5 +1,5 @@
 
-@import url(./variables.css);
+@import url('http://localhost/ManagerPatientPHP/Public/css/variables.css');
 
 * {
     margin: 0;
@@ -48,4 +48,87 @@
 .btn--add:hover {
     background-color: var(--btn-color);
     color: #ffffff;
+}
+
+.container__header {
+    display: flex;
+    justify-content: space-between;
+    height: 43px;
+    margin-bottom: 30px;
+}
+
+.main-functions, .search, .btn {
+    height: 100%;
+}
+
+.main-functions {
+    display: flex;
+    border-radius: 4.75px;
+    overflow: hidden;
+}
+
+.btn {
+    flex: 1;
+    cursor: pointer;
+    width: 74px;
+    border: none;
+    background-color: #e4e6ef;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--btn-hover);
+}
+
+.btn span {
+    color: #3f4254;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.search__label, .btn span {
+    font-size: 14px;
+}
+
+.search__label, .search__input {
+    height: 35px;
+    line-height: 35px;
+    color: var(--text-color);
+}
+
+.search__input  {
+    background-color: #f5f8fa;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding: 0 5px;
+    border-radius: 4.75px;
+}
+
+
+.drug--info {
+    width: 100%;
+}
+
+.col-2 {
+    width: 20%;
+}
+
+.col-1 {
+    width: 10%;
+}
+
+.col-1-2 {
+    width: 5%;
+}
+
+.col-1-4 {
+    width: 2.5%;
+}
+
+.btn--edit, .btn--remove {
+    display: block;
+    border-radius: 4.75px;
+    height: 30px;
+    background-color: #f5f8fa;
 }

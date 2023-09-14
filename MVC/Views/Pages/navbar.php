@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="../Public/css/Navbar.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ManagerPatientPHP/Public/css/Navbar.css">
 </head>
 
 <body>
     <nav class="category">
         <div class="nav-header">
-            <img src="../Public/img/logo-piincode.png" alt="hrlo">
+            <img src="http://localhost/ManagerPatientPHP/Public/img/logo-piincode.png" alt="hrlo">
             <lord-icon class="icon-nav" src="https://cdn.lordicon.com/jxwksgwv.json" trigger="hover" colors="primary:#fff">
             </lord-icon>
         </div>
@@ -72,7 +72,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/xawkzoxm.json" trigger="hover" colors="primary:#fff">
                         </lord-icon>
-                        <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data">Tủ thuốc</a>
+                        <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data?page=1">Tủ thuốc</a>
                     </div>
                 </diV>
 
