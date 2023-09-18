@@ -1,0 +1,79 @@
+<?php
+class taikhoan extends controller
+{
+    protected $ls;
+
+    function __construct()
+    {
+        $this->ls = $this->model('taikhoanModel');
+    }
+
+    function Get_data()
+    {
+        $this->view('taikhoan_v', [
+            'page' => 'dangnhap',
+        ]);
+    }
+
+    function dangnhap()
+    {
+        if (isset($_POST['login'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $role = $email == "admin@gmail.com" ? 1 : 0;
+            $result = $this->ls->dangnhap($email, $password, $role);
+            if ($role == 1) {
+                if ($result) {
+                    echo "<script> alert('Đăng nhập tài khoản admin thành công') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeadmin' </script>";
+                } else {
+                    echo "<script> alert('Đăng nhập thất bại') </script>";
+                }
+            } else {
+                if ($result) {
+                    echo "<script> alert('Đăng nhập thành công') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                } else {
+                    echo "<script> alert('Đăng nhập thất bại') </script>";
+                }
+            }
+        } else {
+            header("location: http://localhost/ManagerPatientPHP/taikhoan");
+        }
+    }
+
+    function dangky()
+    {
+        $this->view('taikhoan_v', [
+            'page' => 'dangky'
+        ]);
+    }
+
+    function quenmatkhau()
+    {
+        $this->view('taikhoan_v', [
+            'page' => 'quenmatkhau'
+        ]);
+    }
+
+    function confirmdangky()
+    {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $password = $_POST['password'];
+        $repassword = $_POST['repassword'];
+
+        if ($password == $repassword) {
+            $result = $this->ls->dangky($name, $email,  $password, $phone);
+            if ($result) {
+                echo "<script> alert('Đăng nhập thành công') </script>";
+                echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+            } else {
+                echo "<script> alert('Đăng nhập thất bại') </script>";
+            }
+        } else {
+            echo "<script> alert('Mật khẩu nhập lại không chính xác') </script>";
+        }
+    }
+}
