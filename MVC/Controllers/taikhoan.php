@@ -64,16 +64,23 @@ class taikhoan extends controller
         $password = $_POST['password'];
         $repassword = $_POST['repassword'];
 
-        if ($password == $repassword) {
-            $result = $this->ls->dangky($name, $email,  $password, $phone);
-            if ($result) {
-                echo "<script> alert('Đăng nhập thành công') </script>";
-                echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+        $checkIdentical = $this->ls->checkIdenticalAccout($email);
+
+        if (mysqli_num_rows($checkIdentical) == 0) {
+            if ($password == $repassword) {
+                $result = $this->ls->dangky($name, $email,  $password, $phone);
+                if ($result) {
+                    echo "<script> alert('Đăng ký thành công') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                } else {
+                    echo "<script> alert('Đăng ký thất bại') </script>";
+                }
             } else {
-                echo "<script> alert('Đăng nhập thất bại') </script>";
+                echo "<script> alert('Mật khẩu nhập lại không chính xác') </script>";
             }
         } else {
-            echo "<script> alert('Mật khẩu nhập lại không chính xác') </script>";
+            echo "<script> alert('Tài khoản đã tồn tại') </script>";
+            echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan/dangky' </script>";
         }
     }
 }

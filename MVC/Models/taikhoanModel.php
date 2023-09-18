@@ -12,4 +12,10 @@ class taikhoanModel extends connectDB
         $query = "SELECT * FROM `acount` WHERE `username` = '$username' AND `password` = '$password' AND `role` = '$role'";
         return mysqli_query($this->con, $query);
     }
+
+    function checkIdenticalAccout($username)
+    {
+        $query = "SELECT * FROM `acount` WHERE `username` = '$username'";
+        return mysqli_query($this->con, $query);
+    }
 }
