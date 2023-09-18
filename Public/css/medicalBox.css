@@ -132,3 +132,170 @@
     height: 30px;
     background-color: #f5f8fa;
 }
+
+
+/* Modal */
+
+form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.appear {
+    display: flex;
+}
+
+.modal-dialog {
+    background-color: #ffffff;
+    width: 643px;
+    border-radius: 4.75px;
+}
+
+.modal-content {
+    padding: 30px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-title {
+    font-size: 19.5px;
+    color: var(--text-color);
+}
+
+.close {
+    display: block;
+    padding: 5px;
+    background-color: unset;
+    border: none;
+    cursor: pointer;
+}
+
+.close svg rect {
+    transition: all 0.3s ease;
+}
+
+.close:hover svg rect{
+    fill: #009ef7;
+}
+
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 45px 0px 25px 15px;
+}
+
+.row__1, .row__2, .row__3 {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.expiration__date {
+    margin-bottom: 15px;
+}
+
+.name_medicine__label, .expiration__date__label, .supplier__label, .id_medicine__label, .quantity__label, .price__label, .drug__content__label, .dosage__forms__label, .route_of_use__label {
+    display: flex;
+    align-items: center;
+}
+
+.require {
+    text-align: center;
+    color: #f1416c;
+    line-height: 16.364px;
+    margin-left: 3.25px;
+}
+
+.name_medicine {
+    width: 368.25px;
+    padding: 0 14.625px;
+}
+
+#txtNameMedicine {
+    width: 340.25px;
+    padding: 9.75px 13px;
+}
+
+.id_medicine, .dosage__forms, .expiration__date, .supplier, .drug__content, .drug__content, .route_of_use, .quantity, .price {
+    width: 170px;
+    padding: 0 14.625px;
+}
+
+.name_medicine__label p, .note__label p, .expiration__date__label p, .supplier__label p, .quantity__label p, .price__label p, .drug__content__label p, .dosage__forms__label p, .route_of_use__label p, .id_medicine__label p {
+    color: #5e6278;
+    font-weight: 500;
+}
+
+.note {
+    padding: 0 14.625px;
+}
+
+#txtNote {
+    width: 539px;
+    padding: 9.75px 13px;
+    margin-top: 6.5px;
+}
+
+#txtNameMedicine, #txtSupplier, #txtexpirationDate, #txtIdMedicine, #txtDosageForms, #txtDrugContent, #txtRouteOfUse, #txtQuantity, #txtPrice, #txtNote, #txtNote {
+    display: block;
+    height: 40.5px;
+    border-radius: 4.25px;
+    margin-top: 6.5px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background-color: #f5f8fa;
+    border-color: #f5f8fa;
+}
+
+#txtPrice, #txtSupplier, #txtexpirationDate, #txtQuantity, #txtRouteOfUse, #txtDrugContent, #txtDosageForms, #txtIdMedicine {
+    width: 141.5px;
+    padding: 9.75px 13px;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+.modal-btn {
+    cursor: pointer;
+    height: 43px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 0 20.5px;
+    border: none;
+    border-radius: 4.25px;
+}
+
+.btn-cancel {
+    background-color: #f5f8fa;
+    margin-right: 9.75px;
+    border-color: #f5f8fa;
+    transition: all 0.3s ease-in;
+}
+
+.btn-cancel:hover {
+    background-color: #d1d5d6;
+    color: #888;
+}
+
+.btn-add {
+    background-color: #009ef7;
+    color: #ffffff;
+    transition: all 0.3s ease-in;
+}
+
+.btn-add:hover {
+    background-color: #0372b1;
+}

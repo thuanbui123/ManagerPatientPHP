@@ -90,19 +90,143 @@
         </div>
         <footer class="footer">
             <div class="pagination">
-                <?php
-                    for($i = 1; $i <= $data["totalPage"]; $i++) {
-                        if($data["currentPage"] == $i) {
-                            echo $i;
-                        } else {
-                    ?>
-                    <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data?page=<?php echo $i; ?>"><?php echo $i . " " ?></a>
-                <?php
-                        }
-                    }
-                ?>
+            
             </div>
         </footer>
     </div>
+    <form method="post" action="http://localhost/ManagerPatientPHP/medicalBox/Insert_data">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title">Thêm thuốc mới</h4>
+                  <button type="button" class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+                    </svg>
+                  </button>
+               </div>
+               <div class="modal-body">
+                    <div class="row__1">
+                        <div class="name_medicine">
+                            <div class="name_medicine__label">
+                                <p>Tên thuốc</p>
+                                <span class="require">*</span>
+                            </div>
+                            <div class="name_medicine__input">
+                                <input type="text" name="txtNameMedicine" id="txtNameMedicine" placeholder="Tenovir">
+                            </div>
+                        </div>
+                        <div class="id_medicine">
+                            <div class="id_medicine__label">
+                                <p>Mã thuốc</p>
+                                <span class="require">*</span>
+                            </div>
+                            <div class="id_medicine__input">
+                                <input type="text" name="txtIdMedicine" id="txtIdMedicine" placeholder="10258.KD.12.1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row__2">
+                        <div class="dosage__forms">
+                            <div class="dosage__forms__label">
+                                <p>Bào chế dạng</p>
+                                <span class="require">*</span>
+                            </div>
+                            <div class="dosage__forms__input">
+                                <input type="text" name="txtDosageForms" id="txtDosageForms" placeholder="viên">
+                            </div>
+                        </div>
+                        <div class="drug__content">
+                            <div class="drug__content__label">
+                                <p>Hàm lượng</p>
+                                <span class="require">*</span>
+                            </div>
+                            <div class="drug__content__input">
+                                <input type="text" name="txtDrugContent" id="txtDrugContent" placeholder="300mg">
+                            </div>
+                        </div>
+                        <div class="supplier">
+                            <div class="supplier__label">
+                                <p>Nhà cung cấp</p>
+                                <span class="require">*</span>
+                            </div>
+                            <div class="supplier__input">
+                                <input type="text" name="txtSupplier" id="txtSupplier" placeholder="Traphaco">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row__3">
+                        <div class="route_of_use">
+                            <div class="route_of_use__label">
+                                <p>Đường dùng</p>
+                                <span class="require">*</span>
+                            </div>
+                            <div class="route_of_use__input">
+                                <input type="text" name="txtRouteOfUse" id="txtRouteOfUse" placeholder="uống">
+                            </div>
+                        </div>
+                        <div class="quantity">
+                            <div class="quantity__label">
+                                <p>Số lượng</p>
+                                <span class="require">*</span>
+                            </div>
+                            <div class="quantity__input">
+                                <input type="number" name="txtQuantity" id="txtQuantity" placeholder="300">
+                            </div>
+                        </div>
+                        <div class="price">
+                            <div class="price__label">
+                                <p>Giá</p>
+                                <span class="require">*</span>
+                            </div>
+                            <div class="price__input">
+                                <input type="number" name="txtPrice" id="txtPrice" placeholder="300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="expiration__date">
+                        <div class="expiration__date__label">
+                            <p>Ngày hết hạn</p>
+                            <span class="require">*</span>
+                        </div>
+                        <div class="expiration__date__input">
+                            <input type="date" name="txtexpirationDate" id="txtexpirationDate" placeholder="01/01/2024">
+                        </div>
+                    </div>
+                    <div class="note">
+                        <div class="note__label">
+                            <p>Ghi chú</p>
+                        </div>
+                        <div class="note__input">
+                            <input type="text" name="txtNote" id="txtNote" placeholder="Dễ dị ứng">
+                        </div>
+                    </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="modal-btn btn-cancel">Hủy</button>
+                  <input type="submit" name="btnLuu" class="modal-btn btn-add" value="Thêm thuốc"/>
+               </div>
+            </div>
+         </div>
+    </form>
+    <form class="modal-confirm--delete">
+      <div class="modal-content--delete">
+         <!-- Modal Header -->
+         <div class="modal-header--delete">
+            <h4 class="modal-title--delete">Modal Title</h4>
+            <button type="button" class="close">&times;</button>
+         </div>
+         <!-- Modal body -->
+         <div class="modal-body--delete">
+            <p>Bạn có muốn xóa thuốc </p>
+         </div>
+         <!-- Modal footer -->
+         <div class="modal-footer--delete">
+            <button type="button" class="btn btn-danger">Close</button>
+         </div>
+      </div>
+   </form>
+    <script src="http://localhost/ManagerPatientPHP/Public/js/medicalBox.js"></script>
 </body>
 </html>
