@@ -44,7 +44,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/jqeuwnmb.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Danh sách bệnh nhân</a>
+                        <a href="http://localhost/ManagerPatientPHP/danhsachbenhnhan">Danh sách bệnh nhân</a>
                     </div>
 
                     <div class="sub-item">
@@ -88,7 +88,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/usxfmtjg.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Danh sách bác sĩ</a>
+                        <a href="http://localhost/ManagerPatientPHP/danhsachbacsi">Danh sách bác sĩ</a>
                     </div>
 
                     <div class="sub-item">

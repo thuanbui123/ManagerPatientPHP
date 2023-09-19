@@ -14,4 +14,5 @@ class HomeAdmin extends controller
             'page' => 'HomeAdmin_v'
         ]);
     }
+
 }

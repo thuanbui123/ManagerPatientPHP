@@ -1,10 +1,17 @@
-
 @import url('http://localhost/ManagerPatientPHP/Public/css/variables.css');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+th {
+    color: #676767;
+}
+
+td {
+    color: #666;
 }
 
 .main {
@@ -28,7 +35,8 @@
     margin-bottom: 7.5px;
 }
 
-.desc__page, .btn--add {
+.desc__page,
+.btn--add {
     font-size: 12.35px;
     color: var(--text-color-sub);
     font-weight: 500;
@@ -57,8 +65,15 @@
     margin-bottom: 30px;
 }
 
-.main-functions, .search, .btn {
+.main-functions,
+.search,
+.btn {
     height: 100%;
+}
+
+.btn--pdf,
+.btn--excel {
+    background-color: #e4e6ef;
 }
 
 .main-functions {
@@ -72,12 +87,12 @@
     cursor: pointer;
     width: 74px;
     border: none;
-    background-color: #e4e6ef;
+    /* background-color: #e4e6ef; */
     transition: all 0.3s;
 }
 
 .btn:hover {
-    background-color: var(--btn-hover);
+    /* background-color: var(--btn-hover); */
 }
 
 .btn span {
@@ -86,23 +101,31 @@
     font-size: 14px;
 }
 
-.search__label, .btn span {
+.search__label,
+.btn span {
     font-size: 14px;
 }
 
-.search__label, .search__input {
+.search__label,
+.search__input {
     height: 35px;
     line-height: 35px;
     color: var(--text-color);
 }
 
-.search__input  {
+.search__input {
     background-color: #f5f8fa;
     border: none;
     outline: none;
     font-size: 15px;
-    padding: 0 5px;
+    padding: 0 10px;
     border-radius: 4.75px;
+}
+
+.search__input::placeholder {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888888b5;
 }
 
 
@@ -126,7 +149,8 @@
     width: 2.5%;
 }
 
-.btn--edit, .btn--remove {
+.btn--edit,
+.btn--remove {
     display: block;
     border-radius: 4.75px;
     height: 30px;
@@ -136,7 +160,7 @@
 
 /* Modal */
 
-form {
+.form {
     position: fixed;
     top: 0;
     left: 0;
@@ -184,7 +208,7 @@ form {
     transition: all 0.3s ease;
 }
 
-.close:hover svg rect{
+.close:hover svg rect {
     fill: #009ef7;
 }
 
@@ -194,7 +218,9 @@ form {
     padding: 45px 0px 25px 15px;
 }
 
-.row__1, .row__2, .row__3 {
+.row__1,
+.row__2,
+.row__3 {
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
@@ -204,7 +230,15 @@ form {
     margin-bottom: 15px;
 }
 
-.name_medicine__label, .expiration__date__label, .supplier__label, .id_medicine__label, .quantity__label, .price__label, .drug__content__label, .dosage__forms__label, .route_of_use__label {
+.name_medicine__label,
+.expiration__date__label,
+.supplier__label,
+.id_medicine__label,
+.quantity__label,
+.price__label,
+.drug__content__label,
+.dosage__forms__label,
+.route_of_use__label {
     display: flex;
     align-items: center;
 }
@@ -226,12 +260,29 @@ form {
     padding: 9.75px 13px;
 }
 
-.id_medicine, .dosage__forms, .expiration__date, .supplier, .drug__content, .drug__content, .route_of_use, .quantity, .price {
+.id_medicine,
+.dosage__forms,
+.expiration__date,
+.supplier,
+.drug__content,
+.drug__content,
+.route_of_use,
+.quantity,
+.price {
     width: 170px;
     padding: 0 14.625px;
 }
 
-.name_medicine__label p, .note__label p, .expiration__date__label p, .supplier__label p, .quantity__label p, .price__label p, .drug__content__label p, .dosage__forms__label p, .route_of_use__label p, .id_medicine__label p {
+.name_medicine__label p,
+.note__label p,
+.expiration__date__label p,
+.supplier__label p,
+.quantity__label p,
+.price__label p,
+.drug__content__label p,
+.dosage__forms__label p,
+.route_of_use__label p,
+.id_medicine__label p {
     color: #5e6278;
     font-weight: 500;
 }
@@ -246,7 +297,17 @@ form {
     margin-top: 6.5px;
 }
 
-#txtNameMedicine, #txtSupplier, #txtexpirationDate, #txtIdMedicine, #txtDosageForms, #txtDrugContent, #txtRouteOfUse, #txtQuantity, #txtPrice, #txtNote, #txtNote {
+#txtNameMedicine,
+#txtSupplier,
+#txtexpirationDate,
+#txtIdMedicine,
+#txtDosageForms,
+#txtDrugContent,
+#txtRouteOfUse,
+#txtQuantity,
+#txtPrice,
+#txtNote,
+#txtNote {
     display: block;
     height: 40.5px;
     border-radius: 4.25px;
@@ -258,7 +319,14 @@ form {
     border-color: #f5f8fa;
 }
 
-#txtPrice, #txtSupplier, #txtexpirationDate, #txtQuantity, #txtRouteOfUse, #txtDrugContent, #txtDosageForms, #txtIdMedicine {
+#txtPrice,
+#txtSupplier,
+#txtexpirationDate,
+#txtQuantity,
+#txtRouteOfUse,
+#txtDrugContent,
+#txtDosageForms,
+#txtIdMedicine {
     width: 141.5px;
     padding: 9.75px 13px;
 }
@@ -298,4 +366,31 @@ form {
 
 .btn-add:hover {
     background-color: #0372b1;
+}
+
+.form-control {
+    width: 250px;
+}
+
+.mb-3 {
+    margin: 0 10px;
+}
+
+.btn--excel:hover,
+.btn--pdf:hover {
+    background-color: #88888890;
+}
+
+.form-control::placeholder {
+    font-size: 14px;
+    color: #6767675d;
+}
+
+.form-label {
+    color: #676767;
+    font-weight: 500;
+}
+
+.form-select {
+    width: 250px;
 }

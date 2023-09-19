@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/medicalBox.css">
     <title>Tủ thuốc</title>
 </head>
+
 <body>
     <div class="main">
         <header class="header">
@@ -48,65 +50,57 @@
                         <th class="col-1-4"></th>
                     </tr>
                     <?php
-                        // B3: Xử lý kết quả
-                        if(isset($data["data"]) && $data["data"] != null) {
-                            while($row = mysqli_fetch_array($data["data"])) {
+                    // B3: Xử lý kết quả
+                    if (isset($data["data"]) && $data["data"] != null) {
+                        while ($row = mysqli_fetch_array($data["data"])) {
                     ?>
-                        <tr>
-                            <td style="text-align: left" class="col-1"><?php echo $row['mathuoc'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['tenthuoc'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['hamluong'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['duongdung'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['gia'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['ghichu'] ?></td>
-                            <td style="text-align: left" class="col-1-4">
-                                <a href="#" class="btn--edit">
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/hiqmdfkt.json"
-                                        trigger="hover"
-                                        colors="primary:#4be1ec,secondary:#cb5eee"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
-                                </a>
-                            </td>
-                            <td style="text-align: left" class="col-1-4">
-                                <a href="#" class="btn--remove">
-                                <lord-icon
-                                    src="https://cdn.lordicon.com/tntmaygd.json"
-                                    trigger="hover"
-                                    colors="primary:#4be1ec,secondary:#cb5eee"
-                                    style="width:30px;height:30px">
-                                </lord-icon>
-                                </a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td style="text-align: left" class="col-1"><?php echo $row['mathuoc'] ?></td>
+                                <td style="text-align: left" class="col-2"><?php echo $row['tenthuoc'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['hamluong'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['duongdung'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['gia'] ?></td>
+                                <td style="text-align: left" class="col-2"><?php echo $row['ghichu'] ?></td>
+                                <td style="text-align: left" class="col-1-4">
+                                    <a href="#" class="btn--edit">
+                                        <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover" colors="primary:#4be1ec,secondary:#cb5eee" style="width:30px;height:30px">
+                                        </lord-icon>
+                                    </a>
+                                </td>
+                                <td style="text-align: left" class="col-1-4">
+                                    <a href="#" class="btn--remove">
+                                        <lord-icon src="https://cdn.lordicon.com/tntmaygd.json" trigger="hover" colors="primary:#4be1ec,secondary:#cb5eee" style="width:30px;height:30px">
+                                        </lord-icon>
+                                    </a>
+                                </td>
+                            </tr>
                     <?php
-                            }
                         }
+                    }
                     ?>
                 </table>
             </div>
         </div>
         <footer class="footer">
             <div class="pagination">
-            
+
             </div>
         </footer>
     </div>
-    <form method="post" action="http://localhost/ManagerPatientPHP/medicalBox/Insert_data">
-         <div class="modal-dialog">
+    <form class="form" method="post" action="http://localhost/ManagerPatientPHP/medicalBox/Insert_data">
+        <div class="modal-dialog">
             <div class="modal-content">
-               <div class="modal-header">
-                  <h4 class="modal-title">Thêm thuốc mới</h4>
-                  <button type="button" class="close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
-                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
-                    </svg>
-                  </button>
-               </div>
-               <div class="modal-body">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thêm thuốc mới</h4>
+                    <button type="button" class="close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
                     <div class="row__1">
                         <div class="name_medicine">
                             <div class="name_medicine__label">
@@ -202,31 +196,32 @@
                             <input type="text" name="txtNote" id="txtNote" placeholder="Dễ dị ứng">
                         </div>
                     </div>
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="modal-btn btn-cancel">Hủy</button>
-                  <input type="submit" name="btnLuu" class="modal-btn btn-add" value="Thêm thuốc"/>
-               </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="modal-btn btn-cancel">Hủy</button>
+                    <input type="submit" name="btnLuu" class="modal-btn btn-add" value="Thêm thuốc" />
+                </div>
             </div>
-         </div>
+        </div>
     </form>
     <form class="modal-confirm--delete">
-      <div class="modal-content--delete">
-         <!-- Modal Header -->
-         <div class="modal-header--delete">
-            <h4 class="modal-title--delete">Modal Title</h4>
-            <button type="button" class="close">&times;</button>
-         </div>
-         <!-- Modal body -->
-         <div class="modal-body--delete">
-            <p>Bạn có muốn xóa thuốc </p>
-         </div>
-         <!-- Modal footer -->
-         <div class="modal-footer--delete">
-            <button type="button" class="btn btn-danger">Close</button>
-         </div>
-      </div>
-   </form>
+        <div class="modal-content--delete">
+            <!-- Modal Header -->
+            <div class="modal-header--delete">
+                <h4 class="modal-title--delete">Modal Title</h4>
+                <button type="button" class="close">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body--delete">
+                <p>Bạn có muốn xóa thuốc </p>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer--delete">
+                <button type="button" class="btn btn-danger">Close</button>
+            </div>
+        </div>
+    </form>
     <script src="http://localhost/ManagerPatientPHP/Public/js/medicalBox.js"></script>
 </body>
+
 </html>

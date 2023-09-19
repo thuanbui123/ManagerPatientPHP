@@ -1,5 +1,4 @@
 <?php
-    class homeAdminModel extends connectDB
-    {
-        
-    }
+class homeAdminModel extends connectDB
+{
+}

@@ -6,6 +6,11 @@
     color: #9899ac;
 }
 
+a {
+    color: #9899ac;
+    text-decoration: none;
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -132,4 +137,19 @@ lord-icon.container-icon {
 
 .nav-footer button:hover {
     color: #fff
-} 
+}
+
+tr {
+    height: 60px;
+    position: relative;
+}
+
+.search__input {
+    padding-left: 10px;
+}
+
+.search__input::placeholder {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cfcfcd;
+}
