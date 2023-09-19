@@ -72,7 +72,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/xawkzoxm.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data?page=1">Tủ thuốc</a>
+                        <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data">Tủ thuốc</a>
                     </div>
                 </diV>
 
