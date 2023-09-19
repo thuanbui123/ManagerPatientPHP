@@ -162,15 +162,17 @@ td {
 
 .form {
     position: fixed;
-    top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
+    top: 0;
     display: none;
     align-items: center;
     justify-content: center;
+
 }
+
+
 
 .appear {
     display: flex;
@@ -178,12 +180,21 @@ td {
 
 .modal-dialog {
     background-color: #ffffff;
-    width: 643px;
+    width: 60%;
     border-radius: 4.75px;
 }
 
 .modal-content {
     padding: 30px;
+    width: 650px;
+    overflow-y: scroll;
+    max-height: 500px;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 2px;
+    border-radius: 5px;
+    
 }
 
 .modal-header {

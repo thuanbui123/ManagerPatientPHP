@@ -10,7 +10,7 @@
         function Get_data () {
             $this->view('MasterLayout', [
                 'page' => 'medicalBox_v',
-                'data' => $this->ls->medicalBox_get()
+                'data' => $this->ls->medicalBox_find('', '')
             ]);
         }
 
@@ -38,7 +38,7 @@
                 }
                 $this->view('MasterLayout',[
                     'page'=>'medicalBox_v',
-                    'data' => $this->ls->medicalBox_get()
+                    'data' => $this->ls->medicalBox_find('', '')
                 ]);    
                 echo "<script>window.location.href = 'http://localhost/ManagerPatientPHP/medicalBox/Get_data';</script>";
             }
@@ -84,6 +84,59 @@
                 return false;
             }
             return true;
+        }
+
+        function timKiem () {
+            if(isset($_POST['btnSearch'])) {
+                $mt = $_POST['txtSearch'];
+                $this->view('MasterLayout', [
+                    'page'=> 'medicalBox_v',
+                    'data'=> $this->ls->medicalBox_find($mt, ''),
+                    'mt'=>$mt
+                ]);
+            }
+        }
+
+        function delete ($mt) {
+            $kq = $this->ls->medicalBox_del($mt);
+            if($kq) {
+                echo "<script>alert('Xóa thành công!')</script>";
+            } else {
+                echo "<script>alert('Xóa thất bại!')</script>";
+            }
+            echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/medicalBox' </script>";
+        }
+
+        function sua($ml) {
+            $this->view('MasterLayout', [
+                'page'=> 'medicalBoxEdit_v',
+                'data'=> $this->ls->medicalBox_findOne($ml)
+            ]);
+        }
+
+        function suadl() {
+            $tt = $_POST['txtNameMedicine'];
+            $mt = $_POST['txtIdMedicine'];
+            $dbc = $_POST['txtDosageForms'];
+            $hl = $_POST['txtDrugContent'];
+            $ncc = $_POST['txtSupplier'];
+            $dd = $_POST['txtRouteOfUse'];
+            $sl = $_POST['txtQuantity'];
+            $gia = $_POST['txtPrice'];
+            $nhh = $_POST['txtexpirationDate'];
+            $gc = $_POST['txtNote'];
+
+            $kq = $this->ls->loaisach_upd($mt, $tt, $dbc, $hl, $dd, $sl, $gia, $ncc, $nhh, $gc);
+            if($kq) {
+                echo "<script>alert('Sửa thành công!')</scrip>";
+            } else {
+                echo "<script>alert('Sửa thất bại!')</script>";
+            }
+
+            $this->view('MasterLayout', [
+                'page'=> 'medicalBox_v',
+                'data'=> $this->ls->medicalBox_find('', '')
+            ]);
         }
     }
 ?>
