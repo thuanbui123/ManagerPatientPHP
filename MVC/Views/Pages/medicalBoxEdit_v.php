@@ -22,7 +22,7 @@
                         <span class="require">*</span>
                     </div>
                     <div class="name_medicine__input">
-                        <input type="text" name="txtNameMedicine" id="txtNameMedicine" value="<?php echo $row['tenthuoc']?>"/>
+                        <input type="text" name="txtNameMedicine" required id="txtNameMedicine" value="<?php echo $row['tenthuoc']?>"/>
                     </div>
                 </div>
                 <div class="id_medicine">
@@ -31,7 +31,7 @@
                         <span class="require">*</span>
                     </div>
                     <div class="id_medicine__input">
-                        <input type="text" name="txtIdMedicine" id="txtIdMedicine" value="<?php echo $row['mathuoc']?>" readonly/>
+                        <input type="text" name="txtIdMedicine" required id="txtIdMedicine" value="<?php echo $row['mathuoc']?>" readonly/>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <span class="require">*</span>
                     </div>
                     <div class="dosage__forms__input">
-                        <input type="text" name="txtDosageForms" id="txtDosageForms"  value="<?php echo $row['dangbaoche']?>"/>
+                        <input type="text" name="txtDosageForms" required id="txtDosageForms"  value="<?php echo $row['dangbaoche']?>"/>
                     </div>
                 </div>
                 <div class="drug__content">
@@ -51,7 +51,7 @@
                         <span class="require">*</span>
                     </div>
                     <div class="drug__content__input">
-                        <input type="text" name="txtDrugContent" id="txtDrugContent"   value="<?php echo $row['hamluong']?>"/>
+                        <input type="text" name="txtDrugContent" required id="txtDrugContent"   value="<?php echo $row['hamluong']?>"/>
                     </div>
                 </div>
                 <div class="supplier">
@@ -60,7 +60,7 @@
                         <span class="require">*</span>
                     </div>
                     <div class="supplier__input">
-                        <input type="text" name="txtSupplier" id="txtSupplier" value="<?php echo $row['nhacungcap']?>"/>
+                        <input type="text" name="txtSupplier" required id="txtSupplier" value="<?php echo $row['nhacungcap']?>"/>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                         <span class="require">*</span>
                     </div>
                     <div class="route_of_use__input">
-                        <input type="text" name="txtRouteOfUse" id="txtRouteOfUse" value="<?php echo $row['duongdung']?>"/>
+                        <input type="text" name="txtRouteOfUse" required id="txtRouteOfUse" value="<?php echo $row['duongdung']?>"/>
                     </div>
                 </div>
                 <div class="quantity">
@@ -80,7 +80,7 @@
                         <span class="require">*</span>
                     </div>
                     <div class="quantity__input">
-                        <input type="number" name="txtQuantity" id="txtQuantity" value="<?php echo $row['soluong']?>"/>
+                        <input type="number" name="txtQuantity" min="0" required id="txtQuantity" value="<?php echo $row['soluong']?>"/>
                     </div>
                 </div>
                 <div class="price">
@@ -89,7 +89,7 @@
                         <span class="require">*</span>
                     </div>
                     <div class="price__input">
-                        <input type="number" name="txtPrice" id="txtPrice" value="<?php echo $row['gia']?>"/>
+                        <input type="number" name="txtPrice" min="0" required id="txtPrice" value="<?php echo $row['gia']?>"/>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     <span class="require">*</span>
                 </div>
                 <div class="expiration__date__input">
-                    <input type="date" name="txtexpirationDate" id="txtexpirationDate" value="<?php echo $row['ngayhethan']?>"/>
+                    <input type="date" min="<?php echo date('Y-m-d'); ?>" name="txtexpirationDate" required id="txtexpirationDate" value="<?php echo $row['ngayhethan']?>"/>
                 </div>
             </div>
             <div class="note">
@@ -107,11 +107,11 @@
                     <p>Ghi chú</p>
                 </div>
                 <div class="note__input">
-                    <input type="text" name="txtNote" id="txtNote"  value="<?php echo $row['ghichu']?>"/>
+                    <input type="text" name="txtNote" id="txtNote" required value="<?php echo $row['ghichu']?>"/>
                 </div>
                 <div class="footer">
                     <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data" class="btnCancel">Hủy</a>
-                    <input type="submit" value="Lưu" class="btnSave">
+                    <input type="submit" value="Lưu" name="btnSave" class="btnSave">
                 </div>
             </div>
             <?php

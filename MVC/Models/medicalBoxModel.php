@@ -6,6 +6,11 @@
             return mysqli_query($this->con, $sql);
         }
 
+        function checkId ($id) {
+            $sql = "SELECT * FROM thuoc Where mathuoc = '$id'";
+            return mysqli_query($this->con, $sql);
+        }
+
         function medicalBox_findOne ($mt) {
             $sql = "SELECT * FROM thuoc WHERE mathuoc like '$mt'";
             return mysqli_query($this->con, $sql);
@@ -29,7 +34,7 @@
             return mysqli_query($this->con, $sql);
         }
 
-        function loaisach_upd($mt, $tt, $dbc, $hl, $dd, $sl, $gia, $ncc, $nhh, $gc) {
+        function medicalBox_upd($mt, $tt, $dbc, $hl, $dd, $sl, $gia, $ncc, $nhh, $gc) {
             $sql = "UPDATE thuoc SET tenthuoc='$tt', dangbaoche ='$dbc', hamluong = '$hl', duongdung = '$dd', soluong = '$sl', gia = '$gia', nhacungcap = '$ncc', ngayhethan = '$nhh', ghichu = '$gc' where mathuoc = '$mt'";
             return mysqli_query($this->con, $sql);
         }
