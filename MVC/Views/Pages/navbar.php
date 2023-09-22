@@ -66,7 +66,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/yyecauzv.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Đơn thuốc</a>
+                        <a href="http://localhost/ManagerPatientPHP/donthuoc/Get_data">Đơn thuốc</a>
                     </div>
 
                     <div class="sub-item">
@@ -114,7 +114,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/wxnxiano.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Thông tin BHYT</a>
+                        <a href="http://localhost/ManagerPatientPHP/baohiem/Get_data">Thông tin BHYT</a>
                     </div>
                 </diV>
 

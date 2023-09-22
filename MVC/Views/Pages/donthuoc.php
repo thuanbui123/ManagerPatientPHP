@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/medicalBox.css">
-    <title>Tủ thuốc</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/donthuoc.css">
 </head>
-
 <body>
     <div class="main">
         <header class="header">
             <div class="page">
-                <p class="name__page">Tủ thuốc</p>
-                <p class="desc__page">Tủ thuốc của bạn</p>
+                <p class="name__page">Đơn thuốc</p>
+                <p class="desc__page">Danh sách đơn thuốc đã cho</p>
             </div>
             <span class="btn--add">
-                Thêm thuốc mới
+                Thêm đơn thuốc
             </span>
-        </header>
+            </header>
         <div class="container">
             <div class="container__header">
                 <div class="main-functions">
@@ -30,42 +28,44 @@
                     </button>
                 </div>
                 <div class="search">
-                    <form class="form_search" action="http://localhost/ManagerPatientPHP/medicalBox/timkiem" method="POST">
+                    <form class="form_search" action="http://localhost/ManagerPatientPHP/donthuoc/timkiem" method="POST">
                         <label for="" class="search__label">Tìm kiếm</label>
-                        <input type="text" name="txtSearch" id="txtSearch" class="search__input">
+                        <input type="text" name="txtSearch" placeholder="Nhập mã đơn thuốc" value="<?php if(isset($data['id'])) echo $data['id'] ?>" id="txtSearch" class="search__input">
                         <input class="btnSearch" name="btnSearch" type="submit" value="Tìm kiếm">
                     </form>
                 </div>
-
             </div>
-
             <div class="container__content">
-                <table class="drug--info">
+                <table class="donthuoc">
                     <tr>
-                        <th style="text-align: left" class="col-1">Mã thuốc</th>
-                        <th style="text-align: left" class="col-2">Tên thuốc</th>
+                        <th style="text-align: left" class="col-1">Mã đơn thuốc</th>
+                        <th style="text-align: left" class="col-2">Tên bệnh nhân</th>
+                        <th style="text-align: left" class="col-2">Người kê đơn</th>
+                        <th style="text-align: left" class="col-1">Ngày kê đơn</th>
+                        <th style="text-align: left" class="col-1">Tên thuốc</th>
                         <th style="text-align: left" class="col-1">Hàm <br> lượng</th>
-                        <th style="text-align: left" class="col-1">Đường <br> dùng</th>
                         <th style="text-align: left" class="col-1">Số <br> lượng</th>
-                        <th style="text-align: left" class="col-1">Giá</th>
-                        <th style="text-align: left" class="col-2">Ghi chú</th>
+                        <th style="text-align: left" class="col-2">Hướng dẫn</th>
                         <th class="col-1-4"></th>
                         <th class="col-1-4"></th>
                     </tr>
+
+
                     <?php
                     if (isset($data["data"]) && $data["data"] != null) {
                         while ($row = mysqli_fetch_array($data["data"])) {
                     ?>
                         <tr>
-                            <td style="text-align: left" class="col-1"><?php echo $row['mathuoc'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['tenthuoc'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['madonthuoc'] ?></td>
+                            <td style="text-align: left" class="col-2"><?php echo $row['name'] ?></td>
+                            <td style="text-align: left" class="col-2"><?php echo $row['hoten'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['ngaykedon'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['tenthuoc'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['hamluong'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['duongdung'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['gia'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['ghichu'] ?></td>
+                            <td style="text-align: left" class="col-2"><?php echo $row['huongdan'] ?></td>
                             <td style="text-align: left" class="col-1-4">
-                                <a href="http://localhost/ManagerPatientPHP/medicalBox/sua/<?php echo $row['mathuoc'] ?>">
+                                <a href="http://localhost/ManagerPatientPHP/donthuoc/sua/<?php echo $row['madonthuoc'] ?>">
                                     <lord-icon
                                         src="https://cdn.lordicon.com/hiqmdfkt.json"
                                         trigger="hover"
@@ -75,7 +75,7 @@
                                 </a>
                             </td>
                             <td style="text-align: left" class="col-1-4">
-                                <a href="http://localhost/ManagerPatientPHP/medicalBox/delete/<?php echo $row['mathuoc'] ?>">
+                                <a href="http://localhost/ManagerPatientPHP/donthuoc/delete/<?php echo $row['madonthuoc'] ?>">
                                     <lord-icon
                                         src="https://cdn.lordicon.com/tntmaygd.json"
                                         trigger="hover"
@@ -89,20 +89,16 @@
                         }
                     }
                     ?>
+
                 </table>
             </div>
         </div>
-        <footer class="footer">
-            <div class="pagination">
-
-            </div>
-        </footer>
     </div>
-    <form class="form" method="post" action="http://localhost/ManagerPatientPHP/medicalBox/Insert_data">
+    <form class="form" method="post" action="http://localhost/ManagerPatientPHP/donthuoc/them">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Thêm thuốc mới</h4>
+                    <h4 class="modal-title">Thêm đơn thuốc</h4>
                     <button type="button" class="close">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
@@ -114,107 +110,122 @@
                     <div class="row__1">
                         <div class="name_medicine">
                             <div class="name_medicine__label">
-                                <p>Tên thuốc</p>
+                                <p>Mã đơn thuốc</p>
                                 <span class="require">*</span>
                             </div>
                             <div class="name_medicine__input">
-                                <input type="text" name="txtNameMedicine" required id="txtNameMedicine" placeholder="Tenovir">
+                                <input type="text" name="txtMaDonThuoc" id="txtNameMedicine" required placeholder="DT001">
                             </div>
                         </div>
                         <div class="id_medicine">
                             <div class="id_medicine__label">
-                                <p>Mã thuốc</p>
+                                <p>Tên bệnh nhân</p>
                                 <span class="require">*</span>
                             </div>
                             <div class="id_medicine__input">
-                                <input type="text" name="txtIdMedicine" required id="txtIdMedicine" placeholder="10258.KD.12.1">
+                                <select name="namebenhnhan" class="namebenhnhan">
+                                    <?php
+                                        if(isset($data['name']) && $data['name'] != null) {
+                                        $i = 0;
+                                            while($row1 = mysqli_fetch_array($data['name'])) {
+                                    ?>
+                                        <option value="<?php echo $row1['name']?>"><?php echo $row1['name']?></option>
+                                        <?php
+                                            }
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="row__2">
                         <div class="dosage__forms">
                             <div class="dosage__forms__label">
-                                <p>Bào chế dạng</p>
+                                <p>Người kê đơn</p>
                                 <span class="require">*</span>
                             </div>
                             <div class="dosage__forms__input">
-                                <input type="text" required name="txtDosageForms" id="txtDosageForms" placeholder="viên">
+                                <select name="namebacsi" class="namebenhnhan">
+                                    <?php
+                                            if(isset($data['hoten']) && $data['hoten'] != null) {
+                                            $i = 0;
+                                                while($row1 = mysqli_fetch_array($data['hoten'])) {
+                                        ?>
+                                            <option value="<?php echo $row1['hoten']?>"><?php echo $row1['hoten']?></option>
+                                            <?php
+                                                }
+                                            }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         <div class="drug__content">
                             <div class="drug__content__label">
-                                <p>Hàm lượng</p>
+                                <p>Ngày kê đơn</p>
                                 <span class="require">*</span>
                             </div>
                             <div class="drug__content__input">
-                                <input type="text" required name="txtDrugContent" id="txtDrugContent" placeholder="300mg">
+                                <input type="date" max="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" name="txtNgayKeDon" id="txtDrugContent" required>
                             </div>
                         </div>
                         <div class="supplier">
                             <div class="supplier__label">
-                                <p>Nhà cung cấp</p>
+                                <p>Tên thuốc</p>
                                 <span class="require">*</span>
                             </div>
                             <div class="supplier__input">
-                                <input type="text" required name="txtSupplier" id="txtSupplier" placeholder="Traphaco">
+                                <select name="tenthuoc" class="namebenhnhan">
+                                    <?php
+                                            if(isset($data['tenthuoc']) && $data['tenthuoc'] != null) {
+                                            $i = 0;
+                                                while($row1 = mysqli_fetch_array($data['tenthuoc'])) {
+                                        ?>
+                                            <option value="<?php echo $row1['tenthuoc']?>"><?php echo $row1['tenthuoc']?></option>
+                                            <?php
+                                                }
+                                            }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="row__3">
                         <div class="route_of_use">
                             <div class="route_of_use__label">
-                                <p>Đường dùng</p>
+                                <p>Số lượng</p>
                                 <span class="require">*</span>
                             </div>
                             <div class="route_of_use__input">
-                                <input type="text" required name="txtRouteOfUse" id="txtRouteOfUse" placeholder="uống">
+                                <input type="number" name="txtSoLuong" id="txtRouteOfUse" placeholder="300" min="0" required>
                             </div>
                         </div>
                         <div class="quantity">
                             <div class="quantity__label">
-                                <p>Số lượng</p>
+                                <p>Đơn vị</p>
                                 <span class="require">*</span>
                             </div>
                             <div class="quantity__input">
-                                <input type="number" required min="0" name="txtQuantity" id="txtQuantity" placeholder="300">
+                                <input type="text" name="txtDonVi" id="txtQuantity" required placeholder="viên">
                             </div>
-                        </div>
-                        <div class="price">
-                            <div class="price__label">
-                                <p>Giá</p>
-                                <span class="require">*</span>
-                            </div>
-                            <div class="price__input">
-                                <input type="number" required min="0" name="txtPrice" id="txtPrice" placeholder="300">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expiration__date">
-                        <div class="expiration__date__label">
-                            <p>Ngày hết hạn</p>
-                            <span class="require">*</span>
-                        </div>
-                        <div class="expiration__date__input">
-                            <input type="date" required min="<?php echo date('Y-m-d'); ?>" name="txtexpirationDate" id="txtexpirationDate" placeholder="01/01/2024">
                         </div>
                     </div>
                     <div class="note">
                         <div class="note__label">
-                            <p>Ghi chú</p>
+                            <p>Hướng dẫn</p>
+                            <span class="require">*</span>
                         </div>
                         <div class="note__input">
-                            <input type="text" name="txtNote" id="txtNote" placeholder="Dễ dị ứng">
+                            <input type="text" name="txthuongdan" id="txtNote" required placeholder="Dùng như nào?">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="modal-btn btn-cancel">Hủy</button>
-                    <input type="submit" name="btnLuu" class="modal-btn btn-add" value="Thêm thuốc" />
+                    <input type="submit" name="btnLuu" class="modal-btn btn-add" value="Thêm đơn thuốc" />
                 </div>
             </div>
         </div>
     </form>
     <script src="http://localhost/ManagerPatientPHP/Public/js/medicalBox.js"></script>
 </body>
-
 </html>

@@ -14,6 +14,23 @@ td {
     color: #666;
 }
 
+.col-2 {
+    width: 20%;
+    margin-right: 2px;}
+
+.col-1 {
+    width: 10%;
+    margin-right: 2px;}
+
+.col-1-2 {
+    width: 5%;
+    margin-right: 2px;}
+
+.col-1-4 {
+    width: 2.5%;
+    margin-right: 2px;;
+}
+
 .main {
     background-color: #ffffff;
     padding: 30px;
@@ -111,7 +128,7 @@ td {
 }
 
 .search__input {
-    background-color: #f5f8fa;
+    background-color: #e4e6ef;
     border: none;
     outline: none;
     font-size: 15px;
@@ -129,40 +146,20 @@ td {
     height: 35px;
     border-radius: 4.75px;
     border: none;
-    background-color: #f5f8fa;
+    background-color: #e4e6ef;
     padding: 0 5px;
 }
 
-.drug--info {
-    width: 100%;
-}
-
-.col-2 {
-    width: 20%;
-}
-
-.col-1 {
-    width: 10%;
-}
-
-.col-1-2 {
-    width: 5%;
-}
-
-.col-1-4 {
-    width: 2.5%;
-}
-
-.btn--edit,
-.btn--remove {
-    display: block;
-    border-radius: 4.75px;
-    height: 30px;
+.namebenhnhan {
+    border: none;
     background-color: #f5f8fa;
+    border-color: #f5f8fa;
+    font-size: 16px;
+    height: 40.5px;
+    line-height: 40.5px;
+    padding: 9.75px 0px;
+    border-radius: 4.75px;
 }
-
-
-/* Modal */
 
 .form {
     position: fixed;
@@ -176,8 +173,6 @@ td {
     justify-content: center;
 
 }
-
-
 
 .appear {
     display: flex;
@@ -240,6 +235,7 @@ td {
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
+    align-items: center;
 }
 
 .expiration__date {
@@ -254,7 +250,8 @@ td {
 .price__label,
 .drug__content__label,
 .dosage__forms__label,
-.route_of_use__label {
+.route_of_use__label,
+.note__label {
     display: flex;
     align-items: center;
 }
@@ -327,7 +324,6 @@ td {
     display: block;
     height: 40.5px;
     border-radius: 4.25px;
-    margin-top: 6.5px;
     font-size: 16px;
     outline: none;
     border: none;

@@ -90,7 +90,7 @@
 }
 
 .id_medicine, .dosage__forms, .expiration__date, .supplier, .drug__content, .drug__content, .route_of_use, .quantity, .price {
-    width: 170px;
+    width: 180px;
     padding: 0 14.625px;
 }
 
@@ -118,7 +118,7 @@
 }
 
 #txtPrice, #txtSupplier, #txtexpirationDate, #txtQuantity, #txtRouteOfUse, #txtDrugContent, #txtDosageForms, #txtIdMedicine {
-    width: 141.5px;
+    width: 165.5px;
     padding: 9.75px 13px;
 }
 
@@ -129,6 +129,16 @@
 .expiration__date {
     padding: 0;
     margin-left: 16px;
+}
+
+.namebenhnhan {
+    border: none;
+    background-color: #f5f8fa;
+    border-color: #f5f8fa;
+    font-size: 16px;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
 }
 
 .note {
@@ -158,8 +168,8 @@
 }
 
 .btnCancel {
-    border-color: #f5f8fa;
     margin-right: 15px;
+    border-color: #f5f8fa;
 }
 
 .btnSave {
