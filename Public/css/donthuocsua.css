@@ -105,7 +105,8 @@
     margin-top: 6.5px;
 }
 
-#txtNameMedicine, #txtSupplier, #txtexpirationDate, #txtIdMedicine, #txtDosageForms, #txtDrugContent, #txtRouteOfUse, #txtQuantity, #txtPrice, #txtNote, #txtNote {
+
+#txtNameMedicine, #txtNameBenhNhan, #txtSupplier, #txtexpirationDate, #txtIdMedicine, #txtDosageForms, #txtDrugContent, #txtRouteOfUse, #txtQuantity, #txtPrice, #txtNote, #txtNote {
     display: block;
     height: 40.5px;
     border-radius: 4.25px;
@@ -117,7 +118,8 @@
     border-color: #f5f8fa;
 }
 
-#txtPrice, #txtSupplier, #txtexpirationDate, #txtQuantity, #txtRouteOfUse, #txtDrugContent, #txtDosageForms, #txtIdMedicine {
+
+#txtPrice, #txtSupplier, #txtNameBenhNhan, #txtexpirationDate, #txtQuantity, #txtRouteOfUse, #txtDrugContent, #txtDosageForms, #txtIdMedicine {
     width: 165.5px;
     padding: 9.75px 13px;
 }
