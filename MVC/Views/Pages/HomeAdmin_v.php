@@ -1,3 +1,5 @@
+<?php print_r($data['taikhoan']) ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

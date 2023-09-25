@@ -25,7 +25,7 @@ $dt = new DateTime($getDataById['ngaysinh']);
         <div class="container">
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbenhnhan/xacnhansuabenhnhan">
                 <div class="mb-3">
-                    <label for="patient" class="form-label">Ngày sinh</label>
+                    <label for="patient" class="form-label">Mã bệnh nhân</label>
                     <input required name="mabenhnhan" type="text" class="form-control" id="patient" value="<?php echo $getDataById['mabenhnhan'] ?>">
                 </div>
                 <div class="mb-3">
@@ -69,7 +69,6 @@ $dt = new DateTime($getDataById['ngaysinh']);
                     <a href="http://localhost/ManagerPatientPHP/danhsachbenhnhan"><button type="button" class="btn btn-danger">Hủy</button></a>
                     <button type="submit" class="btn btn-primary">Sửa</button>
                 </div>
-
             </form>
         </div>
     </div>

@@ -19,26 +19,43 @@ class taikhoan extends controller
     {
         if (isset($_POST['login'])) {
             $email = $_POST['email'];
+            $_SESSION['email'] = $email;
             $password = $_POST['password'];
             $role = $email == "admin@gmail.com" ? 1 : 0;
             $result = $this->ls->dangnhap($email, $password, $role);
             if ($role == 1) {
                 if ($result) {
                     echo "<script> alert('Đăng nhập tài khoản admin thành công') </script>";
-                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeadmin' </script>";
+                    // echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeadmin' </script>";
+                    $this->view(
+                        'MasterLayout',
+                        [
+                            'page' => 'HomeAdmin_v',
+                            'taikhoan' => $email,
+                        ]
+                    );
+                    // header("location: http://localhost/ManagerPatientPHP/homeadmin");
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
                 }
             } else {
                 if ($result) {
                     echo "<script> alert('Đăng nhập thành công') </script>";
-                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                    // echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                    $this->view(
+                        'MasterLayout',
+                        [
+                            'page' => 'HomeUser_v',
+                            'taikhoan' => $email,
+                        ]
+                    );
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
                 }
             }
         } else {
             header("location: http://localhost/ManagerPatientPHP/taikhoan");
+            exit;
         }
     }
 
