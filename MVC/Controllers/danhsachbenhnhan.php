@@ -14,7 +14,13 @@ class DanhSachBenhNhan extends controller
         $this->view('MasterLayout', [
             'page' => 'benhnhan/patientBox_v',
             'listPatient' => $this->getDataPatients(),
-            'listAccount' => $this->getDataAccounts()
+            'listAccount' => $this->getDataAccounts(),
+            'listDocstor' => $this->getListDoctors(),
+            'listDiseases' => $this->getDiseases(),
+            'listPreventions' => $this->getPreventions(),
+            'listBedhopitals' => $this->getBedhopitals(),
+            'listPatientNotYetHopitalized' => $this->getPatientsNotYetHapitalized(),
+            'getPatient' => $this->ls->getDataPatient()
         ]);
     }
 
@@ -23,12 +29,38 @@ class DanhSachBenhNhan extends controller
         $result = $this->ls->getDataPatients();
         return $result;
     }
+    function getPatientsNotYetHapitalized()
+    {
+        $result = $this->ls->getPatientsNotYetHapitalized();
+        return $result;
+    }
+    function getListDoctors()
+    {
+        $result = $this->ls->getListDoctors();
+        return $result;
+    }
 
+    function getDiseases()
+    {
+        $result = $this->ls->getDiseases();
+        return $result;
+    }
+    function getPreventions()
+    {
+        $result = $this->ls->getPreventions();
+        return $result;
+    }
+    function getBedHopitals()
+    {
+        $result = $this->ls->getBedHopitals();
+        return $result;
+    }
     function getDataAccounts()
     {
         $result = $this->ls->listAccounts();
         return $result;
     }
+
 
     function thembenhnhan()
     {
@@ -40,22 +72,26 @@ class DanhSachBenhNhan extends controller
         $quequan = $_POST['quequan'];
         $image = "http://localhost/ManagerPatientPHP/Public/img/" . $_POST['anh'];
         $taikhoan = $_POST['taikhoan'];
+        $nhapvien = 0;
 
         $checkIndentical = $this->ls->getDataPatientById($mabenhnhan, $taikhoan);
 
-        if (mysqli_num_rows($checkIndentical) == 0) {
-            $resultAdd = $this->ls->listPatients_ins($mabenhnhan, $ngaysinh, $gioitinh, $quequan,  $image, $taikhoan);
-            if ($resultAdd) {
-                echo "<script> alert('Thêm bênh nhân thành công') </script>";
-                echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
+        if ($taikhoan != "Null") {
+            if (mysqli_num_rows($checkIndentical) == 0) {
+                $resultAdd = $this->ls->listPatients_ins($mabenhnhan, $ngaysinh, $gioitinh, $quequan,  $image, $taikhoan, $nhapvien);
+                if ($resultAdd) {
+                    echo "<script> alert('Thêm bênh nhân thành công') </script>";
+                } else {
+                    echo "<script> alert('Thêm bênh nhân thất bại') </script>";
+                }
             } else {
-                echo "<script> alert('Thêm bênh nhân thất bại') </script>";
+                // echo  $mabenhnhan, $taikhoan;
+                echo "<script> alert('Bênh nhân đã được tạo') </script>";
             }
         } else {
-            // echo  $mabenhnhan, $taikhoan;
-            echo "<script> alert('Bênh nhân đã được tạo') </script>";
-            echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
+            echo "<script> alert('Tài khoản trống không thể thêm được bệnh nhân') </script>";
         }
+        echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
     }
 
     function xoabenhnhan()
@@ -71,10 +107,10 @@ class DanhSachBenhNhan extends controller
             $result = $this->ls->listPatients_delete($params['id']);
             if ($result) {
                 echo "<script> alert('Xóa bênh nhân thành công') </script>";
-                echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
             } else {
                 echo "<script> alert('Xóa bênh nhân thất bại') </script>";
             }
+            echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
         }
     }
 
@@ -110,10 +146,10 @@ class DanhSachBenhNhan extends controller
 
         if ($result) {
             echo "<script> alert('Sửa bác sĩ thành công') </script>";
-            echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
         } else {
             echo "<script> alert('Sửa bác sĩ thất bại') </script>";
         }
+        echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
     }
     function timkiem()
     {
@@ -122,7 +158,44 @@ class DanhSachBenhNhan extends controller
         $this->view('Masterlayout', [
             'page' => 'benhnhan/patientBox_v',
             'listPatient' =>  $result,
-            'listAccount' => $this->getDataAccounts()
+            'listAccount' => $this->getDataAccounts(),
+            'listDocstor' => $this->getListDoctors(),
+            'listDiseases' => $this->getDiseases(),
+            'listPreventions' => $this->getPreventions(),
+            'listBedhopitals' => $this->getBedhopitals(),
+            'listPatientNotYetHopitalized' => $this->getPatientsNotYetHapitalized(),
+            'getPatient' => $this->ls->getDataPatient()
         ]);
+    }
+
+    function nhapvien()
+    {
+        $mahosobenhnhannhapvien = 'bnnt' . ((mysqli_num_rows($this->ls->getListsNhapVien()) + 1) + 1);
+        $mabenhnhan = $_POST['hoten'];
+        $mabenh = $_POST['benh'];
+        $ngaynhapvien = $_POST['ngaynhapvien'];
+        $ngaynhapvien_date = new DateTime($ngaynhapvien);
+        $ngaynhapvien = $ngaynhapvien_date->format("d-m-Y");
+
+        $ngayxuatvien = "No";
+        $maphong = $_POST['phongbenh'];
+        $ghichu = $_POST['ghichu'];
+        $magiuong = $_POST['giuong'];
+        $mabacsi = $_POST['bacsi'];
+        $nhapvien = '1';
+
+        $result = $this->ls->listHoSoBenhNhan_ins($mahosobenhnhannhapvien, $mabenhnhan, $mabenh, $ngaynhapvien, $ngayxuatvien, $maphong, $ghichu, $magiuong, $mabacsi);
+        $resultNhapVien = $this->ls->updateBenhNhanNhapVien($mabenhnhan, $nhapvien);
+
+        if ($result && $resultNhapVien) {
+            echo "<script> alert('Nhập viện thành công') </script>";
+        } else {
+            echo "<script> alert('Nhập viện thất bại') </script>";
+        }
+        echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
+    }
+
+    function xuatexcel($data)
+    {
     }
 }
