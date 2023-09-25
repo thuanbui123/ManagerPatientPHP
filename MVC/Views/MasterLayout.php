@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +37,6 @@
         if ($_SESSION['email'] == 'admin@gmail.com') {
             include_once "MVC/Views/Pages/navbar.php";
         } else {
-            echo "Hell World";
             include_once "MVC/Views/Pages/navbar_user.php";
         }
         ?>

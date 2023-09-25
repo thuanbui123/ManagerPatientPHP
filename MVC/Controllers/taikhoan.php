@@ -1,4 +1,5 @@
 <?php
+
 class taikhoan extends controller
 {
     protected $ls;
@@ -20,13 +21,14 @@ class taikhoan extends controller
         if (isset($_POST['login'])) {
             $email = $_POST['email'];
             $_SESSION['email'] = $email;
+            echo $_SESSION['email'];
             $password = $_POST['password'];
             $role = $email == "admin@gmail.com" ? 1 : 0;
             $result = $this->ls->dangnhap($email, $password, $role);
             if ($role == 1) {
                 if ($result) {
                     echo "<script> alert('Đăng nhập tài khoản admin thành công') </script>";
-                    // echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeadmin' </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeadmin' </script>";
                     $this->view(
                         'MasterLayout',
                         [
@@ -41,11 +43,15 @@ class taikhoan extends controller
             } else {
                 if ($result) {
                     echo "<script> alert('Đăng nhập thành công') </script>";
-                    // echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
                     $this->view(
                         'MasterLayout',
                         [
                             'page' => 'HomeUser_v',
+                    $this->view(
+                        'MasterLayout',
+                        [
+                            'page' => 'HomeUser_V',
                             'taikhoan' => $email,
                         ]
                     );

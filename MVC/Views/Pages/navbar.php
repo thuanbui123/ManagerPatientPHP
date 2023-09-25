@@ -25,7 +25,7 @@
             <div class="nav-container-item">
                 <lord-icon class="container-icon" src="https://cdn.lordicon.com/qjuahhae.json" trigger="loop" colors="primary:#fff">
                 </lord-icon>
-                <a href="#">Lịch hẹn</a>
+                <a href="http://localhost/ManagerPatientPHP/lichkham/Get_data">Lịch hẹn</a>
             </div>
 
             <div class="features">
@@ -72,13 +72,13 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/yyecauzv.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Đơn thuốc</a>
+                        <a href="http://localhost/ManagerPatientPHP/donthuoc/Get_data">Đơn thuốc</a>
                     </div>
 
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/xawkzoxm.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data?page=1">Tủ thuốc</a>
+                        <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data">Tủ thuốc</a>
                     </div>
                 </diV>
 
@@ -100,7 +100,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/qjuahhae.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Quản lý lịch khám</a>
+                        <a href="http://localhost/ManagerPatientPHP/lichkham/Get_data">Quản lý lịch khám</a>
                     </div>
 
                     <div class="sub-item">
@@ -120,7 +120,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/wxnxiano.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Thông tin BHYT</a>
+                        <a href="http://localhost/ManagerPatientPHP/baohiem/Get_data">Thông tin BHYT</a>
                     </div>
 
                     <div class="sub-item">
@@ -142,12 +142,12 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/dxjqoygy.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Cài đặt tài khoản</a>
+                        <a href="http://localhost/ManagerPatientPHP/account/Get_data">Tài khoản</a>
                     </div>
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/xawkzoxm.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Tủ thuốc</a>
+                        <a href="http://localhost/ManagerPatientPHP/medicalBox/Get_data">Tủ thuốc</a>
                     </div>
                 </diV>
             </div>

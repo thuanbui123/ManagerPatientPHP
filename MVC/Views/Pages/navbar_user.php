@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="http://localhost/ManagerPatientPHP/Public/css/Navbar.css">
 </head>
-
 <body>
     <nav class="category">
         <div class="nav-header">
@@ -28,7 +26,7 @@
             </div>
             <div class="features">
                 <h3>Chức năng</h3>
-                <diV class="menu-sub">
+                <div class="menu-sub">
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/jqeuwnmb.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
@@ -84,5 +82,4 @@
     </nav>
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </body>
-
 </html>
