@@ -1,4 +1,7 @@
 <?php
+    use PhpOffice\PhpSpreadsheet\IOFactory;
+    use PhpOffice\PhpSpreadsheet\Spreadsheet;
+    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
     class medicalBox extends controller {
         protected $ls;
         function __construct()
@@ -142,6 +145,46 @@
                     'data'=> $this->ls->medicalBox_find('', '')
                 ]);
                 echo "<script>window.location.href = 'http://localhost/ManagerPatientPHP/medicalBox/Get_data';</script>";
+            }
+        }
+
+        function xuat () {
+            if(isset($_POST['excel'])) {
+                $data = $this->ls->medicalBox_find('', '');
+                $spreadsheet = new Spreadsheet();
+                $sheet = $spreadsheet->getActiveSheet();
+
+                // Header row
+                $headerRowData = ['Mã thuốc', 'Tên thuốc', 'Dạng bào chế', 'Hàm lượng', 'Cách dùng', 'Số lượng', 'Giá', 'Nhà cung cấp', 'Hạn sử dụng', 'Ghi chú'];
+                $columnIndex = 1;
+                foreach ($headerRowData as $headerCell) {
+                    $cellCoordinate = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($columnIndex) . '1';
+                    $sheet->setCellValue($cellCoordinate, $headerCell);
+                    $columnIndex++;
+                }
+
+                // Data rows
+                $dataRow = 2;
+                foreach ($data as $rowData) {
+                    $columnIndex = 1;
+                    foreach ($rowData as $propertyValue) {
+                        $cellCoordinate = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($columnIndex) . $dataRow;
+                        $sheet->setCellValue($cellCoordinate, $propertyValue);
+                        $columnIndex++;
+                    }
+                    $dataRow++;
+                }
+
+                // $writer = new Xlsx($spreadsheet);
+                $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+                // Set the appropriate headers for Excel file download
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                $filename=time().".xlsx";
+                $writer->save($filename);
+                header("location:".$filename);
+                // header('Content-Disposition: attachment;filename="exported_data.xlsx"');
+                // header('Cache-Control: max-age=0');
+                // $writer->save("ex.xlsx");
             }
         }
     }

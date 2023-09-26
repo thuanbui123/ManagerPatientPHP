@@ -22,12 +22,9 @@
         <div class="container">
             <div class="container__header">
                 <div class="main-functions">
-                    <button class="btn btn--excel">
-                        <span>Excel</span>
-                    </button>
-                    <button class="btn btn--pdf">
-                        <span>Pdf</span>
-                    </button>
+                    <form action="http://localhost/ManagerPatientPHP/medicalBox/xuat" method="POST">
+                        <input type="submit" name="excel" class="btn btn--excel" value="Excel">
+                    </form>
                 </div>
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/medicalBox/timkiem" method="POST">
@@ -45,7 +42,7 @@
                         <th style="text-align: left" class="col-1">Mã thuốc</th>
                         <th style="text-align: left" class="col-2">Tên thuốc</th>
                         <th style="text-align: left" class="col-1">Hàm <br> lượng</th>
-                        <th style="text-align: left" class="col-1">Đường <br> dùng</th>
+                        <th style="text-align: left" class="col-1">Cách <br> dùng</th>
                         <th style="text-align: left" class="col-1">Số <br> lượng</th>
                         <th style="text-align: left" class="col-1">Giá</th>
                         <th style="text-align: left" class="col-2">Ghi chú</th>

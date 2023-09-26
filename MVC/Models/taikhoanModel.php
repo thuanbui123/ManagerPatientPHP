@@ -18,4 +18,9 @@ class taikhoanModel extends connectDB
         $query = "SELECT * FROM `acount` WHERE `username` = '$username'";
         return mysqli_query($this->con, $query);
     }
+
+    function ngayhen($email) {
+        $sql = "SELECT lichhen.ngayhen from `benhnhan`, `acount`, `lichhen` where benhnhan.idtaikhoan = acount.id and acount.username = '$email' and benhnhan.mabenhnhan = lichhen.mabenhnhan and lichhen.tinhtrang = '0'";
+        return mysqli_query($this->con, $sql);
+    }
 }
