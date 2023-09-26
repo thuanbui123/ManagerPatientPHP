@@ -28,6 +28,7 @@ class taikhoan extends controller
             if ($role == 1) {
                 if ($result) {
                     echo "<script> alert('Đăng nhập tài khoản admin thành công') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeadmin' </script>";
                     $this->view(
                         'MasterLayout',
                         [
@@ -35,6 +36,7 @@ class taikhoan extends controller
                             'taikhoan' => $email,
                         ]
                     );
+                    // header("location: http://localhost/ManagerPatientPHP/homeadmin");
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
                 }
@@ -53,6 +55,11 @@ class taikhoan extends controller
                         }
                     }
                     echo "<script> alert('Đăng nhập thành công') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                    $this->view(
+                        'MasterLayout',
+                        [
+                            'page' => 'HomeUser_v',
                     $this->view(
                         'MasterLayout',
                         [
@@ -66,6 +73,7 @@ class taikhoan extends controller
             }
         } else {
             header("location: http://localhost/ManagerPatientPHP/taikhoan");
+            exit;
         }
     }
 

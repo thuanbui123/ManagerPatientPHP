@@ -50,7 +50,13 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/mecwbjnp.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Thêm mới bệnh nhân</a>
+                        <a href="http://localhost/ManagerPatientPHP/hosobenhnhan">Bệnh nhân nhập viện</a>
+                    </div>
+
+                    <div class="sub-item">
+                        <lord-icon class="container-icon" src="https://cdn.lordicon.com/nocovwne.json" trigger="loop" colors="primary:#fff">
+                        </lord-icon>
+                        <a href="http://localhost/ManagerPatientPHP/thongkekhambenh">Thống kê khám bệnh</a>
                     </div>
                 </diV>
 
@@ -115,6 +121,12 @@
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/wxnxiano.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
                         <a href="http://localhost/ManagerPatientPHP/baohiem/Get_data">Thông tin BHYT</a>
+                    </div>
+
+                    <div class="sub-item">
+                        <lord-icon class="container-icon" src="https://cdn.lordicon.com/wxnxiano.json" trigger="loop" colors="primary:#fff">
+                        </lord-icon>
+                        <a href="http://localhost/ManagerPatientPHP/danhsachvienphi">Quản lý viện phí</a>
                     </div>
                 </diV>
 

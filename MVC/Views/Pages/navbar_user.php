@@ -26,7 +26,7 @@
             </div>
             <div class="features">
                 <h3>Chức năng</h3>
-              <diV class="menu-sub">
+                <div class="menu-sub">
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/jqeuwnmb.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
@@ -78,6 +78,7 @@
             <div class="nav-footer">
                 <a href="http://localhost/ManagerPatientPHP/taikhoan"><button style="margin-top: 10px">Đăng xuất</button></a>
             </div>
+        </div>
     </nav>
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </body>
