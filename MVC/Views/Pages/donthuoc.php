@@ -20,12 +20,9 @@
         <div class="container">
             <div class="container__header">
                 <div class="main-functions">
-                    <button class="btn btn--excel">
-                        <span>Excel</span>
-                    </button>
-                    <button class="btn btn--pdf">
-                        <span>Pdf</span>
-                    </button>
+                    <form action="http://localhost/ManagerPatientPHP/donthuoc/xuat" method="POST">
+                        <input type="submit" name="excel" class="btn btn--excel" value="Excel">
+                    </form>
                 </div>
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/donthuoc/timkiem" method="POST">

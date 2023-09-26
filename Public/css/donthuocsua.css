@@ -105,7 +105,6 @@
     margin-top: 6.5px;
 }
 
-
 #txtNameMedicine, #txtNameBenhNhan, #txtSupplier, #txtexpirationDate, #txtIdMedicine, #txtDosageForms, #txtDrugContent, #txtRouteOfUse, #txtQuantity, #txtPrice, #txtNote, #txtNote {
     display: block;
     height: 40.5px;
@@ -117,7 +116,6 @@
     background-color: #f5f8fa;
     border-color: #f5f8fa;
 }
-
 
 #txtPrice, #txtSupplier, #txtNameBenhNhan, #txtexpirationDate, #txtQuantity, #txtRouteOfUse, #txtDrugContent, #txtDosageForms, #txtIdMedicine {
     width: 165.5px;

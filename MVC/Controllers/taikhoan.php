@@ -42,6 +42,18 @@ class taikhoan extends controller
                 }
             } else {
                 if ($result) {
+                    $ngayHienTai = getdate();
+                    $ngay = $ngayHienTai["mday"];
+                    $thang = $ngayHienTai["mon"];
+                    $nam = $ngayHienTai["year"];
+                    $row = mysqli_fetch_array($this->ls->ngayhen($email));
+                    if(isset($row)) {
+                        $ngayhen = $row['ngayhen'];
+                        $arr = explode('/', $ngayhen);
+                        if($arr[0] == $ngay && $arr[1] == $thang && $arr[2] == $nam) {
+                        echo "<script> alert('Hôm nay bạn có lịch khám') </script>";
+                        }
+                    }
                     echo "<script> alert('Đăng nhập thành công') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
                     $this->view(
