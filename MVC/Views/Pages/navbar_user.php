@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="http://localhost/ManagerPatientPHP/Public/css/Navbar.css">
 </head>
 <body>
-    <nav class="category">
+    <nav class="category" >
         <div class="nav-header">
             <img src="http://localhost/ManagerPatientPHP/Public/img/logo-piincode.png" alt="hrlo">
             <lord-icon class="icon-nav" src="https://cdn.lordicon.com/jxwksgwv.json" trigger="loop" colors="primary:#fff">

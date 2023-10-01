@@ -45,6 +45,13 @@
             include_once './MVC/Views/Pages/' . $data['page'] . '.php';
             ?>
         </div>
+        <?php
+        $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        if ($actual_link == "http://localhost/ManagerPatientPHP/taikhoan" || $actual_link == "http://localhost/ManagerPatientPHP") {
+            session_destroy();
+        }
+        ?>
     </div>
 </body>
 

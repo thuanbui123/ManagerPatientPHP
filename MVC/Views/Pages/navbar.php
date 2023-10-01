@@ -100,7 +100,25 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/qhgmphtg.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Quản lý khoa</a>
+                        <a href="#">Quản lý thanh toán</a>
+                    </div>
+                    <diV class="menu-sub">
+                    <div class="sub-item">
+                        <lord-icon class="container-icon" src="https://cdn.lordicon.com/jqeuwnmb.json" trigger="loop" colors="primary:#fff">
+                        </lord-icon>
+                        <a href="http://localhost/ManagerPatientPHP/danhsachthanhtoan">Danh sách thanh toán</a>
+                    </div>
+
+                    <div class="sub-item">
+                        <lord-icon class="container-icon" src="https://cdn.lordicon.com/mecwbjnp.json" trigger="loop" colors="primary:#fff">
+                        </lord-icon>
+                        <a href="#">Thêm mới thanh toán</a>
+                    </div>
+                </diV>
+                    <div class="sub-item">
+                        <lord-icon class="container-icon" src="https://cdn.lordicon.com/qhgmphtg.json" trigger="loop" colors="primary:#fff">
+                        </lord-icon>
+                        <a href="#">Quản lý viện phí</a>
                     </div>
                 </diV>
                 <div class="nav-container-item">

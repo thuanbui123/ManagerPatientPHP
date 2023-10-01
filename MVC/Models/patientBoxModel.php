@@ -48,4 +48,5 @@ class patientBoxModel extends connectDB
         $query = "SELECT * FROM `acount`";
         return mysqli_query($this->con, $query);
     }
+    
 }
