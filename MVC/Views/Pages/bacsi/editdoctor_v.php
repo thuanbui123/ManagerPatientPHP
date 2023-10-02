@@ -26,34 +26,41 @@ $dt = new DateTime($getDoctorById['ngaysinh']);
                 <div>
                     <div class="mb-3">
                         <label for="mabacsi" class="form-label">Họ tên</label>
-                        <input required placeholder="Mã bác sĩ" name="mabacsi" type="text" class="form-control" id="mabacsi" value="<?php echo $getDoctorById['mabacsi'] ?>">
+                        <input required placeholder="Mã bác sĩ" name="mabacsi" type="text" class="form-control"
+                            id="mabacsi" value="<?php echo $getDoctorById['mabacsi'] ?>">
                     </div>
                     <div class="mb-3">
                         <label for="hoten" class="form-label">Họ tên</label>
-                        <input required placeholder="Họ và tên" name="hoten" type="text" class="form-control" id="hoten" value="<?php echo $getDoctorById['hoten'] ?>">
+                        <input required placeholder="Họ và tên" name="hoten" type="text" class="form-control" id="hoten"
+                            value="<?php echo $getDoctorById['hoten'] ?>">
                     </div>
 
                     <div class="mb-3">
                         <label for="date" class="form-label">Ngày sinh</label>
-                        <input required name="ngaysinh" type="date" class="form-control" id="date" value="<?php echo $dt->format('Y-m-d') ?>">
+                        <input required name="ngaysinh" type="date" class="form-control" id="date"
+                            value="<?php echo $dt->format('Y-m-d') ?>">
                     </div>
 
                     <div class="mb-3">
                         <label for="sex" class="form-label">Giới tính</label>
                         <select required name="sex" class="form-select">
-                            <option value="Nam" <?php echo $getDoctorById['gioitinh'] == 'Nam' ? 'selected' : '' ?>>Nam</option>
-                            <option <?php echo $getDoctorById['gioitinh'] == 'Nữ' ? 'selected' : '' ?> value="Nữ">Nữ</option>
+                            <option value="Nam" <?php echo $getDoctorById['gioitinh'] == 'Nam' ? 'selected' : '' ?>>Nam
+                            </option>
+                            <option <?php echo $getDoctorById['gioitinh'] == 'Nữ' ? 'selected' : '' ?> value="Nữ">Nữ
+                            </option>
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="phone" class="form-label">Số điện thoại</label>
-                        <input required placeholder="Số điện thoại" name="phone" type="number" class="form-control" id="phone" value="<?php echo $getDoctorById['sodienthoai'] ?>">
+                        <input required placeholder="Số điện thoại" name="phone" type="number" class="form-control"
+                            id="phone" value="<?php echo $getDoctorById['sodienthoai'] ?>">
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Địa chỉ email</label>
-                        <input required placeholder="Địa chỉ email" name="email" type="email" class=" form-control" id="email" aria-describedby="emailHelp" value="<?php echo $getDoctorById['email'] ?>">
+                        <input required placeholder="Địa chỉ email" name="email" type="email" class=" form-control"
+                            id="email" aria-describedby="emailHelp" value="<?php echo $getDoctorById['email'] ?>">
                     </div>
 
                     <div class="mb-3">
@@ -94,12 +101,14 @@ $dt = new DateTime($getDoctorById['ngaysinh']);
 
                     <div class="mb-3">
                         <label for="specialist" class="form-label">Khoa</label>
-                        <select required name="khoa" class="form-select" aria-label="Default select example" value="<?php echo $getDoctorById['khoa'] ?>">
+                        <select required name="khoa" class="form-select" aria-label="Default select example"
+                            value="<?php echo $getDoctorById['khoa'] ?>">
                             <?php
                             if (mysqli_num_rows($data['dataSpec']) > 0) {
                                 while ($row = mysqli_fetch_array($data['dataSpec'])) {
                             ?>
-                                    <option <?php echo $getDoctorById['makhoa'] == $row['makhoa'] ? 'selected' : '' ?> value="<?php echo $row['makhoa'] ?>"><?php echo $row['tenkhoa'] ?></option>
+                            <option <?php echo $getDoctorById['makhoa'] == $row['makhoa'] ? 'selected' : '' ?>
+                                value="<?php echo $row['makhoa'] ?>"><?php echo $row['tenkhoa'] ?></option>
                             <?php
                                 }
                             }
@@ -110,20 +119,23 @@ $dt = new DateTime($getDoctorById['ngaysinh']);
                     <div class="mb-3">
                         <label for="status" class="form-label">Trạng thái</label>
                         <select required name="level" class="form-select">
-                            <option <?php echo $getDoctorById['tinhtrang'] == '1' ? 'selected' : '' ?> value="1">Rảnh</option>
-                            <option <?php echo $getDoctorById['tinhtrang'] == '0' ? 'selected' : '' ?> value="0">Bận</option>
+                            <option <?php echo $getDoctorById['tinhtrang'] == '1' ? 'selected' : '' ?> value="1">Rảnh
+                            </option>
+                            <option <?php echo $getDoctorById['tinhtrang'] == '0' ? 'selected' : '' ?> value="0">Bận
+                            </option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="file" class="form-label">Ảnh</label>
-                        <input required name="image" type="file" class="form-control" id="file" value="<?php echo $getDoctorById['anh'] ?>">
+                        <input required name="image" type="file" class="form-control" id="file"
+                            value="<?php echo $getDoctorById['anh'] ?>">
                     </div>
                 </div>
                 <div>
-                    <a href="http://localhost/ManagerPatientPHP/danhsachbacsi"><button type="button" class="btn btn-danger">Hủy</button></a>
+                    <a href="http://localhost/ManagerPatientPHP/danhsachbacsi"><button type="button"
+                            class="btn btn-danger">Hủy</button></a>
                     <button name="submitDoctor" type="submit" class="btn btn-primary">Sửa</button>
                 </div>
-
             </form>
         </div>
     </div>
