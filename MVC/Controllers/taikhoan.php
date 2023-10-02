@@ -26,7 +26,7 @@ class taikhoan extends controller
             $role = $email == "admin@gmail.com" ? 1 : 0;
             $result = $this->ls->dangnhap($email, $password, $role);
             if ($role == 1) {
-                if ($result) {
+                if (mysqli_num_rows($result)) {
                     echo "<script> alert('Đăng nhập tài khoản admin thành công') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeadmin' </script>";
                     $this->view(
@@ -39,6 +39,7 @@ class taikhoan extends controller
                     // header("location: http://localhost/ManagerPatientPHP/homeadmin");
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan' </script>";
                 }
             } else {
                 if ($result) {
@@ -69,6 +70,7 @@ class taikhoan extends controller
                     );
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan' </script>";
                 }
             }
         } else {

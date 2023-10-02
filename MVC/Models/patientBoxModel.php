@@ -102,4 +102,5 @@ class patientBoxModel extends connectDB
         $query = "SELECT `name`, `ngaysinh`, `gioitinh`, `quequan`, `sodienthoai`, `username`, `anh` FROM `benhnhan` , `acount` WHERE benhnhan.idtaikhoan = acount.id";
         return mysqli_query($this->con, $query);
     }
+    
 }
