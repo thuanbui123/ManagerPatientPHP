@@ -1,5 +1,4 @@
 <?php
-
 class DanhSachBacSi extends controller
 {
     protected $ls;

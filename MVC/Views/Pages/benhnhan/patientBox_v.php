@@ -1,3 +1,44 @@
+<?php
+ob_start(); //<--- Dòng code yêu cầu Output Buffering
+
+$patient = array();
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+$spreadsheet = new Spreadsheet();
+$sheet = $spreadsheet->getActiveSheet();
+while ($row = mysqli_fetch_assoc($data['getPatient'])) {
+    array_push($patient, $row);
+}
+
+if (isset($_POST['excel'])) {
+    // Header row
+    $headerRowData = ['Họ tên', 'Ngày sinh', 'Giới tính', 'Quê quán', 'Số điện thoại', 'Email', 'Ảnh'];
+    $columnIndex = 1;
+    foreach ($headerRowData as $headerCell) {
+        $cellCoordinate = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($columnIndex) . '1';
+        $sheet->setCellValue($cellCoordinate, $headerCell);
+        $columnIndex++;
+    }
+    // Data rows
+    $dataRow = 2;
+    foreach ($patient as $rowData) {
+        $columnIndex = 1;
+        foreach ($rowData as $propertyValue) {
+            $cellCoordinate = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($columnIndex) . $dataRow;
+            $sheet->setCellValue($cellCoordinate, $propertyValue);
+            $columnIndex++;
+        }
+        $dataRow++;
+    }
+    $writer = new Xlsx($spreadsheet);
+    $writer->save('ex.xlsx');
+    ob_end_flush(); //<--- Dòng code yêu cầu in ra tất cả và trả về reponse cho người dùng (Client) 
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,11 +55,141 @@
         <header class="header">
             <div class="page">
                 <h1 class="name__page">Bệnh Nhân</h1>
-                <h3 class="desc__page">Quản lý bênh nhân</h3>
+                <h3 class="desc__page">Quản lý bệnh nhân</h3>
             </div>
-            <span class="btn--add" style="font-size: 13px; font-weight: 700" data-bs-toggle="modal" data-bs-target="#addNewDoctor">
+            <span class="btn--add" style="font-size: 13px; font-weight: 700 ;margin-left: auto; margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#addNewDoctor">
                 Thêm bệnh nhân mới
             </span>
+            <span class="btn--add" style="font-size: 13px; font-weight: 700" data-bs-toggle="modal" data-bs-target="#addHoplize">
+                Nhập viện
+            </span>
+
+            <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbenhnhan/nhapvien" class="modal needs-validation" id="addHoplize">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Nhập viên</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Họ và tên</label>
+                                <select required name="hoten" class="form-select" aria-label="Default select example">
+                                    <option selected>Chọn bệnh nhân</option>
+                                    <?php
+                                    if (mysqli_num_rows($data['listPatientNotYetHopitalized']) > 0) {
+                                        while ($row = mysqli_fetch_array($data['listPatientNotYetHopitalized'])) {
+                                    ?>
+                                            <option value="<?php echo $row['mabenhnhan'] ?>"><?php echo $row['name'] ?></option>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <option value="Null"><?php echo "Không còn bệnh nhân nào!" ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Ngày nhập viện</label>
+                                <input required name="ngaynhapvien" type="date" class="form-control" id="date">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="disease" class="form-label">Bệnh</label>
+                                <select required name="benh" class="form-select" aria-label="Default select example">
+                                    <option selected>Chọn bệnh</option>
+                                    <?php
+                                    if (mysqli_num_rows($data['listDiseases']) > 0) {
+                                        while ($row = mysqli_fetch_array($data['listDiseases'])) {
+                                    ?>
+                                            <option value="<?php echo $row['mabenh'] ?>"><?php echo $row['tenbenh'] ?></option>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="prevention" class="form-label">Phòng bệnh</label>
+                                <select required name="phongbenh" class="form-select" aria-label="Default select example">
+                                    <option selected>Chọn phòng bệnh</option>
+                                    <?php
+                                    if (mysqli_num_rows($data['listPreventions']) > 0) {
+                                        while ($row = mysqli_fetch_array($data['listPreventions'])) {
+                                    ?>
+                                            <option value="<?php echo $row['maphongbenh'] ?>"><?php echo $row['tenphongbenh'] ?></option>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <option value="Null"><?php echo "Không còn phòng nào!" ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="bed" class="form-label">Giường bệnh</label>
+                                <select required name="giuong" class="form-select" aria-label="Default select example">
+                                    <option selected>Chọn giường bệnh</option>
+                                    <?php
+                                    if (mysqli_num_rows($data['listBedhopitals']) > 0) {
+                                        while ($row = mysqli_fetch_array($data['listBedhopitals'])) {
+                                    ?>
+                                            <option value="<?php echo $row['magiuong'] ?>"><?php echo $row['sogiuong'] ?></option>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <option value="Null"><?php echo "Không còn giường nào!" ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="doctor" class="form-label">Bác sĩ phụ trách</label>
+                                <select required name="bacsi" class="form-select" aria-label="Default select example">
+                                    <option selected>Chọn bác sĩ</option>
+                                    <?php
+                                    if (mysqli_num_rows($data['listDocstor']) > 0) {
+                                        while ($row = mysqli_fetch_array($data['listDocstor'])) {
+                                    ?>
+                                            <option value="<?php echo $row['mabacsi'] ?>"><?php echo $row['hoten'] ?></option>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <option value="Null"><?php echo "Không còn bác sĩ nào" ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="note" class="form-label">Ghi chú</label>
+                                <input placeholder="Ghi chú" required name="ghichu" type="text" class="form-control" id="note">
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbenhnhan/thembenhnhan" class="modal needs-validation" id="addNewDoctor">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
@@ -31,16 +202,20 @@
                         <!-- Modal body -->
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="account" class="form-label">Tài khoản</label>
+                                <label for="account" class="form-label">Họ và tên</label>
                                 <select required name="taikhoan" class="form-select" aria-label="Default select example">
-                                    <option selected>Chọn tài khoản</option>
+                                    <option selected>Chọn tên</option>
                                     <?php
                                     if (mysqli_num_rows($data['listAccount']) > 0) {
                                         while ($row = mysqli_fetch_array($data['listAccount'])) {
                                     ?>
-                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['id'] ?></option>
-                                    <?php
+                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                                        <?php
                                         }
+                                    } else {
+                                        ?>
+                                        <option value="Null"><?php echo "Không còn tài khoản nào!" ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -82,8 +257,8 @@
         </header>
         <div class="container">
             <div class="container__header">
-                <form method="POST" action="" class="main-functions">
-                    <button name="excel" class="btn btn--excel">
+                <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbenhnhan" class="main-functions">
+                    <button type="submit" name="excel" class="btn btn--excel">
                         <span>Excel</span>
                     </button>
                     <button class="btn btn--pdf">
@@ -160,6 +335,7 @@
                 </table>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
