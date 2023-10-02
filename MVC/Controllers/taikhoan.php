@@ -1,4 +1,5 @@
 <?php
+
 class taikhoan extends controller
 {
     protected $ls;
@@ -24,22 +25,56 @@ class taikhoan extends controller
             $role = $email == "admin@gmail.com" ? 1 : 0;
             $result = $this->ls->dangnhap($email, $password, $role);
             if ($role == 1) {
-                if ($result) {
+                if (mysqli_num_rows($result)) {
                     echo "<script> alert('Đăng nhập tài khoản admin thành công') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeadmin' </script>";
+                    $this->view(
+                        'MasterLayout',
+                        [
+                            'page' => 'HomeAdmin_v',
+                            'taikhoan' => $email,
+                        ]
+                    );
+                    // header("location: http://localhost/ManagerPatientPHP/homeadmin");
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan' </script>";
                 }
             } else {
                 if ($result) {
+                    $ngayHienTai = getdate();
+                    $ngay = $ngayHienTai["mday"];
+                    $thang = $ngayHienTai["mon"];
+                    $nam = $ngayHienTai["year"];
+                    $row = mysqli_fetch_array($this->ls->ngayhen($email));
+                    if(isset($row)) {
+                        $ngayhen = $row['ngayhen'];
+                        $arr = explode('/', $ngayhen);
+                        if($arr[0] == $ngay && $arr[1] == $thang && $arr[2] == $nam) {
+                        echo "<script> alert('Hôm nay bạn có lịch khám') </script>";
+                        }
+                    }
                     echo "<script> alert('Đăng nhập thành công') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                    $this->view(
+                        'MasterLayout',
+                        [
+                            'page' => 'HomeUser_v',
+                    $this->view(
+                        'MasterLayout',
+                        [
+                            'page' => 'HomeUser_V',
+                            'taikhoan' => $email,
+                        ]
+                    );
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan' </script>";
                 }
             }
         } else {
             header("location: http://localhost/ManagerPatientPHP/taikhoan");
+            exit;
         }
     }
 

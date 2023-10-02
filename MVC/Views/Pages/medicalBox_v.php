@@ -22,12 +22,9 @@
         <div class="container">
             <div class="container__header">
                 <div class="main-functions">
-                    <button class="btn btn--excel">
-                        <span>Excel</span>
-                    </button>
-                    <button class="btn btn--pdf">
-                        <span>Pdf</span>
-                    </button>
+                    <form action="http://localhost/ManagerPatientPHP/medicalBox/xuat" method="POST">
+                        <input type="submit" name="excel" class="btn btn--excel" value="Excel">
+                    </form>
                 </div>
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/medicalBox/timkiem"
@@ -46,7 +43,7 @@
                         <th style="text-align: left" class="col-1">Mã thuốc</th>
                         <th style="text-align: left" class="col-2">Tên thuốc</th>
                         <th style="text-align: left" class="col-1">Hàm <br> lượng</th>
-                        <th style="text-align: left" class="col-1">Đường <br> dùng</th>
+                        <th style="text-align: left" class="col-1">Cách <br> dùng</th>
                         <th style="text-align: left" class="col-1">Số <br> lượng</th>
                         <th style="text-align: left" class="col-1">Giá</th>
                         <th style="text-align: left" class="col-2">Ghi chú</th>
@@ -54,7 +51,6 @@
                         <th class="col-1-4"></th>
                     </tr>
                     <?php
-                    // B3: Xử lý kết quả
                     if (isset($data["data"]) && $data["data"] != null) {
                         while ($row = mysqli_fetch_array($data["data"])) {
                     ?>
@@ -117,7 +113,7 @@
                                 <span class="require">*</span>
                             </div>
                             <div class="name_medicine__input">
-                                <input type="text" name="txtNameMedicine" id="txtNameMedicine" placeholder="Tenovir">
+                                <input type="text" name="txtNameMedicine" required id="txtNameMedicine" placeholder="Tenovir">
                             </div>
                         </div>
                         <div class="id_medicine">
@@ -126,7 +122,7 @@
                                 <span class="require">*</span>
                             </div>
                             <div class="id_medicine__input">
-                                <input type="text" name="txtIdMedicine" id="txtIdMedicine" placeholder="10258.KD.12.1">
+                                <input type="text" name="txtIdMedicine" required id="txtIdMedicine" placeholder="10258.KD.12.1">
                             </div>
                         </div>
                     </div>
@@ -137,7 +133,7 @@
                                 <span class="require">*</span>
                             </div>
                             <div class="dosage__forms__input">
-                                <input type="text" name="txtDosageForms" id="txtDosageForms" placeholder="viên">
+                                <input type="text" required name="txtDosageForms" id="txtDosageForms" placeholder="viên">
                             </div>
                         </div>
                         <div class="drug__content">
@@ -146,7 +142,7 @@
                                 <span class="require">*</span>
                             </div>
                             <div class="drug__content__input">
-                                <input type="text" name="txtDrugContent" id="txtDrugContent" placeholder="300mg">
+                                <input type="text" required name="txtDrugContent" id="txtDrugContent" placeholder="300mg">
                             </div>
                         </div>
                         <div class="supplier">
@@ -155,7 +151,7 @@
                                 <span class="require">*</span>
                             </div>
                             <div class="supplier__input">
-                                <input type="text" name="txtSupplier" id="txtSupplier" placeholder="Traphaco">
+                                <input type="text" required name="txtSupplier" id="txtSupplier" placeholder="Traphaco">
                             </div>
                         </div>
                     </div>
@@ -166,7 +162,7 @@
                                 <span class="require">*</span>
                             </div>
                             <div class="route_of_use__input">
-                                <input type="text" name="txtRouteOfUse" id="txtRouteOfUse" placeholder="uống">
+                                <input type="text" required name="txtRouteOfUse" id="txtRouteOfUse" placeholder="uống">
                             </div>
                         </div>
                         <div class="quantity">
@@ -175,7 +171,7 @@
                                 <span class="require">*</span>
                             </div>
                             <div class="quantity__input">
-                                <input type="number" name="txtQuantity" id="txtQuantity" placeholder="300">
+                                <input type="number" required min="0" name="txtQuantity" id="txtQuantity" placeholder="300">
                             </div>
                         </div>
                         <div class="price">
@@ -184,7 +180,7 @@
                                 <span class="require">*</span>
                             </div>
                             <div class="price__input">
-                                <input type="number" name="txtPrice" id="txtPrice" placeholder="300">
+                                <input type="number" required min="0" name="txtPrice" id="txtPrice" placeholder="300">
                             </div>
                         </div>
                     </div>
@@ -194,7 +190,7 @@
                             <span class="require">*</span>
                         </div>
                         <div class="expiration__date__input">
-                            <input type="date" name="txtexpirationDate" id="txtexpirationDate" placeholder="01/01/2024">
+                            <input type="date" required min="<?php echo date('Y-m-d'); ?>" name="txtexpirationDate" id="txtexpirationDate" placeholder="01/01/2024">
                         </div>
                     </div>
                     <div class="note">

@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,8 +40,7 @@ body {
         if ($_SESSION['email'] == 'admin@gmail.com') {
             include_once "MVC/Views/Pages/navbar.php";
         } else {
-            echo $_SESSION['email'];
-            include_once "MVC/Views/Pages/navbarUser.php";
+            include_once "MVC/Views/Pages/navbar_user.php";
         }
         ?>
         <div class="aside">

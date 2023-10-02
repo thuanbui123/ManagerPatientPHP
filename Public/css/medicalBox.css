@@ -26,6 +26,7 @@ td {
     justify-content: space-between;
     margin-bottom: 6.5px;
     align-items: start;
+    margin-left: 13px;
 }
 
 .name__page {
@@ -91,10 +92,6 @@ td {
     transition: all 0.3s;
 }
 
-.btn:hover {
-    /* background-color: var(--btn-hover); */
-}
-
 .btn span {
     color: #3f4254;
     font-weight: 600;
@@ -128,6 +125,13 @@ td {
     color: #888888b5;
 }
 
+.btnSearch {
+    height: 35px;
+    border-radius: 4.75px;
+    border: none;
+    background-color: #f5f8fa;
+    padding: 0 5px;
+}
 
 .drug--info {
     width: 100%;
@@ -165,6 +169,7 @@ td {
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
+    bottom: 0;
     top: 0;
     display: none;
     align-items: center;
@@ -180,7 +185,6 @@ td {
 
 .modal-dialog {
     background-color: #ffffff;
-    width: 60%;
     border-radius: 4.75px;
 }
 
@@ -200,6 +204,7 @@ td {
 .modal-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .modal-title {
