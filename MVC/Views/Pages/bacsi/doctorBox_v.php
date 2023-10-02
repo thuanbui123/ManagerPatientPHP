@@ -63,10 +63,12 @@ $dataExport = $data['listExport'];
                 <h1 class="name__page">Bác sĩ</h1>
                 <h3 class="desc__page">Quản lý bác sĩ</h3>
             </div>
-            <span class="btn--add" style="font-size: 13px; font-weight: 700" data-bs-toggle="modal" data-bs-target="#addNewDoctor">
+            <span class="btn--add" style="font-size: 13px; font-weight: 700" data-bs-toggle="modal"
+                data-bs-target="#addNewDoctor">
                 Thêm bác sĩ mới
             </span>
-            <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbacsi/thembacsi" class="modal needs-validation" id="addNewDoctor">
+            <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbacsi/thembacsi"
+                class="modal needs-validation" id="addNewDoctor">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
 
@@ -79,7 +81,8 @@ $dataExport = $data['listExport'];
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="hoten" class="form-label">Họ tên</label>
-                                <input required placeholder="Họ và tên" name="hoten" type="text" class="form-control" id="hoten">
+                                <input required placeholder="Họ và tên" name="hoten" type="text" class="form-control"
+                                    id="hoten">
                             </div>
 
                             <div class="mb-3">
@@ -98,12 +101,14 @@ $dataExport = $data['listExport'];
 
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Số điện thoại</label>
-                                <input required placeholder="Số điện thoại" name="phone" type="number" class="form-control" id="phone">
+                                <input required placeholder="Số điện thoại" name="phone" type="number"
+                                    class="form-control" id="phone">
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Địa chỉ email</label>
-                                <input required placeholder="Địa chỉ email" name="email" type="email" class=" form-control" id="email" aria-describedby="emailHelp">
+                                <input required placeholder="Địa chỉ email" name="email" type="email"
+                                    class=" form-control" id="email" aria-describedby="emailHelp">
                             </div>
 
                             <div class="mb-3">
@@ -127,7 +132,7 @@ $dataExport = $data['listExport'];
                                         while ($row = mysqli_fetch_array($data['dataSpec'])) {
 
                                     ?>
-                                            <option value="<?php echo $row['makhoa'] ?>"><?php echo $row['tenkhoa'] ?></option>
+                                    <option value="<?php echo $row['makhoa'] ?>"><?php echo $row['tenkhoa'] ?></option>
                                     <?php
                                         }
                                     }
@@ -185,46 +190,56 @@ $dataExport = $data['listExport'];
                     if (isset($data["data"]) && $data["data"] != null) {
                         while ($row = mysqli_fetch_array($data["data"])) {
                     ?>
-                            <tr>
-                                <td style="text-align: left" class="col-1"><?php echo $row['hoten'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['tuoi'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['ngaysinh'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['gioitinh'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['sodienthoai'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['email'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['trinhdo'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['tenkhoa'] ?></td>
-                                <td style="text-align: left" class="col-1-4">
-                                    <a href="http://localhost/ManagerPatientPHP/danhsachbacsi/suabacsi/?id=<?php echo $row['mabacsi'] ?>" class="btn--edit">
-                                        <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover" colors="primary:#26577C,secondary:#cb5eee" style="width:30px;height:30px">
-                                        </lord-icon>
-                                    </a>
-                                </td>
-                                <td style="text-align: left" class="col-1-4">
-                                    <a href="#" class="btn--remove" data-bs-toggle="modal" data-bs-target="#delete<?php echo $row['mabacsi']; ?>">
-                                        <lord-icon src="https://cdn.lordicon.com/tntmaygd.json" trigger="hover" colors="primary:#D80032,secondary:#cb5eee" style="width:30px;height:30px">
-                                        </lord-icon>
-                                    </a>
+                    <tr>
+                        <td style="text-align: left" class="col-1"><?php echo $row['hoten'] ?></td>
+                        <td style="text-align: left" class="col-1"><?php echo $row['tuoi'] ?></td>
+                        <td style="text-align: left" class="col-1"><?php echo $row['ngaysinh'] ?></td>
+                        <td style="text-align: left" class="col-1"><?php echo $row['gioitinh'] ?></td>
+                        <td style="text-align: left" class="col-1"><?php echo $row['sodienthoai'] ?></td>
+                        <td style="text-align: left" class="col-1"><?php echo $row['email'] ?></td>
+                        <td style="text-align: left" class="col-1"><?php echo $row['trinhdo'] ?></td>
+                        <td style="text-align: left" class="col-1"><?php echo $row['tenkhoa'] ?></td>
+                        <td style="text-align: left" class="col-1-4">
+                            <a href="http://localhost/ManagerPatientPHP/danhsachbacsi/suabacsi/?id=<?php echo $row['mabacsi'] ?>"
+                                class="btn--edit">
+                                <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover"
+                                    colors="primary:#26577C,secondary:#cb5eee" style="width:30px;height:30px">
+                                </lord-icon>
+                            </a>
+                        </td>
+                        <td style="text-align: left" class="col-1-4">
+                            <a href="#" class="btn--remove" data-bs-toggle="modal"
+                                data-bs-target="#delete<?php echo $row['mabacsi']; ?>">
+                                <lord-icon src="https://cdn.lordicon.com/tntmaygd.json" trigger="hover"
+                                    colors="primary:#D80032,secondary:#cb5eee" style="width:30px;height:30px">
+                                </lord-icon>
+                            </a>
 
-                                    <div class=" modal fade" id="delete<?php echo $row['mabacsi']; ?>" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteLabel">Xóa bác sĩ</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h5>Bạn có chắc muốn xóa bác sĩ không</h5>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                                    <a href="http://localhost/ManagerPatientPHP/danhsachbacsi/xoabacsi/?id=<?php echo $row['mabacsi']; ?>"> <button style="width: 200px;" type="button" class="btn btn-danger">Xác nhận</button></a>
-                                                </div>
-                                            </div>
+                            <div class=" modal fade" id="delete<?php echo $row['mabacsi']; ?>" tabindex="-1"
+                                aria-labelledby="deleteLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteLabel">Xóa bác sĩ</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h5>Bạn có chắc muốn xóa bác sĩ không</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Hủy</button>
+                                            <a
+                                                href="http://localhost/ManagerPatientPHP/danhsachbacsi/xoabacsi/?id=<?php echo $row['mabacsi']; ?>">
+                                                <button style="width: 200px;" type="button" class="btn btn-danger">Xác
+                                                    nhận</button></a>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     <?php
                         }
                     }

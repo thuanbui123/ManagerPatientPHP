@@ -19,6 +19,7 @@ class taikhoan extends controller
     {
         if (isset($_POST['login'])) {
             $email = $_POST['email'];
+            $_SESSION['email'] = $email;
             $password = $_POST['password'];
             $role = $email == "admin@gmail.com" ? 1 : 0;
             $result = $this->ls->dangnhap($email, $password, $role);
