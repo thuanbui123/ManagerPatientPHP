@@ -47,12 +47,7 @@ class taikhoan extends controller
                     $this->view(
                         'MasterLayout',
                         [
-                            'page' => 'HomeUser_v',
-                    $this->view(
-                        'MasterLayout',
-                        [
                             'page' => 'HomeUser_V',
-                            'taikhoan' => $email,
                         ]
                     );
                 } else {

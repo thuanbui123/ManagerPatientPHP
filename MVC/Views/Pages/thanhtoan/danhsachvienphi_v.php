@@ -39,7 +39,7 @@
                                     if (mysqli_num_rows($data['listBenhNhanNoiTru']) > 0) {
                                         while ($row = mysqli_fetch_array($data['listBenhNhanNoiTru'])) {
                                     ?>
-                                            <option value="<?php echo $row['mabenhnhannoitru']?>"><?php echo $row['name'] ?></option>
+                                            <option value="<?php echo $row['mabenhnhannoitru'] ?>"><?php echo $row['mabenhnhannoitru'] ?></option>
                                     <?php
                                         }
                                     }
@@ -126,7 +126,7 @@
                                 <td style="text-align: left" class="col-1"><?php echo $row['noikhambenhbd'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['vienphi'] ?></td>
                                 <td style="text-align: left" class="col-1-4">
-                                    <a href="#" class="btn--edit">
+                                    <a href="http://localhost/ManagerPatientPHP/danhsachvienphi/suavienphi/?id=<?php echo $row['mavienphi']; ?>" class="btn--edit">
                                         <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover" colors="primary:#26577C,secondary:#cb5eee" style="width:30px;height:30px">
                                         </lord-icon>
                                     </a>
@@ -141,15 +141,15 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteLabel">Xóa bác sĩ</h5>
+                                                    <h5 class="modal-title" id="deleteLabel">Xóa viện phí</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h5>Bạn có chắc muốn xóa bênh nhân không</h5>
+                                                    <h5>Bạn có chắc muốn xóa viện phí không</h5>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                                    <a href="#"> <button style="width: 200px;" type="button" class="btn btn-danger">Xác nhận</button></a>
+                                                    <a href="http://localhost/ManagerPatientPHP/danhsachvienphi/xoavienphi/?id=<?php echo $row['mavienphi']; ?>"> <button style="width: 200px;" type="button" class="btn btn-danger">Xác nhận</button></a>
                                                 </div>
                                             </div>
                                         </div>
