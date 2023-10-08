@@ -124,7 +124,7 @@
                     <div class="sub-item">
                         <lord-icon class="container-icon" src="https://cdn.lordicon.com/qhgmphtg.json" trigger="loop" colors="primary:#fff">
                         </lord-icon>
-                        <a href="#">Quản lý viện phí</a>
+                        <a href="http://localhost/ManagerPatientPHP/danhsachvienphi">Quản lý viện phí</a>
                     </div>
                 </diV>
                 <div class="nav-container-item">

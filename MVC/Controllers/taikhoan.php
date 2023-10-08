@@ -48,11 +48,11 @@ class taikhoan extends controller
                     $thang = $ngayHienTai["mon"];
                     $nam = $ngayHienTai["year"];
                     $row = mysqli_fetch_array($this->ls->ngayhen($email));
-                    if(isset($row)) {
+                    if (isset($row)) {
                         $ngayhen = $row['ngayhen'];
                         $arr = explode('/', $ngayhen);
-                        if($arr[0] == $ngay && $arr[1] == $thang && $arr[2] == $nam) {
-                        echo "<script> alert('Hôm nay bạn có lịch khám') </script>";
+                        if ($arr[0] == $ngay && $arr[1] == $thang && $arr[2] == $nam) {
+                            echo "<script> alert('Hôm nay bạn có lịch khám') </script>";
                         }
                     }
                     echo "<script> alert('Đăng nhập thành công') </script>";
@@ -93,6 +93,16 @@ class taikhoan extends controller
         $name = $_POST['name'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
+
+        $ngaysinh = $_POST['date'];
+        $ngaysinh_date = new DateTime($ngaysinh);
+        $ngaysinh = $ngaysinh_date->format("d-m-Y");
+
+        $gioitinh = $_POST['gioitinh'];
+        $quequan = $_POST['quequan'];
+        $anh = "http://localhost/ManagerPatientPHP/Public/img/" . $_POST['anh'];
+        $mabaohiemyte = $_POST['baohiemyte'];
+
         $password = $_POST['password'];
         $repassword = $_POST['repassword'];
 
@@ -100,7 +110,7 @@ class taikhoan extends controller
 
         if (mysqli_num_rows($checkIdentical) == 0) {
             if ($password == $repassword) {
-                $result = $this->ls->dangky($name, $email,  $password, $phone);
+                $result = $this->ls->dangky($name, $email,  $password, $phone, $ngaysinh, $gioitinh, $quequan, $anh, $mabaohiemyte);
                 if ($result) {
                     echo "<script> alert('Đăng ký thành công') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";

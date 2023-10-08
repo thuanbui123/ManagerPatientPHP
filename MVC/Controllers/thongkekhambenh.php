@@ -14,7 +14,6 @@ class ThongKeKhamBenh extends controller
             'page' => 'benhnhan/benhnhankhambenh_v',
             'listKhamBenh' => $this->getListKhamBenh(),
             'listBacSi' => $this->getListDoctors(),
-            'listChuanDoan' => $this->getListChuanDoan(),
             'listBenhNhan' => $this->getDataPatients(),
             'listExportExcelKhamBenh' => $this->ls->exportExcelKhamBenh(),
         ]);
@@ -32,12 +31,6 @@ class ThongKeKhamBenh extends controller
         return $result;
     }
 
-    function getListChuanDoan()
-    {
-        $result = $this->ls->getListChuanDoan();
-        return $result;
-    }
-
     function getDataPatients()
     {
         $result = $this->ls->getDataPatients();
@@ -46,19 +39,24 @@ class ThongKeKhamBenh extends controller
 
     function themluotkham()
     {
-        $makhambenh = "kb00" . ((mysqli_num_rows($this->ls->getListKhamBenh()) + 3) + 1);
+        $makhambenh = "kb00" . ((mysqli_num_rows($this->ls->getListKhamBenh()) + 1) + 1);
         $mabenhnhan = $_POST['mabenhnhan'];
 
         $ngaykham = $_POST['ngaykham'];
         $ngaykham_date = new DateTime($ngaykham);
         $ngaykham = $ngaykham_date->format("d-m-Y");
 
-        $ICD = $_POST['ICD'];
-        $dieuchi = $_POST['dieuchi'];
+        $dichvu = $_POST['dichvu'];
+        $donthuoc = $_POST['donthuoc'];
         $ghichu = $_POST['ghichu'];
         $bacsi = $_POST['bacsi'];
 
-        $result = $this->ls->listKhamBenh_ins($makhambenh,  $mabenhnhan, $ngaykham, $ICD, $dieuchi, $ghichu, $bacsi);
+        $soluongthuocAssoc =  mysqli_fetch_assoc($this->ls->getAcountFromPrescription($donthuoc));
+        $soluongthuoc = $soluongthuocAssoc['soluong'];
+
+        $vienphi = 200000 +  ((intval($soluongthuoc) * 3000) * 80) / 100;
+
+        $result = $this->ls->listKhamBenh_ins($makhambenh,  $mabenhnhan, $ngaykham, $ghichu, $bacsi, $donthuoc, $dichvu, $vienphi);
         if ($result) {
             echo "<script> alert('Thêm lượt khám thành công') </script>";
         } else {
@@ -97,12 +95,13 @@ class ThongKeKhamBenh extends controller
 
         if ($query) {
             parse_str($query, $params);
-            $result = mysqli_fetch_assoc($this->ls->getLuotKhamByIf($params['id']));
+            $result = mysqli_fetch_assoc($this->ls->getLuotKhamById($params['id']));
+            print_r($result['mabenhnhan']);
             $this->view('MasterLayout', [
                 'page' => 'benhnhan/editluotkham_v',
                 'luotkham' =>  $result,
+                'listDonThuoc' => $this->ls->getDonThuocByBenhNhan($result['mabenhnhan']),
                 'listBacSi' => $this->getListDoctors(),
-                'listChuanDoan' => $this->getListChuanDoan(),
                 'listBenhNhan' => $this->getDataPatients(),
             ]);
         }
@@ -112,15 +111,23 @@ class ThongKeKhamBenh extends controller
     {
         $mahosokhambenh = $_POST['mahosokhambenh'];
         $mabenhnhan = $_POST['mabenhnhan'];
+
         $ngaykham = $_POST['ngaykham'];
         $ngaykham_date = new DateTime($ngaykham);
         $ngaykham = $ngaykham_date->format("d-m-Y");
-        $ICD = $_POST['ICD'];
-        $dieuchi = $_POST['dieuchi'];
+
+        $dichvu = $_POST['dichvu'];
         $ghichu = $_POST['ghichu'];
         $bacsi = $_POST['bacsi'];
+        $donthuoc = $_POST['donthuoc'];
 
-        $result = $this->ls->listKhamBenh_update($mahosokhambenh, $mabenhnhan, $ngaykham, $ICD, $dieuchi, $ghichu, $bacsi);
+        $soluongthuocAssoc =  mysqli_fetch_assoc($this->ls->getAcountFromPrescription($donthuoc));
+        $soluongthuoc = $soluongthuocAssoc['soluong'];
+
+        $vienphi = 200000 +  ((intval($soluongthuoc) * 3000) * 80) / 100;
+        echo $vienphi;
+
+        $result = $this->ls->listKhamBenh_update($mahosokhambenh, $mabenhnhan, $ngaykham, $ghichu, $bacsi, $donthuoc, $vienphi, $dichvu);
 
         if ($result) {
             echo "<script> alert('Sửa lượt khám thành công') </script>";
@@ -128,6 +135,7 @@ class ThongKeKhamBenh extends controller
             echo "<script> alert('Sửa lượt khám thất bại') </script>";
         }
         echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/thongkekhambenh' </script>";
+        print_r($_POST);
     }
 
     function timkiem()
@@ -138,7 +146,6 @@ class ThongKeKhamBenh extends controller
             'page' => 'benhnhan/benhnhankhambenh_v',
             'listKhamBenh' =>  $result,
             'listBacSi' => $this->getListDoctors(),
-            'listChuanDoan' => $this->getListChuanDoan(),
             'listBenhNhan' => $this->getDataPatients(),
             'listExportExcelKhamBenh' => $this->ls->exportExcelKhamBenh(),
         ]);
