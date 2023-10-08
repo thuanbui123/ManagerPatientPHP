@@ -7,9 +7,9 @@ class patientBoxModel extends connectDB
         return mysqli_query($this->con, $query);
     }
 
-    function listPatients_ins($mabenhnhan, $ngaysinh, $gioitinh, $quequan,  $anh, $idtaikhoan, $nhapvien)
+    function listPatients_ins($mabenhnhan, $idtaikhoan, $nhapvien)
     {
-        $query = "INSERT INTO `benhnhan` VALUES('$mabenhnhan', '$ngaysinh', '$gioitinh', '$quequan', '$anh', '$idtaikhoan', $nhapvien)";
+        $query = "INSERT INTO `benhnhan` VALUES('$mabenhnhan', '$idtaikhoan', $nhapvien)";
         return mysqli_query($this->con, $query);
     }
 
@@ -21,13 +21,13 @@ class patientBoxModel extends connectDB
 
     function getPatientByIf($mabenhnhan)
     {
-        $query = "SELECT * FROM `benhnhan` WHERE `mabenhnhan` = '$mabenhnhan'";
+        $query = "SELECT * FROM `benhnhan`, `acount` WHERE `mabenhnhan` = '$mabenhnhan' AND benhnhan.idtaikhoan = acount.id";
         return mysqli_query($this->con, $query);
     }
 
     function listPatients_update($mabenhnhan, $ngaysinh, $gioitinh, $quequan, $anh)
     {
-        $query = "UPDATE `benhnhan`SET `ngaysinh` = '$ngaysinh', `gioitinh` = '$gioitinh', `quequan` = '$quequan', `anh` = '$anh' WHERE `mabenhnhan` = '$mabenhnhan'";
+        $query = "UPDATE `benhnhan`, `acount` SET `ngaysinh` = '$ngaysinh', `gioitinh` = '$gioitinh', `quequan` = '$quequan', `anh` = '$anh' WHERE `mabenhnhan` = '$mabenhnhan' AND benhnhan.idtaikhoan = acount.id";
         return mysqli_query($this->con, $query);
     }
 
@@ -102,5 +102,4 @@ class patientBoxModel extends connectDB
         $query = "SELECT `name`, `ngaysinh`, `gioitinh`, `quequan`, `sodienthoai`, `username`, `anh` FROM `benhnhan` , `acount` WHERE benhnhan.idtaikhoan = acount.id";
         return mysqli_query($this->con, $query);
     }
-    
 }

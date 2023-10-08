@@ -191,7 +191,7 @@ if (isset($_POST['excel'])) {
             </form>
 
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbenhnhan/thembenhnhan" class="modal needs-validation" id="addNewDoctor">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
@@ -209,7 +209,7 @@ if (isset($_POST['excel'])) {
                                     if (mysqli_num_rows($data['listAccount']) > 0) {
                                         while ($row = mysqli_fetch_array($data['listAccount'])) {
                                     ?>
-                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['username'] ?></option>
                                         <?php
                                         }
                                     } else {
@@ -219,29 +219,6 @@ if (isset($_POST['excel'])) {
                                     }
                                     ?>
                                 </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="date" class="form-label">Ngày sinh</label>
-                                <input required name="ngaysinh" type="date" class="form-control" id="date">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="sex" class="form-label">Giới tính</label>
-                                <select required name="gioitinh" class="form-select">
-                                    <option selected>Chọn giới tính</option>
-                                    <option value="Nam">Nam</option>
-                                    <option value="Nữ">Nữ</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Quê quán</label>
-                                <input required placeholder="Quê quán" name="quequan" type="text" class="form-control" id="address">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="file" class="form-label">Ảnh</label>
-                                <input required name="anh" type="file" class="form-control" id="file">
                             </div>
                         </div>
 
@@ -274,6 +251,7 @@ if (isset($_POST['excel'])) {
             <div class="container__content">
                 <table class="drug--info table table-striped table-hover">
                     <tr>
+                        <th style="text-align: left" class="col-1">Mã bệnh nhân</th>
                         <th style="text-align: left" class="col-1">Họ tên</th>
                         <th style="text-align: left" class="col-1">Ngày sinh</th>
                         <th style="text-align: left" class="col-1">Giới tính</th>
@@ -290,6 +268,7 @@ if (isset($_POST['excel'])) {
                         while ($row = mysqli_fetch_array($data["listPatient"])) {
                     ?>
                             <tr>
+                                <td style="text-align: left" class="col-1"><?php echo $row['mabenhnhan'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['name'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['ngaysinh'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['gioitinh'] ?></td>
