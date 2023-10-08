@@ -7,9 +7,27 @@ class danhsachvienphiModel extends connectDB
         return mysqli_query($this->con, $query);
     }
 
+    function listvienphi_ins($mavienphi, $mabenhnhannoitru, $madonthuoc, $vienphi, $idbaohiem)
+    {
+        $query = "INSERT INTO vienphi VALUES('$mavienphi', '$mabenhnhannoitru', '$madonthuoc', '$vienphi', '$idbaohiem')";
+        return mysqli_query($this->con, $query);
+    }
+
+    function listvienphi_delete($mavienphi)
+    {
+        $query = "DELETE FROM `vienphi` WHERE `mavienphi` = '$mavienphi'";
+        return mysqli_query($this->con, $query);
+    }
+
+    function listvienphi_edit($mavienphi, $madonthuoc, $vienphi)
+    {
+        $query = "UPDATE `vienphi` SET `madonthuoc` = '$madonthuoc', `vienphi` = '$vienphi' WHERE `mavienphi` = '$mavienphi'";
+        return mysqli_query($this->con, $query);
+    }
+
     function getBenhNhanNoiTru()
     {
-        $query = "SELECT * FROM hosobenhnhannhapvien h LEFT JOIN benhnhan b ON h.mabenhnhan = b.mabenhnhan LEFT JOIN acount a ON b.idtaikhoan = a.id LEFT JOIN vienphi v ON h.mabenhnhannoitru = v.mabenhnhannoitru WHERE v.mabenhnhannoitru IS NULL AND h.ngayxuatvien <> 'No';";
+        $query = "SELECT * FROM hosobenhnhannhapvien hb JOIN benhnhan ON hb.mabenhnhan = benhnhan.mabenhnhan JOIN acount ON benhnhan.idtaikhoan = acount.id WHERE hb.ngayxuatvien <> 'No' AND mabenhnhannoitru NOT IN ( SELECT mabenhnhannoitru FROM vienphi )";
         return mysqli_query($this->con, $query);
     }
 
@@ -34,6 +52,30 @@ class danhsachvienphiModel extends connectDB
     function getListAccount()
     {
         $query = "SELECT * FROM benhnhan, acount WHERE benhnhan.idtaikhoan = acount.id";
+        return mysqli_query($this->con, $query);
+    }
+
+    function getDateHopitalizeFromDoc($mabenhnhannoitru)
+    {
+        $query = "SELECT ngaynhapvien FROM `hosobenhnhannhapvien` as  hb WHERE hb.mabenhnhannoitru = '$mabenhnhannoitru'";
+        return mysqli_query($this->con, $query);
+    }
+
+    function getDateDischargedFromDoc($mabenhnhannoitru)
+    {
+        $query = "SELECT ngayxuatvien FROM `hosobenhnhannhapvien` as  hb WHERE hb.mabenhnhannoitru = '$mabenhnhannoitru'";
+        return mysqli_query($this->con, $query);
+    }
+
+    function getAcountFromPrescription($madonthuoc)
+    {
+        $query = "SELECT soluong FROM `donthuoc` WHERE donthuoc.madonthuoc = '$madonthuoc'";
+        return mysqli_query($this->con, $query);
+    }
+
+    function getHopitalFee($mavienphi)
+    {
+        $query = "SELECT * FROM `vienphi`,`hosobenhnhannhapvien`, `donthuoc`, `baohiemyte`, `benhnhan`, `acount`, `thuoc` WHERE vienphi.mabenhnhannoitru = hosobenhnhannhapvien.mabenhnhannoitru AND vienphi.madonthuoc = donthuoc.madonthuoc AND vienphi.idbaohiem = baohiemyte.idbaohiem AND hosobenhnhannhapvien.mabenhnhan = benhnhan.mabenhnhan AND acount.id = benhnhan.idtaikhoan AND acount.role = '0' AND thuoc.mathuoc = donthuoc.mathuoc AND `mavienphi` = '$mavienphi'";
         return mysqli_query($this->con, $query);
     }
 }

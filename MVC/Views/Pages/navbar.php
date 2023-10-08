@@ -20,7 +20,7 @@
             <div class="nav-container-item">
                 <lord-icon class="container-icon" src="https://cdn.lordicon.com/osuxyevn.json" trigger="loop" colors="primary:#fff">
                 </lord-icon>
-                <a href="#">Trang chủ</a>
+                <a href="http://localhost/ManagerPatientPHP/homeadmin">Trang chủ</a>
             </div>
             <div class="nav-container-item">
                 <lord-icon class="container-icon" src="https://cdn.lordicon.com/qjuahhae.json" trigger="loop" colors="primary:#fff">

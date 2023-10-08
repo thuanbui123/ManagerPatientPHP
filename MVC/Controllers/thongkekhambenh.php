@@ -46,7 +46,7 @@ class ThongKeKhamBenh extends controller
 
     function themluotkham()
     {
-        $makhambenh = "kb00" . ((mysqli_num_rows($this->ls->getListKhamBenh()) + 1) + 1);
+        $makhambenh = "kb00" . ((mysqli_num_rows($this->ls->getListKhamBenh()) + 3) + 1);
         $mabenhnhan = $_POST['mabenhnhan'];
 
         $ngaykham = $_POST['ngaykham'];

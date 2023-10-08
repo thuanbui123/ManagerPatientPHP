@@ -1,7 +1,4 @@
 <?php
-    use PhpOffice\PhpSpreadsheet\IOFactory;
-    use PhpOffice\PhpSpreadsheet\Spreadsheet;
-    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
     class medicalBox extends controller {
         protected $ls;
         function __construct()
