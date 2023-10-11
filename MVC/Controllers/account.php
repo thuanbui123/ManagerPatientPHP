@@ -16,11 +16,11 @@
 
         function find () {
             if (isset($_POST['btnSearch'])) {
-                $mtk = $_POST['txtSearch'];
+                $tnd = $_POST['txtSearch'];
                 $this->view ('MasterLayout', [
                     'page' => 'taikhoan/taikhoan',
-                    'data' => $this->ls->find($mtk, ''),
-                    'id' => $mtk
+                    'data' => $this->ls->find('', $tnd),
+                    'id' => $tnd
                 ]);
             }
         }

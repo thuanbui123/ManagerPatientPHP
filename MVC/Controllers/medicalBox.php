@@ -100,11 +100,11 @@ class medicalBox extends controller
     function timKiem()
     {
         if (isset($_POST['btnSearch'])) {
-            $mt = $_POST['txtSearch'];
+            $tt = $_POST['txtSearch'];
             $this->view('MasterLayout', [
                 'page' => 'medicalBox_v',
-                'data' => $this->ls->medicalBox_find($mt, ''),
-                'mt' => $mt
+                'data' => $this->ls->medicalBox_find('', $tt),
+                'tt' => $tt
             ]);
         }
     }

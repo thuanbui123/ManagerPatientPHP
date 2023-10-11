@@ -80,15 +80,25 @@ class donthuoc extends controller
                 if ($check->num_rows > 0) {
                     echo "<script>alert('Mã đơn thuốc đã tồn tại')</script>";
                 } else {
-                    $kq = $this->ls->donThuocModel_ins($mdt, $tbn, $nkd, $ngaykd, $tt, $sl, $dv, $hd);
                     $mt = $this->ls->mathuoc($tt);
                     $getThuocById = mysqli_fetch_assoc($this->ls->getThuocById($mt));
                     $soluong =  intval($getThuocById['soluong']) - intval($sl);
-                    $updateSoluongThuoc = $this->ls->accountingPres($soluong, $mt);
-                    if ($kq && $updateSoluongThuoc) {
-                        echo "<script>alert('Thêm đơn thuốc thành công!')</script>";
+                    $a = $getThuocById['soluong'];
+                    echo "<script>alert($a)</script>";
+                    if($soluong >= 0) {
+                        $updateSoluongThuoc = $this->ls->accountingPres($soluong, $mt);
+                        if($updateSoluongThuoc) {
+                            $kq = $this->ls->donThuocModel_ins($mdt, $tbn, $nkd, $ngaykd, $tt, $sl, $dv, $hd);
+                            if ($kq) {
+                                echo "<script>alert('Thêm đơn thuốc thành công!')</script>";
+                            } else {
+                                echo "<script>alert('Thêm đơn thuốc thất bại!')</script>";
+                            }
+                        } else {
+                            echo "<script>alert('Thêm đơn thuốc thất bại!')</script>";
+                        }
                     } else {
-                        echo "<script>alert('Thêm đơn thuốc thất bại!')</script>";
+                        echo "<script>alert('Số lượng thuốc trong quầy không đủ')</script>";
                     }
                 }
                 $this->view('MasterLayout', [
@@ -103,11 +113,11 @@ class donthuoc extends controller
     function timkiem()
     {
         if (isset($_POST['btnSearch'])) {
-            $id = $_POST['txtSearch'];
+            $tbn = $_POST['txtSearch'];
             $this->view('MasterLayout', [
                 'page' => 'donthuoc',
-                'data' => $this->ls->donThuocModel_find($id),
-                'id' => $id
+                'data' => $this->ls->donThuocModel_find($tbn),
+                'tbn' => $tbn
             ]);
         }
     }
