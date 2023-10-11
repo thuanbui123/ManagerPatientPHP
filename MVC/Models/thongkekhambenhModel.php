@@ -25,12 +25,6 @@ class thongkekhambenhModel extends connectDB
         return mysqli_query($this->con, $query);
     }
 
-    function getListChuanDoan()
-    {
-        $query = "SELECT * FROM `chuandoan`";
-        return mysqli_query($this->con, $query);
-    }
-
     function xoaHoaSoKHamBenh($mahosokhambenh)
     {
         $query = "DELETE FROM `hosokhambenh` WHERE `mahosokhambenh` = '$mahosokhambenh'";

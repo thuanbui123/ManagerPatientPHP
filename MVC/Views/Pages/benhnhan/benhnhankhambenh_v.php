@@ -79,7 +79,7 @@ if (isset($_POST['excel'])) {
                                     if (mysqli_num_rows($data['listBenhNhan']) > 0) {
                                         while ($row = mysqli_fetch_array($data['listBenhNhan'])) {
                                     ?>
-                                            <option data-pres="<?php echo $row['madonthuoc'] ?>" value="<?php echo $row['mabenhnhan'] ?>"><?php echo $row['mabenhnhan'] ?></option>
+                                            <option data-pres="<?php echo $row['madonthuoc'] ?>" value="<?php echo $row['mabenhnhan'] ?>"><?php echo $row['name'] ?></option>
                                     <?php
                                         }
                                     }
@@ -89,7 +89,7 @@ if (isset($_POST['excel'])) {
 
                             <div class="mb-3">
                                 <label for="date" class="form-label">Ngày khám</label>
-                                <input required name="ngaykham" type="date" class="form-control" id="date">
+                                <input required name="ngaykham" type="date" min="<?php echo date('Y-m-d') ?>" max="<?php echo date('Y-m-d') ?>" class="form-control" id="date">
                             </div>
 
                             <div class="mb-3">

@@ -64,8 +64,10 @@ class DanhSachBenhNhan extends controller
 
     function thembenhnhan()
     {
-        $i = 1;
-        $mabenhnhan = 'bn01' . (mysqli_num_rows($this->ls->getDataPatients()) + 1);
+        $date = date("H:s:i");
+        $currentDateTime = new DateTime($date);
+        $seconds = $currentDateTime->getTimestamp();
+        $mabenhnhan = 'bn' . $seconds;
         $taikhoan = $_POST['taikhoan'];
         $nhapvien = 0;
 
@@ -165,7 +167,10 @@ class DanhSachBenhNhan extends controller
 
     function nhapvien()
     {
-        $mahosobenhnhannhapvien = 'bnnt' . ((mysqli_num_rows($this->ls->getListsNhapVien()) + 1) + 1);
+        $date = date("H:s:i");
+        $currentDateTime = new DateTime($date);
+        $seconds = $currentDateTime->getTimestamp();
+        $mahosobenhnhannhapvien = 'bnnt' . $seconds;
         $mabenhnhan = $_POST['hoten'];
         $mabenh = $_POST['benh'];
         $ngaynhapvien = $_POST['ngaynhapvien'];

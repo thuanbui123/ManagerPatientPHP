@@ -62,7 +62,7 @@ $dt = new DateTime($getDataById['ngaythanhtoan']);
 
                 <div class="mb-3">
                     <label for="address" class="form-label">Mã viện phí</label>
-                    <select name="mavienphi" class="form-select" aria-label="Default select example" required >
+                    <select name="mavienphi" class="form-select" aria-label="Default select example" required>
                         <option selected>Chọn mã viện phí</option>
                         <?php
                         if (isset($data['Mvp']) && $data['Mvp'] != null) {
@@ -79,7 +79,7 @@ $dt = new DateTime($getDataById['ngaythanhtoan']);
 
                 <div class="mb-3">
                     <label for="file" class="form-label">Tình trạng</label>
-                    <select  name="tinhtrang" class="form-select" required>
+                    <select name="tinhtrang" class="form-select" required>
                         <option selected>Chọn trạng thái</option>
                         <option value=1>Đã thanh toán</option>
                         <option value=0>Chưa thanh toán</option>
@@ -91,7 +91,7 @@ $dt = new DateTime($getDataById['ngaythanhtoan']);
                 </div>
 
             </form>
-           
+
         </div>
     </div>
 </body>

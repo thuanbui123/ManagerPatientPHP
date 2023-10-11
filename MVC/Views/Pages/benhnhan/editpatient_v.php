@@ -44,7 +44,7 @@ $dt = new DateTime($getDataById['ngaysinh']);
                 </div>
                 <div class="mb-3">
                     <label for="date" class="form-label">Ngày sinh</label>
-                    <input required name="ngaysinh" type="date" class="form-control" id="date" value="<?php echo $dt->format('Y-m-d') ?>">
+                    <input required name="ngaysinh" type="date" max="<?php echo date('Y-m-d') ?>" class="form-control" id="date" value="<?php echo $dt->format('Y-m-d') ?>">
                 </div>
 
                 <div class="mb-3">
