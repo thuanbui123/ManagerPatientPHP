@@ -106,6 +106,13 @@ class taikhoan extends controller
         $password = $_POST['password'];
         $repassword = $_POST['repassword'];
 
+        $noikhamdautien = "Bênh viện piincode";
+        $currentDate = date('d-m-Y');
+        $currentDateTime = new DateTime($currentDate);
+        $numberofYear = 5;
+        $ngayhethan = $currentDateTime->modify("+$numberofYear years");
+        $ngayhethan = $ngayhethan->format('d-m-Y');
+
         $checkIdentical = $this->ls->checkIdenticalAccout($email);
 
         if (mysqli_num_rows($checkIdentical) == 0) {
@@ -113,9 +120,11 @@ class taikhoan extends controller
                 $result = $this->ls->dangky($name, $email,  $password, $phone, $ngaysinh, $gioitinh, $quequan, $anh, $mabaohiemyte);
                 if ($result) {
                     echo "<script> alert('Đăng ký thành công') </script>";
-                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                    $resultBaoHiem = $this->ls->baohiemyte_ins($mabaohiemyte, $email, $ngaysinh, $noikhamdautien, $ngayhethan);
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/' </script>";
                 } else {
                     echo "<script> alert('Đăng ký thất bại') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan/dangky' </script>";
                 }
             } else {
                 echo "<script> alert('Mật khẩu nhập lại không chính xác') </script>";

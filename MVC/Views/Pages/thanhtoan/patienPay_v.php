@@ -1,4 +1,4 @@
-<?php 
+<?php
 print_r($data['listPatient']);
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ print_r($data['listPatient']);
                 Thêm bệnh thanh toán
             </span>
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachthanhtoan/themthanhtoan" class="modal needs-validation" id="addNewDoctor">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
@@ -50,7 +50,7 @@ print_r($data['listPatient']);
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">Ngày thanh toán</label>
-                                <input required name="ngaythanhtoan" type="date" class="form-control" id="date">
+                                <input required name="ngaythanhtoan" type="date" max="<?php echo date('Y-m-d') ?>" class="form-control" id="date">
                             </div>
 
                             <div class="mb-3">
@@ -109,7 +109,7 @@ print_r($data['listPatient']);
                 </form>
                 <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachthanhtoan/timkiem" class="search">
                     <label for="" class="search__label">Tìm kiếm</label>
-                    <input placeholder="Tìm kiếm" type="text" name="keyword" id="txtSearch" class="search__input"/>
+                    <input placeholder="Tìm kiếm" type="text" name="keyword" id="txtSearch" class="search__input" />
                 </form>
             </div>
 
@@ -134,9 +134,11 @@ print_r($data['listPatient']);
                                 <td style="text-align: left" class="col-1"><?php echo $row['mathanhtoan'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['mabenhnhan'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['ngaythanhtoan'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php if($row['phuongthucthanhtoan']=='0') echo "Chuyển khoản"; else echo "Tiền mặt" ?></td>
+                                <td style="text-align: left" class="col-1"><?php if ($row['phuongthucthanhtoan'] == '0') echo "Chuyển khoản";
+                                                                            else echo "Tiền mặt" ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['mavienphi'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php if($row['tinhtrang']=='0') echo "Chưa thanh toán"; else echo "Đã thanh toán" ?></td>
+                                <td style="text-align: left" class="col-1"><?php if ($row['tinhtrang'] == '0') echo "Chưa thanh toán";
+                                                                            else echo "Đã thanh toán" ?></td>
 
                                 <td style="text-align: left" class="col-1-4">
                                     <a href="http://localhost/ManagerPatientPHP/danhsachthanhtoan/suathanhtoan/?id=<?php echo $row['mathanhtoan']; ?>" class="btn--edit">

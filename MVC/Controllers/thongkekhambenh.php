@@ -39,7 +39,10 @@ class ThongKeKhamBenh extends controller
 
     function themluotkham()
     {
-        $makhambenh = "kb00" . ((mysqli_num_rows($this->ls->getListKhamBenh()) + 1) + 1);
+        $date = date('H:i:s');
+        $currentDateTime = new DateTime($date);
+        $seconds = $currentDateTime->getTimestamp();
+        $makhambenh = "kb" . $seconds;
         $mabenhnhan = $_POST['mabenhnhan'];
 
         $ngaykham = $_POST['ngaykham'];

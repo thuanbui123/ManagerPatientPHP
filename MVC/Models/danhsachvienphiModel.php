@@ -78,4 +78,22 @@ class danhsachvienphiModel extends connectDB
         $query = "SELECT * FROM `vienphi`,`hosobenhnhannhapvien`, `donthuoc`, `baohiemyte`, `benhnhan`, `acount`, `thuoc` WHERE vienphi.mabenhnhannoitru = hosobenhnhannhapvien.mabenhnhannoitru AND vienphi.madonthuoc = donthuoc.madonthuoc AND vienphi.idbaohiem = baohiemyte.idbaohiem AND hosobenhnhannhapvien.mabenhnhan = benhnhan.mabenhnhan AND acount.id = benhnhan.idtaikhoan AND acount.role = '0' AND thuoc.mathuoc = donthuoc.mathuoc AND `mavienphi` = '$mavienphi'";
         return mysqli_query($this->con, $query);
     }
+
+    function getDonThuocById($mabenhnhannoitru)
+    {
+        $query = "SELECT * FROM `hosobenhnhannhapvien`, `donthuoc`, `benhnhan` WHERE hosobenhnhannhapvien.mabenhnhan = benhnhan.mabenhnhan AND donthuoc.mabenhnhan = benhnhan.mabenhnhan AND `mabenhnhannoitru` = '$mabenhnhannoitru'";
+        return mysqli_query($this->con, $query);
+    }
+
+    function getDataThuocByMaThuoc($madonthuoc)
+    {
+        $query = "SELECT donthuoc.soluong, thuoc.gia FROM donthuoc, thuoc WHERE donthuoc.mathuoc = thuoc.mathuoc AND madonthuoc = '$madonthuoc'";
+        return mysqli_query($this->con, $query);
+    }
+
+    function getBaoHiemByEmail($mabenhnhannoitru)
+    {
+        $query = "SELECT * FROM hosobenhnhannhapvien, benhnhan, acount, baohiemyte WHERE hosobenhnhannhapvien.mabenhnhan = benhnhan.mabenhnhan AND benhnhan.idtaikhoan = acount.id AND hosobenhnhannhapvien.mabenhnhannoitru = '$mabenhnhannoitru'";
+        return mysqli_query($this->con, $query);
+    }
 }

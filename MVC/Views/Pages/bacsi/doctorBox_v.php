@@ -67,7 +67,7 @@ $dataExport = $data['listExport'];
                 Thêm bác sĩ mới
             </span>
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbacsi/thembacsi" class="modal needs-validation" id="addNewDoctor">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
@@ -84,7 +84,7 @@ $dataExport = $data['listExport'];
 
                             <div class="mb-3">
                                 <label for="date" class="form-label">Ngày sinh</label>
-                                <input required name="ngaysinh" type="date" class="form-control" id="date">
+                                <input required name="ngaysinh" type="date" max="<?php echo date('Y-m-d') ?>" class="form-control" id="date">
                             </div>
 
                             <div class="mb-3">

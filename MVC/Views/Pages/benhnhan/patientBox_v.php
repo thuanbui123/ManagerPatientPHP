@@ -65,7 +65,7 @@ if (isset($_POST['excel'])) {
             </span>
 
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbenhnhan/nhapvien" class="modal needs-validation" id="addHoplize">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
@@ -96,7 +96,7 @@ if (isset($_POST['excel'])) {
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">Ngày nhập viện</label>
-                                <input required name="ngaynhapvien" type="date" class="form-control" id="date">
+                                <input required name="ngaynhapvien" type="date" min="<?php echo date('Y-m-d') ?>" max=" <?php echo date('Y-m-d') ?>" class="form-control" id="date">
                             </div>
 
                             <div class="mb-3">

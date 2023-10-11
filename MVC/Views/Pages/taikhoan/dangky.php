@@ -30,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="date" class="form-label">Ngày sinh</label>
-                        <input name="date" required placeholder="Số điện thoại" type="date" class="form-control" id="date">
+                        <input name="date" required placeholder="Ngày sinh" type="date" max="<?php echo date('Y-m-d') ?>" class="form-control" id="date">
                     </div>
                     <div class="mb-3">
                         <label for="gioitinh" class="form-label">Giới tính</label>
@@ -42,15 +42,15 @@
                     </div>
                     <div class="mb-3">
                         <label for="quequan" class="form-label">Quê quán</label>
-                        <input name="quequan" required placeholder="Số điện thoại" type="text" class="form-control" id="quequan">
+                        <input name="quequan" required placeholder="Quê quán" type="text" class="form-control" id="quequan">
                     </div>
                     <div class="mb-3">
                         <label for="anh" class="form-label">Ảnh</label>
-                        <input name="anh" required placeholder="Số điện thoại" type="file" class="form-control" id="anh">
+                        <input name="anh" required placeholder="Ảnh" type="file" class="form-control" id="anh">
                     </div>
                     <div class="mb-3">
                         <label for="baohiemyte" class="form-label">Mã bảo hiểm y tế</label>
-                        <input name="baohiemyte" required placeholder="Số điện thoại" type="number" class="form-control" id="baohiemyte">
+                        <input name="baohiemyte" required placeholder="Mã bảo hiểm y tế" type="number" class="form-control" id="baohiemyte">
                     </div>
 
                     <div class="mb-3">

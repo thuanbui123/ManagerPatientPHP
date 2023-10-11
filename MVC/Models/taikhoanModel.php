@@ -24,4 +24,10 @@ class taikhoanModel extends connectDB
         $sql = "SELECT lichhen.ngayhen from `benhnhan`, `acount`, `lichhen` where benhnhan.idtaikhoan = acount.id and acount.username = '$email' and benhnhan.mabenhnhan = lichhen.mabenhnhan and lichhen.tinhtrang = '0'";
         return mysqli_query($this->con, $sql);
     }
+
+    function baohiemyte_ins($mabaohiemyte, $hoten, $ngaysinh, $noikhambenhbd, $giatrisudung)
+    {
+        $sql = "INSERT INTO `baohiemyte` VALUES ('','$mabaohiemyte','$hoten','$ngaysinh','$noikhambenhbd','$giatrisudung')";
+        return mysqli_query($this->con, $sql);
+    }
 }
