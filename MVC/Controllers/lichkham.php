@@ -15,11 +15,11 @@
 
         function timkiem () {
             if(isset($_POST['btnSearch'])) {
-                $mlh = $_POST['txtSearch'];
+                $tenbenhnhan = $_POST['txtSearch'];
                 $this->view('MasterLayout', [
                     'page'=> 'lichkham',
-                    'data'=> $this->ls->find($mlh),
-                    'mlh' => $mlh
+                    'data'=> $this->ls->find($tenbenhnhan),
+                    'tbn' => $tenbenhnhan
                 ]);
             }
         }
