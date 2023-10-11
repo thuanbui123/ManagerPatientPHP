@@ -29,7 +29,7 @@
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/medicalBox/timkiem" method="POST">
                         <label for="" class="search__label">Tìm kiếm</label>
-                        <input type="text" name="txtSearch" id="txtSearch" class="search__input">
+                        <input type="text" name="txtSearch" placeholder="Nhập tên thuốc" id="txtSearch" class="search__input" value="<?php if(isset($data["tt"])) echo $data["tt"]?>"/>
                         <input class="btnSearch" name="btnSearch" type="submit" value="Tìm kiếm">
                     </form>
                 </div>
@@ -40,12 +40,12 @@
                 <table class="drug--info">
                     <tr>
                         <th style="text-align: left" class="col-1">Mã thuốc</th>
-                        <th style="text-align: left" class="col-2">Tên thuốc</th>
-                        <th style="text-align: left" class="col-1">Hàm <br> lượng</th>
-                        <th style="text-align: left" class="col-1">Cách <br> dùng</th>
-                        <th style="text-align: left" class="col-1">Số <br> lượng</th>
+                        <th style="text-align: left" class="col-1">Tên thuốc</th>
+                        <th style="text-align: left" class="col-1">Hàm lượng</th>
+                        <th style="text-align: left" class="col-1">Nhà cung cấp</th>
+                        <th style="text-align: left" class="col-1">Ngày hết hạn</th>
+                        <th style="text-align: left" class="col-1">Số lượng</th>
                         <th style="text-align: left" class="col-1">Giá</th>
-                        <th style="text-align: left" class="col-2">Ghi chú</th>
                         <th class="col-1-4"></th>
                         <th class="col-1-4"></th>
                     </tr>
@@ -55,12 +55,12 @@
                     ?>
                         <tr>
                             <td style="text-align: left" class="col-1"><?php echo $row['mathuoc'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['tenthuoc'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['tenthuoc'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['hamluong'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['duongdung'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['nhacungcap'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['ngayhethan'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['gia'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['ghichu'] ?></td>
                             <td style="text-align: left" class="col-1-4">
                                 <a href="http://localhost/ManagerPatientPHP/medicalBox/sua/<?php echo $row['mathuoc'] ?>">
                                     <lord-icon

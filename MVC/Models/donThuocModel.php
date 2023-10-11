@@ -1,9 +1,9 @@
 <?php
 class donThuocModel extends connectDB
 {
-    function donThuocModel_find($mdt)
+    function donThuocModel_find($tenbenhnhan)
     {
-        $sql = "SELECT donthuoc.madonthuoc, acount.name, bacsi.hoten, donthuoc.ngaykedon, thuoc.tenthuoc, donthuoc.donvi, thuoc.hamluong, donthuoc.soluong, donthuoc.huongdan FROM `donthuoc`, `thuoc`, `bacsi`, `benhnhan`, `acount`  WHERE acount.id = benhnhan.idtaikhoan and donthuoc.mabacsi = bacsi.mabacsi and donthuoc.mabenhnhan = benhnhan.mabenhnhan and donthuoc.mathuoc = thuoc.mathuoc and madonthuoc like '%$mdt%'";
+        $sql = "SELECT donthuoc.madonthuoc, acount.name, bacsi.hoten, donthuoc.ngaykedon, thuoc.tenthuoc, donthuoc.donvi, thuoc.hamluong, donthuoc.soluong, donthuoc.huongdan FROM `donthuoc`, `thuoc`, `bacsi`, `benhnhan`, `acount`  WHERE acount.id = benhnhan.idtaikhoan and donthuoc.mabacsi = bacsi.mabacsi and donthuoc.mabenhnhan = benhnhan.mabenhnhan and donthuoc.mathuoc = thuoc.mathuoc and name like '%$tenbenhnhan%'";
         return mysqli_query($this->con, $sql);
     }
 
@@ -44,7 +44,7 @@ class donThuocModel extends connectDB
 
     function tenthuoc()
     {
-        $sql = "SELECT tenthuoc From thuoc";
+        $sql = "SELECT tenthuoc From thuoc where soluong > 0";
         return mysqli_query($this->con, $sql);
     }
 

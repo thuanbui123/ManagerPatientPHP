@@ -65,7 +65,7 @@ if (isset($_POST['excel'])) {
             </span>
 
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachbenhnhan/nhapvien" class="modal needs-validation" id="addHoplize">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->

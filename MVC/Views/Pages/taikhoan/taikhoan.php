@@ -22,7 +22,7 @@
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/account/find" method="POST">
                         <label for="" class="search__label">Tìm kiếm</label>
-                        <input type="text" name="txtSearch" placeholder="Nhập mã tài khoản" value="<?php if(isset($data['id'])) echo $data['id'] ?>" id="txtSearch" class="search__input">
+                        <input type="text" name="txtSearch" placeholder="Nhập tên người dùng" value="<?php if(isset($data['id'])) echo $data['id'] ?>" id="txtSearch" class="search__input">
                         <input class="btnSearch" name="btnSearch" type="submit" value="Tìm kiếm">
                     </form>
                 </div>
