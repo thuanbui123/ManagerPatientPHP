@@ -71,9 +71,7 @@ class DanhSachVienPhi extends controller
     {
         $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        // Parse the query string
         $query = parse_url($actual_link, PHP_URL_QUERY);
-
 
         if ($query) {
             parse_str($query, $params);
@@ -95,14 +93,8 @@ class DanhSachVienPhi extends controller
 
         $query = parse_url($actual_link, PHP_URL_QUERY);
 
-
         if ($query) {
             parse_str($query, $params);
-            $resultGetPatient =  $this->ls->getHopitalFee($params['id']);
-
-            print_r($resultGetPatient);
-
-
             $this->view('MasterLayout', [
                 'page' => 'thanhtoan/editvienphi_v',
                 'hopitalFee' => $this->ls->getHopitalFee($params['id']),
