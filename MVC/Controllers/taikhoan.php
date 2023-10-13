@@ -120,7 +120,7 @@ class taikhoan extends controller
                 $result = $this->ls->dangky($name, $email,  $password, $phone, $ngaysinh, $gioitinh, $quequan, $anh, $mabaohiemyte);
                 if ($result) {
                     echo "<script> alert('Đăng ký thành công') </script>";
-                    $resultBaoHiem = $this->ls->baohiemyte_ins($mabaohiemyte, $email, $ngaysinh, $noikhamdautien, $ngayhethan);
+                    $resultBaoHiem = $this->ls->baohiemyte_ins($email, $mabaohiemyte, $ngaysinh, $noikhamdautien, $ngayhethan);
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/' </script>";
                 } else {
                     echo "<script> alert('Đăng ký thất bại') </script>";

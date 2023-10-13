@@ -95,7 +95,7 @@
                     ?>
                             <tr>
                                 <td style="text-align: left" class="col-1"><?php echo $row['name'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['madonthuoc'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['madonthuoc'] == 0 ? "Không có" : $row['madonthuoc'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['tenthuoc'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['mabaohiem'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['noikhambenhbd'] ?></td>

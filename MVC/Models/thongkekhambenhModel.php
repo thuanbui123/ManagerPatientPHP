@@ -15,13 +15,13 @@ class thongkekhambenhModel extends connectDB
 
     function getListDoctors()
     {
-        $query = "SELECT * FROM `bacsi`";
+        $query = "SELECT * FROM `bacsi` WHERE mabacsi <> '0'";
         return mysqli_query($this->con, $query);
     }
 
     function getDataPatients()
     {
-        $query = "SELECT * FROM `benhnhan`, `acount`, `donthuoc` WHERE benhnhan.idtaikhoan = acount.id AND acount.role = '0' AND benhnhan.mabenhnhan = donthuoc.mabenhnhan";
+        $query = "SELECT * FROM `benhnhan`, `acount`, `donthuoc` WHERE benhnhan.idtaikhoan = acount.id AND acount.role = '0' AND benhnhan.mabenhnhan = donthuoc.mabenhnhan AND benhnhan.mabenhnhan <> '0'";
         return mysqli_query($this->con, $query);
     }
 

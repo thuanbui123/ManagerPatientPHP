@@ -16,19 +16,23 @@ td {
 
 .col-2 {
     width: 20%;
-    margin-right: 2px;}
+    margin-right: 2px;
+}
 
 .col-1 {
     width: 10%;
-    margin-right: 2px;}
+    margin-right: 2px;
+}
 
 .col-1-2 {
     width: 5%;
-    margin-right: 2px;}
+    margin-right: 2px;
+}
 
 .col-1-4 {
     width: 2.5%;
-    margin-right: 2px;;
+    margin-right: 2px;
+    ;
 }
 
 .main {
@@ -159,6 +163,7 @@ td {
     line-height: 40.5px;
     padding: 9.75px 0px;
     border-radius: 4.75px;
+    color: #333;
 }
 
 .form {
@@ -193,7 +198,7 @@ td {
 .modal-content::-webkit-scrollbar {
     width: 2px;
     border-radius: 5px;
-    
+
 }
 
 .modal-header {
@@ -329,6 +334,7 @@ td {
     border: none;
     background-color: #f5f8fa;
     border-color: #f5f8fa;
+    color: #333;
 }
 
 #txtPrice,
