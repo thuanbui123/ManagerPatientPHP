@@ -43,12 +43,10 @@ $hopitalFee = mysqli_fetch_assoc($data['hopitalFee']);
                     <label for="date" class="form-label">Đơn thuốc</label>
                     <select required name="thuoc" class="select-prescription form-select" aria-label="Default select example" autocomplete="on">
                         <?php
-                        if (mysqli_num_rows($data['listDonThuoc']) > 0) {
-                            while ($row = mysqli_fetch_array($data['listDonThuoc'])) {
+                        if ($hopitalFee != null) {
                         ?>
-                                <option <?php echo $hopitalFee['madonthuoc'] == $row['madonthuoc'] ? 'selected' : false ?> value="<?php echo $row['madonthuoc'] ?>"><?php echo $row['madonthuoc'] ?></option>
+                            <option value="<?php echo $hopitalFee['madonthuoc'] ?>"><?php echo $hopitalFee['madonthuoc'] ?></option>
                         <?php
-                            }
                         }
                         ?>
                     </select>

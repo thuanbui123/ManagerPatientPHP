@@ -26,7 +26,6 @@ class donthuoc extends controller
 
     function checkdata()
     {
-        $mdt = $_POST['txtMaDonThuoc'];
         $tbn = $_POST['namebenhnhan'];
         $nkd = $_POST['namebacsi'];
         $ngaykd = $_POST['txtNgayKeDon'];
@@ -35,10 +34,7 @@ class donthuoc extends controller
         $dv = $_POST['txtDonVi'];
         $hd = $_POST['txthuongdan'];
 
-        if ($mdt == null) {
-            echo "<script>alert('Bạn chưa nhập mã đơn thuốc')</script>";
-            return false;
-        } else if ($tbn == null) {
+        if ($tbn == null) {
             echo "<script>alert('Bạn chưa chọn tên bệnh nhân')</script>";
             return false;
         } else if ($nkd == null) {
@@ -67,7 +63,10 @@ class donthuoc extends controller
     {
         if (isset($_POST['btnLuu'])) {
             if ($this->checkdata()) {
-                $mdt = $_POST['txtMaDonThuoc'];
+                $date = date("H:s:i");
+                $currentDateTime = new DateTime($date);
+                $seconds = $currentDateTime->getTimestamp();
+                $mdt = "DT" . $seconds;
                 $check = $this->ls->checkId($mdt);
                 $tbn = $_POST['namebenhnhan'];
                 $nkd = $_POST['namebacsi'];
@@ -84,10 +83,9 @@ class donthuoc extends controller
                     $getThuocById = mysqli_fetch_assoc($this->ls->getThuocById($mt));
                     $soluong =  intval($getThuocById['soluong']) - intval($sl);
                     $a = $getThuocById['soluong'];
-                    echo "<script>alert($a)</script>";
-                    if($soluong >= 0) {
+                    if ($soluong >= 0) {
                         $updateSoluongThuoc = $this->ls->accountingPres($soluong, $mt);
-                        if($updateSoluongThuoc) {
+                        if ($updateSoluongThuoc) {
                             $kq = $this->ls->donThuocModel_ins($mdt, $tbn, $nkd, $ngaykd, $tt, $sl, $dv, $hd);
                             if ($kq) {
                                 echo "<script>alert('Thêm đơn thuốc thành công!')</script>";

@@ -40,7 +40,7 @@
                     ?>
                         <tr>
                             <td style="text-align: left" class="col-1"><?php echo $row['mabaohiem'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['hoten'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['name'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['ngaysinh'] ?></td>
                             <td style="text-align: left" class="col-2"><?php echo $row['noikhambenhbd'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['giatrisudung'] ?></td>

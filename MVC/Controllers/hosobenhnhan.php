@@ -62,9 +62,16 @@ class HoSoBenhNhan extends controller
         $songaynhapvien_date = $ngaynhapvien_date->diff($ngayxuatvien_date);
         $songaynhapvien = $songaynhapvien_date->days;
 
-        $vienphi = ((intval($songaynhapvien) * 30000 + intval($queryGetDataThuoc['soluong']) * intval($queryGetDataThuoc['gia'])) * 20) / 100;
+        if ($queryGetDonThuoc == null) {
+            $madonthuoc = 0;
+            echo $songaynhapvien;
+            $vienphi = (((intval($songaynhapvien) + 1) * 30000) * 20) / 100;
+        } else {
+            $madonthuoc = $queryGetDonThuoc['madonthuoc'];
+            $queryGetDataThuoc = mysqli_fetch_assoc($this->ls->getDataThuocByMaThuoc($madonthuoc));
+            $vienphi = ((intval($songaynhapvien + 1) * 30000 + intval($queryGetDataThuoc['soluong']) * intval($queryGetDataThuoc['gia'])) * 20) / 100;
+        }
 
-        echo $vienphi;
         if ($result) {
             $resultVienPhi = $this->ls->listvienphi_ins($mavienphi, $mabenhnhannoitru, $madonthuoc, $vienphi, $idbaohiem);
 

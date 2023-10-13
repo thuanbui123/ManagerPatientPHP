@@ -3,7 +3,7 @@ class donThuocModel extends connectDB
 {
     function donThuocModel_find($tenbenhnhan)
     {
-        $sql = "SELECT donthuoc.madonthuoc, acount.name, bacsi.hoten, donthuoc.ngaykedon, thuoc.tenthuoc, donthuoc.donvi, thuoc.hamluong, donthuoc.soluong, donthuoc.huongdan FROM `donthuoc`, `thuoc`, `bacsi`, `benhnhan`, `acount`  WHERE acount.id = benhnhan.idtaikhoan and donthuoc.mabacsi = bacsi.mabacsi and donthuoc.mabenhnhan = benhnhan.mabenhnhan and donthuoc.mathuoc = thuoc.mathuoc and name like '%$tenbenhnhan%'";
+        $sql = "SELECT donthuoc.madonthuoc, acount.name, bacsi.hoten, donthuoc.ngaykedon, thuoc.tenthuoc, donthuoc.donvi, thuoc.hamluong, donthuoc.soluong, donthuoc.huongdan FROM `donthuoc`, `thuoc`, `bacsi`, `benhnhan`, `acount`  WHERE acount.id = benhnhan.idtaikhoan and donthuoc.mabacsi = bacsi.mabacsi and donthuoc.mabenhnhan = benhnhan.mabenhnhan and donthuoc.mathuoc = thuoc.mathuoc and name like '%$tenbenhnhan%' AND donthuoc.madonthuoc <> '0'";
         return mysqli_query($this->con, $sql);
     }
 
@@ -32,13 +32,13 @@ class donThuocModel extends connectDB
 
     function tenbenhnhan()
     {
-        $sql = "SELECT name From acount Where role = '0'";
+        $sql = "SELECT name From acount Where role = '0' AND id <> '33'";
         return mysqli_query($this->con, $sql);
     }
 
     function tenbacsi()
     {
-        $sql = "SELECT hoten From bacsi";
+        $sql = "SELECT hoten From bacsi WHERE bacsi.mabacsi <> '0'";
         return mysqli_query($this->con, $sql);
     }
 

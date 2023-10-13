@@ -3,7 +3,7 @@ class patientBoxModel extends connectDB
 {
     function getDataPatients()
     {
-        $query = "SELECT * FROM `benhnhan`, `acount` WHERE benhnhan.idtaikhoan = acount.id AND acount.role = '0'";
+        $query = "SELECT * FROM `benhnhan`, `acount` WHERE benhnhan.idtaikhoan = acount.id AND acount.role = '0' AND benhnhan.mabenhnhan <> '0'";
         return mysqli_query($this->con, $query);
     }
 
@@ -45,13 +45,13 @@ class patientBoxModel extends connectDB
 
     function listAccounts()
     {
-        $query = "SELECT acount.* FROM acount LEFT JOIN benhnhan ON acount.id = benhnhan.idtaikhoan WHERE benhnhan.idtaikhoan IS NULL AND acount.role = '0';";
+        $query = "SELECT acount.* FROM acount LEFT JOIN benhnhan ON acount.id = benhnhan.idtaikhoan WHERE benhnhan.idtaikhoan IS NULL AND acount.role = '0'";
         return mysqli_query($this->con, $query);
     }
 
     function getListDoctors()
     {
-        $query = "SELECT * FROM `bacsi`";
+        $query = "SELECT * FROM `bacsi` WHERE mabacsi <> '0'";
         return mysqli_query($this->con, $query);
     }
 
@@ -75,7 +75,7 @@ class patientBoxModel extends connectDB
 
     function getPatientsNotYetHapitalized()
     {
-        $query = "SELECT * FROM `benhnhan`, `acount` WHERE benhnhan.idtaikhoan = acount.id AND `nhapvien` = '0'";
+        $query = "SELECT * FROM `benhnhan`, `acount` WHERE benhnhan.idtaikhoan = acount.id AND `nhapvien` = '0' AND benhnhan.mabenhnhan <> '0'";
         return mysqli_query($this->con, $query);
     }
 

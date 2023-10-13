@@ -35,14 +35,10 @@ class DanhSachVienPhi extends controller
         $mavienphi = 'vp' . $seconds;
 
         $mabenhnhannoitru = $_POST['benhnhan'];
-
         $resultgetBaoHiem = mysqli_fetch_assoc($this->ls->getBaoHiemByEmail($mabenhnhannoitru));
         $idbaohiem = $resultgetBaoHiem['idbaohiem'];
 
         $queryGetDonThuoc = mysqli_fetch_assoc($this->ls->getDonThuocById($mabenhnhannoitru));
-        $madonthuoc = $queryGetDonThuoc['madonthuoc'];
-
-        $queryGetDataThuoc = mysqli_fetch_assoc($this->ls->getDataThuocByMaThuoc($madonthuoc));
 
         $ngaynhapvien = mysqli_fetch_assoc($this->ls->getDateHopitalizeFromDoc($mabenhnhannoitru));
         $ngaynhapvien_date = new DateTime($ngaynhapvien['ngaynhapvien']);
@@ -53,8 +49,14 @@ class DanhSachVienPhi extends controller
         $songaynhapvien_date = $ngaynhapvien_date->diff($ngayxuatvien_date);
         $songaynhapvien = $songaynhapvien_date->days;
 
-        $vienphi = ((intval($songaynhapvien) * 30000 + intval($queryGetDataThuoc['soluong']) * intval($queryGetDataThuoc['gia'])) * 20) / 100;
-
+        if ($queryGetDonThuoc == null) {
+            $madonthuoc = 0;
+            $vienphi = (((intval($songaynhapvien) + 1) * 30000) * 20) / 100;
+        } else {
+            $madonthuoc = $queryGetDonThuoc['madonthuoc'];
+            $queryGetDataThuoc = mysqli_fetch_assoc($this->ls->getDataThuocByMaThuoc($madonthuoc));
+            $vienphi = (((intval($songaynhapvien) + 1) * 30000 + intval($queryGetDataThuoc['soluong']) * intval($queryGetDataThuoc['gia'])) * 20) / 100;
+        }
         $resultVienPhi = $this->ls->listvienphi_ins($mavienphi, $mabenhnhannoitru, $madonthuoc, $vienphi, $idbaohiem);
 
         if ($resultVienPhi) {
@@ -71,9 +73,7 @@ class DanhSachVienPhi extends controller
     {
         $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        // Parse the query string
         $query = parse_url($actual_link, PHP_URL_QUERY);
-
 
         if ($query) {
             parse_str($query, $params);
@@ -95,14 +95,8 @@ class DanhSachVienPhi extends controller
 
         $query = parse_url($actual_link, PHP_URL_QUERY);
 
-
         if ($query) {
             parse_str($query, $params);
-            $resultGetPatient =  $this->ls->getHopitalFee($params['id']);
-
-            print_r($resultGetPatient);
-
-
             $this->view('MasterLayout', [
                 'page' => 'thanhtoan/editvienphi_v',
                 'hopitalFee' => $this->ls->getHopitalFee($params['id']),
