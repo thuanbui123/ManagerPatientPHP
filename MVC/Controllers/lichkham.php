@@ -50,7 +50,7 @@
                 if($checkIdHSKB->num_rows > 0) {
                     echo "<script>alert('Mã hồ sơ khám bệnh đã tồn tại')</script>";
                 } else {
-                    $inshskb = $this->ls->insertHSKB ($mhsbn, $tbn, $nk, $gc, $tbs);
+                    $inshskb = $this->ls->insertHSKB ($mhskb, $tbn, $nk, $gc, $tbs);
                     if($inshskb) {
                         $kq = $this->ls->updLH ($tbn, $tbs, $icd, $mhskb, $gc, $mlh);
                         if($kq) {
