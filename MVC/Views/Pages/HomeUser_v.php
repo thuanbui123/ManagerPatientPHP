@@ -307,20 +307,6 @@
     </div>
 
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-=======
-    <div class="main">
-        <header class="header">
-            <div class="page">
-                <h1 class="name__page">Trang chủ</h1>
-                <h3 class="desc __page">Thông tin mới</h3>
-            </div>
-        </header>
-
-        
-
-    </div>
->>>>>>> b7675c2aea9c1be4cc36790ec6c2a96adb866a10
-
 </body>
 
 </html>
