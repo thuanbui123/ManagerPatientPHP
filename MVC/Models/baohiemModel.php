@@ -6,5 +6,4 @@
             return mysqli_query($this->con, $sql);
         }
     }
-
 ?>
