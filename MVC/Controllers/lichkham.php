@@ -27,7 +27,7 @@
         function sua ($mlh) {
             $this->view('MasterLayout', [
                 'page'=> 'lichkhamsua',
-                'data'=> $this->ls->find($mlh),
+                'data'=> $this->ls->findOne($mlh),
                 'name'=> $this->ls->tenBacSi(),
                 'chuandoan' => $this->ls->chuandoan()
             ]);
@@ -35,10 +35,13 @@
 
         function suadl () {
             if (isset($_POST['btnSave'])) {
+                $date = date("H:s:i");
+                $currentDateTime = new DateTime($date);
+                $seconds = $currentDateTime->getTimestamp();
+                $mhskb = "MHSKB" . $seconds;
                 $mlh = $_POST['txtMaLichHen'];
                 $tbn = $_POST['txtName'];
                 $tbs =  $_POST['namebacsi'];
-                $mhskb = $_POST['txtMaHoSoBenhNhan'];
                 $nk = $_POST['txtNgayKham'];
                 $icd = $_POST['namechuandoan'];
                 $dc = $_POST['txtdieutri'];
@@ -47,7 +50,7 @@
                 if($checkIdHSKB->num_rows > 0) {
                     echo "<script>alert('Mã hồ sơ khám bệnh đã tồn tại')</script>";
                 } else {
-                    $inshskb = $this->ls->insertHSKB ($mhskb, $tbn, $nk, $icd, $dc, $gc, $tbs);
+                    $inshskb = $this->ls->insertHSKB ($mhsbn, $tbn, $nk, $gc, $tbs);
                     if($inshskb) {
                         $kq = $this->ls->updLH ($tbn, $tbs, $icd, $mhskb, $gc, $mlh);
                         if($kq) {
