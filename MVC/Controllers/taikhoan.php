@@ -57,6 +57,7 @@ class taikhoan extends controller
                     }
                     echo "<script> alert('Đăng nhập thành công') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                      
                     $this->view(
                         'MasterLayout',
                         [
