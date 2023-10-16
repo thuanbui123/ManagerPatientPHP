@@ -41,10 +41,10 @@
             return $mbs;
         }
 
-        function insertHSKB ($mhsbn, $tbn, $nk, $icd, $dc, $gc, $tbs) {
+        function insertHSKB ($mhsbn, $tbn, $nk, $gc, $tbs) {
             $mbn = $this->maBN($tbn);
             $mbs = $this->maBS($tbs);
-            $sql = "INSERT INTO `hosokhambenh` VALUES ('$mhsbn','$mbn','$nk','$icd','$dc','$gc','$mbs')";
+            $sql = "INSERT INTO `hosokhambenh` VALUES ('$mhsbn','$mbn','$nk', '$gc','$mbs', null, null, null)";
             return mysqli_query($this->con, $sql);
         }
 

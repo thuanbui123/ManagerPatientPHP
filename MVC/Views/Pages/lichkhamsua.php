@@ -34,7 +34,8 @@
                         <input type="text" name="txtName" value="<?php echo $row['name'] ?>" required id="txtNameBenhNhan" readonly>
                     </div>
                 </div>
-                
+            </div>
+            <div class="row__2">
                 <div class="dosage__forms">
                     <div class="dosage__forms__label">
                         <p>Tên bác sĩ</p>
@@ -55,24 +56,13 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="row__2">
-                <div class="drug__content">
-                    <div class="drug__content__label">
-                        <p>Mã hồ sơ bệnh nhân</p>
-                        <span class="require">*</span>
-                    </div>
-                    <div class="drug__content__input">
-                        <input type="text" placeholder="kb0018" name="txtMaHoSoBenhNhan" id="txtDrugContent"/>
-                    </div>
-                </div>
                 <div class="drug__content">
                     <div class="drug__content__label">
                         <p>Ngày khám</p>
                         <span class="require">*</span>
                     </div>
                     <div class="drug__content__input">
-                        <input type="date" name="txtNgayKham" id="txtDrugContent"/>
+                        <input type="date" name="txtNgayKham" value = "<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" id="txtDrugContent"/>
                     </div>
                 </div>
             </div>
