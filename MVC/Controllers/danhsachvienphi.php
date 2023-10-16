@@ -109,8 +109,10 @@ class DanhSachVienPhi extends controller
     function xacnhansuavienphi()
     {
         $mavienphi = $_POST['mavienphi'];
-        $mabenhnhannoitru = $_POST['mabenhnhannoitru'];
         $madonthuoc = $_POST['thuoc'];
+        $mabenhnhannoitru = $_POST['benhnhan'];
+
+        $queryGetDonThuoc = mysqli_fetch_assoc($this->ls->getDonThuocById($mabenhnhannoitru));
 
         $ngaynhapvien = mysqli_fetch_assoc($this->ls->getDateHopitalizeFromDoc($mabenhnhannoitru));
         $ngaynhapvien_date = new DateTime($ngaynhapvien['ngaynhapvien']);
@@ -121,10 +123,14 @@ class DanhSachVienPhi extends controller
         $songaynhapvien_date = $ngaynhapvien_date->diff($ngayxuatvien_date);
         $songaynhapvien = $songaynhapvien_date->days;
 
-        $soluongthuocAssoc =  mysqli_fetch_assoc($this->ls->getAcountFromPrescription($madonthuoc));
-        $soluongthuoc = $soluongthuocAssoc['soluong'];
-
-        $vienphi = ((intval($songaynhapvien) * 30000 + intval($soluongthuoc) * 3000) * 100) / 80;
+        if ($queryGetDonThuoc == null) {
+            $madonthuoc = 0;
+            $vienphi = 200000 + (((intval($songaynhapvien) + 1) * 30000) * 20) / 100;
+        } else {
+            $madonthuoc = $queryGetDonThuoc['madonthuoc'];
+            $queryGetDataThuoc = mysqli_fetch_assoc($this->ls->getDataThuocByMaThuoc($madonthuoc));
+            $vienphi = 200000 + (((intval($songaynhapvien) + 1) * 30000 + intval($queryGetDataThuoc['soluong']) * intval($queryGetDataThuoc['gia'])) * 20) / 100;
+        }
 
         $result = $this->ls->listvienphi_edit($mavienphi, $madonthuoc, $vienphi);
 

@@ -24,12 +24,10 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
 
-                        <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Viện phí</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <!-- Modal body -->
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="date" class="form-label">Mã bệnh nhân nội trú</label>
