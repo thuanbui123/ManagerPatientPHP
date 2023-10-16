@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <title>Document</title>
-
-
     <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/homeUser.css">
     <script>
     var add;
@@ -30,6 +28,9 @@
         console.log(add);
     }
     </script>
+
+    <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/editdoctor.css">
+
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -43,7 +44,6 @@
 </script>
 
 <body>
-
     <div class="container info">
         <!-- User -->
         <div class="user__info">
@@ -298,11 +298,145 @@
                     }
                     ?>
 
+            </div>
+
+
+            <!-- Bottom info -->
+            <div class="info__bottom">
+                <p class="desc">Thông tin</p>
+                <div class="info__id">
+                    <lord-icon src="https://cdn.lordicon.com/wluyqhxh.json" trigger="hover" colors="primary:#121331">
+                    </lord-icon>
+                    <?php
+                        if (isset($data["dataId"]) && $data["dataId"] != null) {
+                        while ($row = mysqli_fetch_array($data["dataId"])) {
+                    ?>
+                    <p class="desc"><?php echo $row['mabenhnhan'] ?></p>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="info__address">
+                    <lord-icon class="icon__address" src="https://cdn.lordicon.com/osuxyevn.json" trigger="hover"
+                        colors="primary:#121331">
+                    </lord-icon>
+                    <?php
+                        if (isset($data["dataAddress"]) && $data["dataAddress"] != null) {
+                        while ($row = mysqli_fetch_array($data["dataAddress"])) {
+                    ?>
+                    <p class="desc"><?php echo $row['quequan'] ?></p>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="info__birth">
+                    <lord-icon src="https://cdn.lordicon.com/pmegrqxm.json" trigger="hover" colors="primary:#121331">
+                    </lord-icon>
+                    <?php
+                        if (isset($data["dataBirth"]) && $data["dataBirth"] != null) {
+                        while ($row = mysqli_fetch_array($data["dataBirth"])) {
+                    ?>
+                    <p class="desc"><?php echo $row['ngaysinh'] ?></p>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="info__phone">
+                    <lord-icon src="https://cdn.lordicon.com/ssvybplt.json" trigger="hover" colors="primary:#121331">
+                    </lord-icon>
+                    <?php
+                        if (isset($data["dataPhone"]) && $data["dataPhone"] != null) {
+                        while ($row = mysqli_fetch_array($data["dataPhone"])) {
+                    ?>
+                    <p class="desc"><?php echo $row['sodienthoai'] ?></p>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patient -->
+        <div class="patient__info">
+
+            <?php
+                if (isset($data["dataName1"]) && $data["dataName1"] != null) {
+                while ($row = mysqli_fetch_array($data["dataName1"])) {
+                ?>
+            <h1 class="patient__name">Bệnh án - Bệnh nhân: <br><?php echo $row['name'] ?>
+            </h1>
+            <?php 
+                        }
+                    }
+                    ?>
+
+            <div class="patient__content">
+                <table class="drug--info table table-striped table-hover">
+                    <tr>
+                        <th style="text-align: left; padding-left: 20px;" class="col-2">STT</th>
+                        <th style="text-align: center" class="col-4">Tên bệnh</th>
+                        <th style="text-align: center" class="col-4">Ghi chú</th>
+                    </tr>
+
+                    <?php
+                    // B3: Xử lý kết quả
+                    if (isset($data["data"]) && $data["data"] != null) {
+                        $i=0;
+                        while ($row = mysqli_fetch_array($data["data"])) {
+                    ?>
+
+                    <tr>
+                        <td style="text-align: left; padding-left: 20px;" class="col-2"><?php echo ++$i?></td>
+                        <td style="text-align: center" class="col-4"><?php echo $row['tenbenh'] ?></td>
+                        <td style="text-align: center" class="col-4"><?php echo $row['ghichu'] ?></td>
+                    </tr>
+
+                    <?php
+                        }
+                    }
+                    ?>
+                </table>
+            </div>
+        </div>
+
+        <!-- Judge -->
+        <div class="judge">
+            <p class="desc">BÁC SĨ HỘI CHUẨN</p>
+            <div class="doctor">
+                <?php
+                        if (isset($data["dataNameDoctor"]) && $data["dataNameDoctor"] != null) {
+                        while ($row = mysqli_fetch_array($data["dataNameDoctor"])) {
+                    ?>
+                <div class="doctor__inline">
+                    <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json" trigger="hover"
+                        colors="primary:#121331,secondary:#08a88a">
+                    </lord-icon>
+                    <p class="desc" style="display: block;"><?php echo $row['hoten'] ?></p>
+                </div>
+                <?php
+                        }
+                    }
+                    ?>
+            </div>
+            <p class="desc">KẾT QUẢ</p>
+            <?php
+                        if (isset($data["dataKQ"]) && $data["dataKQ"] != null) {
+                        while ($row = mysqli_fetch_array($data["dataKQ"])) {
+                    ?>
+            <textarea name="" id="" cols="30" rows="4"><?php echo $row['chuandoan'] ?></textarea>
+            <?php
+                        }
+                    }
+                    ?>
+
         </div>
     </div>
 
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-
 </body>
 
 </html>

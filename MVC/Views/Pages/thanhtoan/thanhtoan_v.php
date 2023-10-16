@@ -7,22 +7,24 @@
   <title>Document</title>
   <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/medicalBox.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <style>
+    input {
+      border: none;
+      outline: none;
+    }
+  </style>
 </head>
 
 <body>
   <div class="card">
     <form action="http://localhost/ManagerPatientPHP/thanhtoan/xacnhanthanhtoan" method="POST" class="card-body">
       <div class="container mb-5 mt-3">
-        <div class="row d-flex align-items-baseline">
+        <!-- <div class="row d-flex align-items-baseline">
           <div class="col-xl-9">
-            <!-- <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #123-123</strong></p> -->
-          </div>
-          <div class="col-xl-3 float-end">
-            <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i class="fas fa-print text-primary"></i> Print</a>
-            <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i class="far fa-file-pdf text-danger"></i> Export</a>
-          </div>
+          </div>      
           <hr>
-        </div>
+        </div> -->
         <div class="container">
           <div class="col-md-12">
             <div class="text-center">
@@ -32,93 +34,114 @@
           </div>
           <div class="row">
             <?php
-            // B3: Xử lý kết quả
             $i = 1;
             $chiphithuoc = 0;
             if (isset($data["patient"]) && $data["patient"] != null) {
               $row = $data["patient"];
               $Ngaythanhtoan = date("d-m-Y");
-              $chiphithuoc = $row['thanhtien1'];
-              $ngaynhapvien1 = $row['ngaynhapvien'];
-              $vienphi = $row['vienphi'];
-              $mathanhtoan = $row['mathanhtoan'];
-              $ngayxuatvien = $row['ngayxuatvien'];
-              $ngaynhapvien1_date = DateTime::createFromFormat('d-m-Y', $ngaynhapvien1);
-              $ngayxuatvien_date = DateTime::createFromFormat('d-m-Y', $ngayxuatvien);
-              $so_ngay = $ngaynhapvien1_date->diff($ngayxuatvien_date)->days;
-              $tongVp = $vienphi * $so_ngay;
-              $Tongchiphi = $tongVp + $chiphithuoc;
-              $tongVp = number_format($tongVp, 0, ',', '.');
-              $chiphithuoc = number_format($chiphithuoc, 0, ',', '.');
-              $Tongchiphi = number_format($Tongchiphi, 0, ',', '.');
-              $vienphi = number_format($vienphi, 0, ',', '.');
+
             ?>
               <div class="col-xl-8">
                 <ul class="list-unstyled">
-                  <li class="text-muted">Mã thanh toán:&nbsp;&nbsp;&nbsp;<span><?php echo $row['mathanhtoan'] ?></span></li>
+                  <li class="text-muted">Mã thanh toán:&nbsp;&nbsp;&nbsp;<input name="mathanhtoan" type="text" value="<?php echo $row['mathanhtoan'] ?>"></li>
                   <li class="text-muted">Họ tên:&nbsp;&nbsp;&nbsp;<?php echo $row['name'] ?></li>
                   <li class="text-muted">Giới tính:&nbsp;&nbsp;&nbsp;<?php echo $row['gioitinh'] ?></li>
                 </ul>
               </div>
               <div class="col-xl-4">
                 <ul class="list-unstyled">
-                  <li class="text-muted"> <span class="fw-bold">Ngày thanh toán:&nbsp;&nbsp;&nbsp;</span><?php echo               $Ngaythanhtoan ?></li>
-                  <li class="text-muted"><span class="fw-bold">Phương thức thanh toán:&nbsp;&nbsp;&nbsp;</span><?php echo $row['phuongthucthanhtoan'] ?></li>
+                  <li class="text-muted"> <span class="">Ngày thanh toán:&nbsp;&nbsp;&nbsp;</span><?php echo               $Ngaythanhtoan ?></li>
+                  <li class="text-muted"><span class="">Phương thức thanh toán:&nbsp;&nbsp;&nbsp;</span><?php if ($row['phuongthucthanhtoan'] == 1) {
+                                                                                                          echo "Tiền mặt";
+                                                                                                        } else echo "Chuyển khoản"; ?></li>
+                  <li class="text-muted"><span class="fw-bold">Mã bảo hiểm:&nbsp;&nbsp;&nbsp;</span><?php echo $row['mabaohiemyte'] ?></li>
                 </ul>
               </div>
-              <div class="row my-2 mx-1 justify-content-center">
-                <table class="table table-striped table-borderless">
+            <?php
+
+            }
+            ?>
+            <div class="row my-2 mx-1 justify-content-center">
+              <table class="table table-striped table-borderless">
+                <?php
+                $i = 1;
+                $chiphithuoc = 0;
+
+                if (isset($data["donthuoc1"]) && $data["donthuoc1"] != null) {
+                  $row = $data["donthuoc1"];
+                  $chiphithuoc = $row['thanhtien1'];
+                ?>
                   <thead style="" class="text-white">
                     <th scope="col" colspan="5" style="text-align: center;">ĐƠN THUỐC </th>
                     <tr>
                       <th scope="col">STT </th>
-                      <th scope="col">NỘI DUNG </th>
-                      <th scope="col">SỐ LƯỢNG</th>
-                      <th scope="col">ĐƠN GIÁ </th>
-                      <th scope="col">THÀNH TIỀN </th>
+                      <th scope="col">Nội dung </th>
+                      <th scope="col">Số lượng</th>
+                      <th scope="col">Đơn giá </th>
+                      <th scope="col">Thành tiền </th>
                     </tr>
                   </thead>
                   <tr>
                     <td style="text-align: left" class="col-1"><?php echo $i++ ?></td>
                     <td style="text-align: left" class="col-2"><?php echo $row['tenthuoc'] ?></td>
                     <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
-                    <td style="text-align: left" class="col-1"><?php echo $row['gia'] ?></td>
-                    <td style="text-align: left" class="col-1"><?php echo $row['thanhtien1'] ?></td>
+                    <td style="text-align: left" class="col-1"><?php echo number_format(($row['gia']), 0, '.', ',') . ' VND'  ?></td>
+                    <td style="text-align: left" class="col-1"><?php echo number_format(($row['thanhtien1']), 0, '.', ',') . ' VND' ?></td>
                   </tr>
-                </table>
-                <table class="table table-striped table-borderless">
+                <?php
+
+                }
+                ?>
+              </table>
+              <table class="table table-striped table-borderless">
+                <?php
+                if (isset($data["vienphi"]) && $data["vienphi"] != null) {
+                  $row = $data["vienphi"];
+                  $vienphi = 0;
+                  $ngaynhapvien = $row['ngaynhapvien'];
+                  $ngayxuatvien = $row['ngayxuatvien'];
+                  $ngaynhapvien_date = new DateTime($row['ngaynhapvien']);
+                  $ngayxuatvien_date = new DateTime($row['ngayxuatvien']);
+                  $songaynhapvien_date = $ngaynhapvien_date->diff($ngayxuatvien_date);
+                  $songaynhapvien = $songaynhapvien_date->days;
+                  $vienphi = ((intval($songaynhapvien) + 1) * 30000);
+                  $tongchiphi = $vienphi + $chiphithuoc;
+                ?>
                   <thead style="" class="text-white">
-                    <th scope="col" colspan="4" style="text-align: center;">CHI PHÍ NẰM VIỆN</th>
+                    <th scope="col" colspan="5" style="text-align: center;">CHI PHÍ NẰM VIỆN</th>
                     <tr>
+                      <th scope="col"> </th>
                       <th scope="col">Ngày nhập viện </th>
                       <th scope="col">Ngày xuất viện</th>
-                      <th scope="col">Viện phí/ngày</th>
-                      <th scope="col">tHÀNH TIỀN </th>
+                      <th scope="col">Thành tiền </th>
                     </tr>
                   </thead>
                   <tr>
-                    <td style="text-align: left" class="col-2"><?php echo $row['ngaynhapvien'] ?></td>
-                    <td style="text-align: left" class="col-1"><?php echo $row['ngayxuatvien'] ?></td>
-                    <td style="text-align: left" class="col-1"><?php echo "$vienphi VND" ?></td>
-                    <td style="text-align: left" class="col-1"><?php echo $row['thanhtien1'] ?></td>
-                  </tr>
-                </table>
-              </div>
-            <?php
+                    <td style="text-align: left" class="col-1"></td>
 
-            }
-            ?>
+                    <td style="text-align: left" class="col-1"><?php echo $row['ngaynhapvien'] ?></td>
+                    <td style="text-align: left" class="col-1"><?php echo $row['ngayxuatvien'] ?></td>
+                    <td style="text-align: left" class="col-1"><?php echo   number_format(($vienphi), 0, '.', ',') . ' VND'  ?></td>
+                  </tr>
+                <?php
+
+                }
+                ?>
+              </table>
+            </div>
+
           </div>
           <div class="row">
             <div class="col-xl-8">
-              <p class="ms-3">Chi phí cần thanh toán</p>
+              <p class="ms-3 fw-bold">Chi phí cần thanh toán</p>
             </div>
             <div class="col-xl-3" style="width:auto">
               <ul class="list-unstyled">
-                <li class="text-muted ms-3"><span class="text-black me-4">Chi phí nằm viện</span><?php echo  "$chiphithuoc VND" ?></li>
-                <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Chi phí thuốc</span><?php echo " $tongVp VND"   ?></li>
+                <li class="text-muted ms-3"><span class="text-black me-4">Chi phí nằm viện</span><?php echo number_format(($vienphi), 0, '.', ',') . ' VND'  ?></li>
+                <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Chi phí thuốc</span><?php echo number_format(($chiphithuoc), 0, '.', ',') . ' VND'   ?></li>
               </ul>
-              <p class="text-black float-start"><span class="text-black me-3"> Thành tiền</span><span style="font-size: 25px;"><?php echo " $Tongchiphi VND" ?></span></p>
+              <p class="text-black float-start"><span class="text-black me-3"> Thành tiền</span><span style="font-size: 25px;"><?php $tongvienphi = number_format((($vienphi  + $chiphithuoc)), 0, '.', ',') . ' VND';
+                                                                                                                                echo $tongvienphi;   ?></span></p>
             </div>
           </div>
           <hr>

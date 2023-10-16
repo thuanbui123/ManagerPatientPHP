@@ -1,5 +1,5 @@
 <?php
-ob_start(); //<--- Dòng code yêu cầu Output Buffering
+ob_start();
 
 $patient = array();
 
@@ -34,7 +34,7 @@ if (isset($_POST['excel'])) {
     }
     $writer = new Xlsx($spreadsheet);
     $writer->save('exKhamBenh.xlsx');
-    ob_end_flush(); //<--- Dòng code yêu cầu in ra tất cả và trả về reponse cho người dùng (Client) 
+    ob_end_flush();
 }
 ?>
 
@@ -244,10 +244,7 @@ if (isset($_POST['excel'])) {
         })
 
         document.getElementById('patient-selected').addEventListener('change', function() {
-            // Lấy giá trị đã chọn từ trường select
             var selectedValue = this.value;
-
-            // Lấy giá trị trường "name" từ tùy chọn đã chọn
             var selectedOption = this.options[this.selectedIndex];
             var nameValue = selectedOption.getAttribute('data-pres');
 
@@ -257,7 +254,6 @@ if (isset($_POST['excel'])) {
             } else {
                 document.getElementById('input-pres').value = "No";
             }
-            // Đặt giá trị trường "name" vào trường input
         });
     </script>
 </body>
