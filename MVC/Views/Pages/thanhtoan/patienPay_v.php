@@ -1,6 +1,3 @@
-<?php 
-print_r($data['listPatient']);
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +20,7 @@ print_r($data['listPatient']);
                 Thêm bệnh thanh toán
             </span>
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachthanhtoan/themthanhtoan" class="modal needs-validation" id="addNewDoctor">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
@@ -35,18 +32,22 @@ print_r($data['listPatient']);
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="account" class="form-label">Mã bệnh nhân</label>
-                                <select required name="mabenhnhan" class="form-select" aria-label="Default select example">
+                                <select id="select-name" required name="mabenhnhan" class="form-select" aria-label="Default select example">
                                     <option selected>Chọn mã bệnh nhân</option>
                                     <?php
                                     if (mysqli_num_rows($data['listBenhnhan']) > 0) {
                                         while ($row = mysqli_fetch_array($data['listBenhnhan'])) {
                                     ?>
-                                            <option value="<?php echo $row['mabenhnhan'] ?>"><?php echo $row['mabenhnhan'] ?></option>
+                                            <option data-name="<?php echo $row['name'] ?>" value="<?php echo $row['mabenhnhan'] ?>"><?php echo $row['mabenhnhan'] ?></option>
                                     <?php
                                         }
                                     }
                                     ?>
                                 </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Họ và tên</label>
+                                <input placeholder="Họ và tên" required name="hovaten" type="text" class="form-control" id="name">
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">Ngày thanh toán</label>
@@ -56,35 +57,11 @@ print_r($data['listPatient']);
                             <div class="mb-3">
                                 <label for="sex" class="form-label">Phương thức thanh toán</label>
                                 <select required name="phuongthucthanhtoan" class="form-select">
-                                    <option selected>Chọn phương thức</option>
                                     <option value="Tiền Mặt">Tiền mặt</option>
                                     <option value="Chuyển Khoản">Chuyển khoản</option>
                                 </select>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="account" class="form-label">Mã viện phí </label>
-                                <select required name="mavienphi" class="form-select" aria-label="Default select example">
-                                    <option selected>Chọn mã viện phí</option>
-                                    <?php
-                                    if (mysqli_num_rows($data['listVienphi']) > 0) {
-                                        while ($row = mysqli_fetch_array($data['listVienphi'])) {
-                                    ?>
-                                            <option value="<?php echo $row['mavienphi'] ?>"><?php echo $row['mavienphi'] ?></option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="sex" class="form-label">Tình trạng</label>
-                                <select required name="tinhtrang" class="form-select">
-                                    <option selected>Chọn trạng thái</option>
-                                    <option value=1>Đã thanh toán</option>
-                                    <option value=0>Chưa thanh toán</option>
-                                </select>
-                            </div>
                         </div>
 
                         <!-- Modal footer -->
@@ -109,7 +86,7 @@ print_r($data['listPatient']);
                 </form>
                 <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachthanhtoan/timkiem" class="search">
                     <label for="" class="search__label">Tìm kiếm</label>
-                    <input placeholder="Tìm kiếm" type="text" name="keyword" id="txtSearch" class="search__input"/>
+                    <input placeholder="Tìm kiếm" type="text" name="keyword" id="txtSearch" class="search__input" />
                 </form>
             </div>
 
@@ -121,6 +98,7 @@ print_r($data['listPatient']);
                         <th style="text-align: left" class="col-1">Ngày thanh toán</th>
                         <th style="text-align: left" class="col-1">Phương thức tt</th>
                         <th style="text-align: left" class="col-1">Mã viện phí</th>
+                        <th style="text-align: left" class="col-1">Mã bảo hiểm</th>
                         <th style="text-align: left" class="col-2">Tình trạng</th>
                         <th class="col-1-4"></th>
                         <th class="col-1-4"></th>
@@ -134,9 +112,12 @@ print_r($data['listPatient']);
                                 <td style="text-align: left" class="col-1"><?php echo $row['mathanhtoan'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['mabenhnhan'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['ngaythanhtoan'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php if($row['phuongthucthanhtoan']=='0') echo "Chuyển khoản"; else echo "Tiền mặt" ?></td>
+                                <td style="text-align: left" class="col-1"><?php if ($row['phuongthucthanhtoan'] == '0') echo "Chuyển khoản";
+                                                                            else echo "Tiền mặt" ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['mavienphi'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php if($row['tinhtrang']=='0') echo "Chưa thanh toán"; else echo "Đã thanh toán" ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['mabaohiemyte'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php if ($row['tinhtrang'] == '0') echo "Chưa thanh toán";
+                                                                            else echo "Đã thanh toán" ?></td>
 
                                 <td style="text-align: left" class="col-1-4">
                                     <a href="http://localhost/ManagerPatientPHP/danhsachthanhtoan/suathanhtoan/?id=<?php echo $row['mathanhtoan']; ?>" class="btn--edit">
@@ -176,6 +157,23 @@ print_r($data['listPatient']);
                 </table>
             </div>
         </div>
+
+        <script>
+            document.getElementById('select-name').addEventListener('change', function() {
+                var selectedValue = this.value;
+
+                // Lấy giá trị trường "name" từ tùy chọn đã chọn
+                var selectedOption = this.options[this.selectedIndex];
+                var nameValue = selectedOption.getAttribute('data-name');
+
+                console.log(nameValue);
+                if (nameValue) {
+                    document.getElementById('name').value = nameValue;
+                } else {
+                    document.getElementById('name').value = "";
+                }
+            })
+        </script>
 </body>
 
 </html>

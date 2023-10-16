@@ -48,26 +48,22 @@ class taikhoan extends controller
                     $thang = $ngayHienTai["mon"];
                     $nam = $ngayHienTai["year"];
                     $row = mysqli_fetch_array($this->ls->ngayhen($email));
-                    if(isset($row)) {
+                    if (isset($row)) {
                         $ngayhen = $row['ngayhen'];
                         $arr = explode('/', $ngayhen);
-                        if($arr[0] == $ngay && $arr[1] == $thang && $arr[2] == $nam) {
-                        echo "<script> alert('Hôm nay bạn có lịch khám') </script>";
+                        if ($arr[0] == $ngay && $arr[1] == $thang && $arr[2] == $nam) {
+                            echo "<script> alert('Hôm nay bạn có lịch khám') </script>";
                         }
                     }
                     echo "<script> alert('Đăng nhập thành công') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
-                    $this->view(
-                        'MasterLayout',
-                        [
-                            'page' => 'HomeUser_v',
+                      
                     $this->view(
                         'MasterLayout',
                         [
                             'page' => 'HomeUser_V',
-                            'taikhoan' => $email,
                         ]
-                    );
+                        );
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan' </script>";
@@ -98,19 +94,38 @@ class taikhoan extends controller
         $name = $_POST['name'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
+
+        $ngaysinh = $_POST['date'];
+        $ngaysinh_date = new DateTime($ngaysinh);
+        $ngaysinh = $ngaysinh_date->format("d-m-Y");
+
+        $gioitinh = $_POST['gioitinh'];
+        $quequan = $_POST['quequan'];
+        $anh = "http://localhost/ManagerPatientPHP/Public/img/" . $_POST['anh'];
+        $mabaohiemyte = $_POST['baohiemyte'];
+
         $password = $_POST['password'];
         $repassword = $_POST['repassword'];
+
+        $noikhamdautien = "Bênh viện piincode";
+        $currentDate = date('d-m-Y');
+        $currentDateTime = new DateTime($currentDate);
+        $numberofYear = 5;
+        $ngayhethan = $currentDateTime->modify("+$numberofYear years");
+        $ngayhethan = $ngayhethan->format('d-m-Y');
 
         $checkIdentical = $this->ls->checkIdenticalAccout($email);
 
         if (mysqli_num_rows($checkIdentical) == 0) {
             if ($password == $repassword) {
-                $result = $this->ls->dangky($name, $email,  $password, $phone);
+                $result = $this->ls->dangky($name, $email,  $password, $phone, $ngaysinh, $gioitinh, $quequan, $anh, $mabaohiemyte);
                 if ($result) {
                     echo "<script> alert('Đăng ký thành công') </script>";
-                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/homeuser' </script>";
+                    $resultBaoHiem = $this->ls->baohiemyte_ins($email, $mabaohiemyte, $ngaysinh, $noikhamdautien, $ngayhethan);
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/' </script>";
                 } else {
                     echo "<script> alert('Đăng ký thất bại') </script>";
+                    echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan/dangky' </script>";
                 }
             } else {
                 echo "<script> alert('Mật khẩu nhập lại không chính xác') </script>";

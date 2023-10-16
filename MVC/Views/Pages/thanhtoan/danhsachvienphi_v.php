@@ -21,61 +21,35 @@
             </span>
 
             <form method="POST" action="http://localhost/ManagerPatientPHP/danhsachvienphi/themvienphi" class="modal needs-validation" id="addVienPhi">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
-                        <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Viện phí</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <!-- Modal body -->
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="date" class="form-label">Họ và tên</label>
-                                <select required name="benhnhan" class="select-prescription form-select" aria-label="Default select example" autocomplete="on">
-                                    <option selected>Chọn bệnh nhân</option>
+                                <label for="date" class="form-label">Mã bệnh nhân nội trú</label>
+                                <select id="select-name" required name="benhnhan" class="form-select" aria-label="Default select example" autocomplete="on">
+                                    <option selected>Chọn mã bệnh nhân nội trú</option>
                                     <?php
                                     if (mysqli_num_rows($data['listBenhNhanNoiTru']) > 0) {
                                         while ($row = mysqli_fetch_array($data['listBenhNhanNoiTru'])) {
                                     ?>
-                                            <option value="<?php echo $row['mabenhnhannoitru']?>"><?php echo $row['name'] ?></option>
+                                            <option data-name="<?php echo $row['name'] ?>" value="<?php echo $row['mabenhnhannoitru'] ?>"><?php echo $row['mabenhnhannoitru'] ?></option>
                                     <?php
                                         }
                                     }
                                     ?>
                                 </select>
                             </div>
+
                             <div class="mb-3">
-                                <label for="date" class="form-label">Đơn thuốc</label>
-                                <select required name="thuoc" class="select-prescription form-select" aria-label="Default select example" autocomplete="on">
-                                    <option selected>Chọn đơn thuốc</option>
-                                    <?php
-                                    if (mysqli_num_rows($data['listDonThuoc']) > 0) {
-                                        while ($row = mysqli_fetch_array($data['listDonThuoc'])) {
-                                    ?>
-                                            <option value="<?php echo $row['madonthuoc'] ?>"><?php echo $row['madonthuoc'] ?></option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </select>
+                                <label for="name" class="form-label">Họ và tên</label>
+                                <input value="" placeholder="Họ và tên" required name="hoten" type="text" class="form-control" id="name">
                             </div>
-                            <div class="mb-3">
-                                <label for="note" class="form-label">Mã bảo hiểm</label>
-                                <select required name="baohiem" class="select-prescription form-select" aria-label="Default select example" autocomplete="on">
-                                    <option selected>Chọn bảo hiểm</option>
-                                    <?php
-                                    if (mysqli_num_rows($data['listBaoHiem']) > 0) {
-                                        while ($row = mysqli_fetch_array($data['listBaoHiem'])) {
-                                    ?>
-                                            <option value="<?php echo $row['idbaohiem'] ?>"><?php echo $row['mabaohiem'] ?></option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+
                         </div>
 
                         <!-- Modal footer -->
@@ -86,7 +60,6 @@
                     </div>
                 </div>
             </form>
-
         </header>
         <div class="container">
             <div class="container__header">
@@ -120,13 +93,13 @@
                     ?>
                             <tr>
                                 <td style="text-align: left" class="col-1"><?php echo $row['name'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['madonthuoc'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['madonthuoc'] == 0 ? "Không có" : $row['madonthuoc'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['tenthuoc'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['mabaohiem'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['noikhambenhbd'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['vienphi'] ?></td>
                                 <td style="text-align: left" class="col-1-4">
-                                    <a href="#" class="btn--edit">
+                                    <a href="http://localhost/ManagerPatientPHP/danhsachvienphi/suavienphi/?id=<?php echo $row['mavienphi']; ?>" class="btn--edit">
                                         <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover" colors="primary:#26577C,secondary:#cb5eee" style="width:30px;height:30px">
                                         </lord-icon>
                                     </a>
@@ -141,15 +114,15 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteLabel">Xóa bác sĩ</h5>
+                                                    <h5 class="modal-title" id="deleteLabel">Xóa viện phí</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h5>Bạn có chắc muốn xóa bênh nhân không</h5>
+                                                    <h5>Bạn có chắc muốn xóa viện phí không</h5>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                                    <a href="#"> <button style="width: 200px;" type="button" class="btn btn-danger">Xác nhận</button></a>
+                                                    <a href="http://localhost/ManagerPatientPHP/danhsachvienphi/xoavienphi/?id=<?php echo $row['mavienphi']; ?>"> <button style="width: 200px;" type="button" class="btn btn-danger">Xác nhận</button></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,6 +137,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('select-name').addEventListener('change', function() {
+            var selectedValue = this.value;
+
+            // Lấy giá trị trường "name" từ tùy chọn đã chọn
+            var selectedOption = this.options[this.selectedIndex];
+            var nameValue = selectedOption.getAttribute('data-name');
+
+            console.log(nameValue);
+            if (nameValue) {
+                document.getElementById('name').value = nameValue;
+            } else {
+                document.getElementById('name').value = "";
+            }
+        })
+    </script>
 </body>
 
 </html>

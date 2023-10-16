@@ -64,13 +64,10 @@ class DanhSachBenhNhan extends controller
 
     function thembenhnhan()
     {
-        $mabenhnhan = 'bn00' . ((mysqli_num_rows($this->ls->getDataPatients()) + 3) + 1);
-        $ngaysinh = $_POST['ngaysinh'];
-        $ngaysinh_date = new DateTime($ngaysinh);
-        $ngaysinh = $ngaysinh_date->format("d-m-Y");
-        $gioitinh = $_POST['gioitinh'];
-        $quequan = $_POST['quequan'];
-        $image = "http://localhost/ManagerPatientPHP/Public/img/" . $_POST['anh'];
+        $date = date("H:s:i");
+        $currentDateTime = new DateTime($date);
+        $seconds = $currentDateTime->getTimestamp();
+        $mabenhnhan = 'bn' . $seconds;
         $taikhoan = $_POST['taikhoan'];
         $nhapvien = 0;
 
@@ -78,7 +75,7 @@ class DanhSachBenhNhan extends controller
 
         if ($taikhoan != "Null") {
             if (mysqli_num_rows($checkIndentical) == 0) {
-                $resultAdd = $this->ls->listPatients_ins($mabenhnhan, $ngaysinh, $gioitinh, $quequan,  $image, $taikhoan, $nhapvien);
+                $resultAdd = $this->ls->listPatients_ins($mabenhnhan, $taikhoan, $nhapvien);
                 if ($resultAdd) {
                     echo "<script> alert('Thêm bênh nhân thành công') </script>";
                 } else {
@@ -145,9 +142,9 @@ class DanhSachBenhNhan extends controller
         $result = $this->ls->listPatients_update($mabenhnhan, $ngaysinh, $gioitinh, $quequan, $image);
 
         if ($result) {
-            echo "<script> alert('Sửa bác sĩ thành công') </script>";
+            echo "<script> alert('Sửa bệnh nhân thành công') </script>";
         } else {
-            echo "<script> alert('Sửa bác sĩ thất bại') </script>";
+            echo "<script> alert('Sửa bệnh nhân thất bại') </script>";
         }
         echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachbenhnhan' </script>";
     }
@@ -170,7 +167,10 @@ class DanhSachBenhNhan extends controller
 
     function nhapvien()
     {
-        $mahosobenhnhannhapvien = 'bnnt' . ((mysqli_num_rows($this->ls->getListsNhapVien()) + 1) + 1);
+        $date = date("H:s:i");
+        $currentDateTime = new DateTime($date);
+        $seconds = $currentDateTime->getTimestamp();
+        $mahosobenhnhannhapvien = 'bnnt' . $seconds;
         $mabenhnhan = $_POST['hoten'];
         $mabenh = $_POST['benh'];
         $ngaynhapvien = $_POST['ngaynhapvien'];

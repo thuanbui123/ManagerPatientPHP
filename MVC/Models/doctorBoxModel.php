@@ -3,7 +3,7 @@ class doctorBoxModel extends connectDB
 {
     function getDataDoctors()
     {
-        $query = "SELECT * FROM `bacsi`,`khoa` WHERE bacsi.makhoa = khoa.makhoa";
+        $query = "SELECT * FROM `bacsi`,`khoa` WHERE bacsi.makhoa = khoa.makhoa AND bacsi.mabacsi <> '0'";
         return mysqli_query($this->con, $query);
     }
 

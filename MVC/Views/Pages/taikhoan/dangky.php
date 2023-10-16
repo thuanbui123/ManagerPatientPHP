@@ -29,6 +29,31 @@
                         <input name="phone" required placeholder="Số điện thoại" type="number" class="form-control" id="phone">
                     </div>
                     <div class="mb-3">
+                        <label for="date" class="form-label">Ngày sinh</label>
+                        <input name="date" required placeholder="Ngày sinh" type="date" max="<?php echo date('Y-m-d') ?>" class="form-control" id="date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="gioitinh" class="form-label">Giới tính</label>
+                        <select required name="gioitinh" class="form-select" aria-label="Default select example">
+                            <option selected>Chọn giới tính</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quequan" class="form-label">Quê quán</label>
+                        <input name="quequan" required placeholder="Quê quán" type="text" class="form-control" id="quequan">
+                    </div>
+                    <div class="mb-3">
+                        <label for="anh" class="form-label">Ảnh</label>
+                        <input name="anh" required placeholder="Ảnh" type="file" class="form-control" id="anh">
+                    </div>
+                    <div class="mb-3">
+                        <label for="baohiemyte" class="form-label">Mã bảo hiểm y tế</label>
+                        <input name="baohiemyte" required placeholder="Mã bảo hiểm y tế" type="number" class="form-control" id="baohiemyte">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="pasword" class="form-label">Mật khẩu</label>
                         <input name="password" required placeholder="Mật khẩu" type="password" class="form-control" id="pasword">
                     </div>

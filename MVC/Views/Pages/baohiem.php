@@ -19,7 +19,7 @@
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/baohiem/timkiem" method="POST">
                         <label for="" class="search__label">Tìm kiếm</label>
-                        <input type="text" name="txtSearch" id="txtSearch" class="search__input" value="<?php if(isset($data['mbh'])) echo $data['mbh']?>">
+                        <input type="text" name="txtSearch" id="txtSearch" class="search__input" placeholder="Nhập mã bảo hiểm" value="<?php if(isset($data['mbh'])) echo $data['mbh']?>">
                         <input class="btnSearch" name="btnSearch" type="submit" value="Tìm kiếm">
                     </form>
                 </div>
@@ -40,7 +40,7 @@
                     ?>
                         <tr>
                             <td style="text-align: left" class="col-1"><?php echo $row['mabaohiem'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['hoten'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['name'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['ngaysinh'] ?></td>
                             <td style="text-align: left" class="col-2"><?php echo $row['noikhambenhbd'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['giatrisudung'] ?></td>

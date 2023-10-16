@@ -5,8 +5,8 @@
             return mysqli_query($this->con, $sql);
         }
 
-        function find ($mlh) {
-            $sql = "SELECT lichhen.malichhen, acount.name, bacsi.hoten, lichhen.ngayhen, lichhen.tinhtrang, lichhen.ghichu from lichhen, acount, benhnhan, bacsi where lichhen.mabenhnhan = benhnhan.mabenhnhan and benhnhan.idtaikhoan = acount.id and lichhen.mabacsi = bacsi.mabacsi and lichhen.tinhtrang = '0' and malichhen like '%$mlh%'";
+        function find ($tenbenhnhan) {
+            $sql = "SELECT lichhen.malichhen, acount.name, bacsi.hoten, lichhen.ngayhen, lichhen.tinhtrang, lichhen.ghichu from lichhen, acount, benhnhan, bacsi where lichhen.mabenhnhan = benhnhan.mabenhnhan and benhnhan.idtaikhoan = acount.id and lichhen.mabacsi = bacsi.mabacsi and lichhen.tinhtrang = '0' and name like '%$tenbenhnhan%'";
             return mysqli_query($this->con, $sql);
         }
 
@@ -41,10 +41,10 @@
             return $mbs;
         }
 
-        function insertHSKB ($mhsbn, $tbn, $nk, $icd, $dc, $gc, $tbs) {
+        function insertHSKB ($mhsbn, $tbn, $nk, $gc, $tbs) {
             $mbn = $this->maBN($tbn);
             $mbs = $this->maBS($tbs);
-            $sql = "INSERT INTO `hosokhambenh` VALUES ('$mhsbn','$mbn','$nk','$icd','$dc','$gc','$mbs')";
+            $sql = "INSERT INTO `hosokhambenh` VALUES ('$mhsbn','$mbn','$nk', '$gc','$mbs', null, null, null)";
             return mysqli_query($this->con, $sql);
         }
 

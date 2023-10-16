@@ -40,6 +40,8 @@
 .container-right {
     width: 50%;
     color: #000;
+    max-height: 750px;
+    overflow-y: scroll;
 }
 
 .container-right::-webkit-scrollbar {

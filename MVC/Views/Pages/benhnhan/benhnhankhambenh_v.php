@@ -1,5 +1,5 @@
 <?php
-ob_start(); //<--- Dòng code yêu cầu Output Buffering
+ob_start();
 
 $patient = array();
 
@@ -14,7 +14,7 @@ while ($row = mysqli_fetch_assoc($data['listExportExcelKhamBenh'])) {
 
 if (isset($_POST['excel'])) {
     // Header row
-    $headerRowData = ['Họ tên', 'Ngày khám', 'Bệnh chuẩn đoán', 'Điều trị', 'Tên bác sĩ'];
+    $headerRowData = ['Họ tên', 'Ngày khám', 'Bác sĩ', 'Mã đơn thuốc', 'Dịch vụ', 'Viện phí'];
     $columnIndex = 1;
     foreach ($headerRowData as $headerCell) {
         $cellCoordinate = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($columnIndex) . '1';
@@ -34,7 +34,7 @@ if (isset($_POST['excel'])) {
     }
     $writer = new Xlsx($spreadsheet);
     $writer->save('exKhamBenh.xlsx');
-    ob_end_flush(); //<--- Dòng code yêu cầu in ra tất cả và trả về reponse cho người dùng (Client) 
+    ob_end_flush();
 }
 ?>
 
@@ -60,12 +60,12 @@ if (isset($_POST['excel'])) {
                 Thêm lượt khám mới
             </span>
             <form method="POST" action="http://localhost/ManagerPatientPHP/thongkekhambenh/themluotkham" class="modal needs-validation" id="addNew">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Thêm mới bệnh nhân</h4>
+                            <h4 class="modal-title">Thêm mới lượt khám</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <!-- Modal body -->
@@ -73,13 +73,13 @@ if (isset($_POST['excel'])) {
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Họ và tên</label>
-                                <select required name="mabenhnhan" class="form-select" aria-label="Default select example">
+                                <select id="patient-selected" required name="mabenhnhan" class="form-select" aria-label="Default select example">
                                     <option selected>Chọn tên</option>
                                     <?php
                                     if (mysqli_num_rows($data['listBenhNhan']) > 0) {
                                         while ($row = mysqli_fetch_array($data['listBenhNhan'])) {
                                     ?>
-                                            <option value="<?php echo $row['mabenhnhan'] ?>"><?php echo $row['name'] ?></option>
+                                            <option data-pres="<?php echo $row['madonthuoc'] ?>" value="<?php echo $row['mabenhnhan'] ?>"><?php echo $row['name'] ?></option>
                                     <?php
                                         }
                                     }
@@ -89,41 +89,29 @@ if (isset($_POST['excel'])) {
 
                             <div class="mb-3">
                                 <label for="date" class="form-label">Ngày khám</label>
-                                <input required name="ngaykham" type="date" class="form-control" id="date">
+                                <input required name="ngaykham" type="date" min="<?php echo date('Y-m-d') ?>" max="<?php echo date('Y-m-d') ?>" class="form-control" id="date">
                             </div>
 
                             <div class="mb-3">
-                                <label for="ICD" class="form-label">ICD</label>
-                                <select id="ICD" required name="ICD" class="selectICD form-select" aria-label="Default select example" autocomplete="on">
-                                    <option selected>Chọn tên</option>
-                                    <?php
-                                    if (mysqli_num_rows($data['listChuanDoan']) > 0) {
-                                        while ($row = mysqli_fetch_array($data['listChuanDoan'])) {
-                                            print_r($row);
-                                    ?>
-                                            <option data-name="<?php echo $row['chuandoan'] ?>" value="<?php echo $row['ICD'] ?>"><?php echo $row['ICD'] ?></option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
+                                <label for="dichvu" class="form-label">Dịch vụ</label>
+                                <select id="dichvu" required name="dichvu" class="select-service form-select" aria-label="Default select example" autocomplete="on">
+                                    <option selected>Chọn dịch vụ</option>
+                                    <option>Khám mắt</option>
+                                    <option>Tai Mũi họng</option>
+                                    <option>Nội soi</option>
+                                    <option>Khác</option>
                                 </select>
                             </div>
 
                             <div class="mb-3">
-                                <label for="chuandoan" class="form-label">Chuẩn đoán</label>
-                                <input required placeholder="Chuẩn đoán" type="text" class="form-control" id="chuandoan">
+                                <label for="dichvu" class="form-label">Dịch vụ khác</label>
+                                <input disabled required placeholder="Dịch vụ" name="dichvu" type="text" class="service-others form-control" id="dichvu">
                             </div>
 
                             <div class="mb-3">
-                                <label for="dieutri" class="form-label">Điều trị</label>
-                                <input name="dieuchi" required placeholder="Điều trị" type="text" class="form-control" id="dieutri">
+                                <label for="input-pres" class="form-label">Đơn thuốc</label>
+                                <input name="donthuoc" required placeholder="Đơn thuốc" type="text" class=" form-control" id="input-pres">
                             </div>
-
-                            <div class="mb-3">
-                                <label for="ghichu" class="form-label">Ghi chú</label>
-                                <input name="ghichu" required placeholder="Ghi chú" type="text" class="form-control" id="ghichu">
-                            </div>
-
                             <div class="mb-3">
                                 <label for="file" class="form-label">Bác sĩ</label>
                                 <select required name='bacsi' class="form-select" aria-label="Default select example" autocomplete="on">
@@ -138,6 +126,11 @@ if (isset($_POST['excel'])) {
                                     }
                                     ?>
                                 </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="ghichu" class="form-label">Ghi chú</label>
+                                <input name="ghichu" required placeholder="Ghi chú" type="text" class=" form-control" id="ghichu">
                             </div>
                         </div>
 
@@ -172,9 +165,10 @@ if (isset($_POST['excel'])) {
                         <th style="text-align: left" class="col-1">Mã bệnh nhân</th>
                         <th style="text-align: left" class="col-1">Họ tên</th>
                         <th style="text-align: left" class="col-1">Ngày khám</th>
-                        <th style="text-align: left" class="col-1">Bệnh chuẩn đoán</th>
-                        <th style="text-align: left" class="col-1">Điều trị</th>
-                        <th style="text-align: left" class="col-1">Tên bác sĩ</th>
+                        <th style="text-align: left" class="col-1">Dịch vụ</th>
+                        <th style="text-align: left" class="col-1">Đơn thuốc</th>
+                        <th style="text-align: left" class="col-1">Bác sĩ</th>
+                        <th style="text-align: left" class="col-1">Viện phí</th>
                         <th class="col-1-4"></th>
                         <th class="col-1-4"></th>
                     </tr>
@@ -187,9 +181,10 @@ if (isset($_POST['excel'])) {
                                 <td style="text-align: left" class="col-1"><?php echo $row['mabenhnhan'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['name'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['ngaykham'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['chuandoan'] ?></td>
-                                <td style="text-align: left" class="col-1"><?php echo $row['dieuchi'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['dichvu'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['madonthuoc'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['hoten'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['vienphi'] ?></td>
                                 <td style="text-align: left" class="col-1-4">
                                     <a href="http://localhost/ManagerPatientPHP/thongkekhambenh/sualuotkham/?id=<?php echo $row['mahosokhambenh']; ?>" class="btn--edit">
                                         <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover" colors="primary:#26577C,secondary:#cb5eee" style="width:30px;height:30px">
@@ -231,17 +226,34 @@ if (isset($_POST['excel'])) {
     </div>
     <script>
         // Lắng nghe sự kiện thay đổi trong trường select
-        document.getElementById('ICD').addEventListener('change', function() {
-            // Lấy giá trị đã chọn từ trường select
+        const selectService = document.querySelector('.select-service');
+        const serviceOthers = document.querySelector('.service-others');
+        var isDisabled = true;
+
+        selectService.addEventListener('change', () => {
+            let value = selectService.value;
+
+            console.log(value);
+
+            if (value === 'Khác') {
+                isDisabled = false;
+            } else {
+                isDisabled = true;
+            }
+            serviceOthers.disabled = isDisabled;
+        })
+
+        document.getElementById('patient-selected').addEventListener('change', function() {
             var selectedValue = this.value;
-
-            // Lấy giá trị trường "name" từ tùy chọn đã chọn
             var selectedOption = this.options[this.selectedIndex];
-            var nameValue = selectedOption.getAttribute('data-name');
-            console.log(nameValue);
+            var nameValue = selectedOption.getAttribute('data-pres');
 
-            // Đặt giá trị trường "name" vào trường input
-            document.getElementById('chuandoan').value = nameValue;
+            console.log(nameValue);
+            if (nameValue) {
+                document.getElementById('input-pres').value = nameValue;
+            } else {
+                document.getElementById('input-pres').value = "No";
+            }
         });
     </script>
 </body>
