@@ -16,7 +16,7 @@ class DanhSachThanhToan extends controller
             'listPatient' => $this->getDataPatients(),
             'listBenhnhan' => $this->getDataBenhnhan(),
             'listVienphi' => $this->getDataVienphi(),
-            'listThanhtoan'=> $this->getDataPatient_TT()
+            'listThanhtoan' => $this->getDataPatient_TT()
         ]);
     }
 
@@ -43,7 +43,11 @@ class DanhSachThanhToan extends controller
     }
     function themthanhtoan()
     {
-        $mathanhtoan = 'tt00'. ((mysqli_num_rows($this->ls->getDataPatients()) + 1) + 1);
+        $date = date("H:s:i");
+        $currentDateTime = new DateTime($date);
+        $seconds = $currentDateTime->getTimestamp();
+
+        $mathanhtoan = 'tt' . $seconds;
         $mabenhnhan = $_POST['mabenhnhan'];
         $ngaythanhtoan = $_POST['ngaythanhtoan'];
         $ngaythanhtoan_data = new DateTime($ngaythanhtoan);
@@ -53,23 +57,23 @@ class DanhSachThanhToan extends controller
         $tinhtrang = 1;
         $checkIndentical = $this->ls->getDataPatientById($mathanhtoan);
         // if (mysqli_num_rows($checkIndentical) == 0) {
-            $resultAdd = $this->ls->listPatients_ins($mathanhtoan, $mabenhnhan, $ngaythanhtoan, $phuongthucthanhtoan,  $mavienphi, $tinhtrang);
-            if ($resultAdd) {
-                echo "<script> alert('Thêm thanh toán thành công') </script>";
-                $this->view('MasterLayout', [
-                    'page' => 'thanhtoan/patienPay_v',
-                    'listPatient' => $this->getDataPatients(),
-                    'listBenhnhan' => $this->getDataBenhnhan(),
-                    'listVienphi' => $this->getDataVienphi()
-                ]);
-                echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachthanhtoan' </script>";
-            } else {
-                echo "<script> alert('Thêm thanh toán thất bại') </script>";
-            }
+        $resultAdd = $this->ls->listPatients_ins($mathanhtoan, $mabenhnhan, $ngaythanhtoan, $phuongthucthanhtoan,  $mavienphi, $tinhtrang);
+        if ($resultAdd) {
+            echo "<script> alert('Thêm thanh toán thành công') </script>";
+            $this->view('MasterLayout', [
+                'page' => 'thanhtoan/patienPay_v',
+                'listPatient' => $this->getDataPatients(),
+                'listBenhnhan' => $this->getDataBenhnhan(),
+                'listVienphi' => $this->getDataVienphi()
+            ]);
+            echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachthanhtoan' </script>";
+        } else {
+            echo "<script> alert('Thêm thanh toán thất bại') </script>";
+        }
         // } else {
-            // echo  $mabenhnhan, $taikhoan;
-            // echo "<script> alert('Thanh toán đã được tạo') </script>";
-            // echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachthanhtoan' </script>";
+        // echo  $mabenhnhan, $taikhoan;
+        // echo "<script> alert('Thanh toán đã được tạo') </script>";
+        // echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/danhsachthanhtoan' </script>";
         // }
     }
 
@@ -109,21 +113,21 @@ class DanhSachThanhToan extends controller
         if ($query) {
             parse_str($query, $params);
             $result = mysqli_fetch_assoc($this->ls->getPatientByIf($params['id']));
-            
+
             $this->view('MasterLayout', [
                 'page' => 'thanhtoan/editpatient_v',
                 'listAccount' => $this->getDataBenhnhan(),
                 'patient' => $result,
-                'Mbs' =>$this->ls->getPatientByMabenhnhan(),
-                'Mvp' =>$this->ls->getPatienByVienPhi()
+                'Mbs' => $this->ls->getPatientByMabenhnhan(),
+                'Mvp' => $this->ls->getPatienByVienPhi()
             ]);
         }
     }
 
     function xacnhansuathanhtoan()
     {
-        $mavienphi=$_POST['mavienphi'];
-        $mathanhtoan= $_POST['mathanhtoan'];
+        $mavienphi = $_POST['mavienphi'];
+        $mathanhtoan = $_POST['mathanhtoan'];
         $mabenhnhan = $_POST['mabenhnhan'];
         $ngaythanhtoan = $_POST['ngaythanhtoan'];
         $ngaythanhtoan_date = new DateTime($ngaythanhtoan);
@@ -150,7 +154,7 @@ class DanhSachThanhToan extends controller
             'listPatient' =>  $this->ls->listPatients_timkiem($keyword),
             'listBenhnhan' => $this->getDataBenhnhan(),
             'listVienphi' => $this->getDataVienphi(),
-            'listThanhtoan'=> $this->getDataPatient_TT()
+            'listThanhtoan' => $this->getDataPatient_TT()
         ]);
     }
 }

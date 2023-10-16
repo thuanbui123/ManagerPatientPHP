@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/medicalBox.css">
     <title>Tủ thuốc</title>
+
+    <style>
+        input {
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +35,7 @@
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/medicalBox/timkiem" method="POST">
                         <label for="" class="search__label">Tìm kiếm</label>
-                        <input type="text" name="txtSearch" id="txtSearch" class="search__input">
+                        <input type="text" name="txtSearch" placeholder="Nhập tên thuốc" id="txtSearch" class="search__input" value="<?php if (isset($data["tt"])) echo $data["tt"] ?>" />
                         <input class="btnSearch" name="btnSearch" type="submit" value="Tìm kiếm">
                     </form>
                 </div>
@@ -40,48 +46,43 @@
                 <table class="drug--info">
                     <tr>
                         <th style="text-align: left" class="col-1">Mã thuốc</th>
-                        <th style="text-align: left" class="col-2">Tên thuốc</th>
-                        <th style="text-align: left" class="col-1">Hàm <br> lượng</th>
-                        <th style="text-align: left" class="col-1">Cách <br> dùng</th>
-                        <th style="text-align: left" class="col-1">Số <br> lượng</th>
+                        <th style="text-align: left" class="col-1">Tên thuốc</th>
+                        <th style="text-align: left" class="col-1">Hàm lượng</th>
+                        <th style="text-align: left" class="col-1">Nhà cung cấp</th>
+                        <th style="text-align: left" class="col-1">Ngày hết hạn</th>
+                        <th style="text-align: left" class="col-1">Số lượng</th>
                         <th style="text-align: left" class="col-1">Giá</th>
-                        <th style="text-align: left" class="col-2">Ghi chú</th>
                         <th class="col-1-4"></th>
                         <th class="col-1-4"></th>
                     </tr>
                     <?php
                     if (isset($data["data"]) && $data["data"] != null) {
                         while ($row = mysqli_fetch_array($data["data"])) {
+                            $ngayhethan = $row['ngayhethan'];
+                            $ngaysinh_date = new DateTime($ngayhethan);
+                            $ngayhethan = $ngaysinh_date->format("d-m-Y");
                     ?>
-                        <tr>
-                            <td style="text-align: left" class="col-1"><?php echo $row['mathuoc'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['tenthuoc'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['hamluong'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['duongdung'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['gia'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['ghichu'] ?></td>
-                            <td style="text-align: left" class="col-1-4">
-                                <a href="http://localhost/ManagerPatientPHP/medicalBox/sua/<?php echo $row['mathuoc'] ?>">
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/hiqmdfkt.json"
-                                        trigger="hover"
-                                        colors="primary:#4be1ec,secondary:#cb5eee"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
-                                </a>
-                            </td>
-                            <td style="text-align: left" class="col-1-4">
-                                <a href="http://localhost/ManagerPatientPHP/medicalBox/delete/<?php echo $row['mathuoc'] ?>">
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/tntmaygd.json"
-                                        trigger="hover"
-                                        colors="primary:#4be1ec,secondary:#cb5eee"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
-                                </a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td style="text-align: left" class="col-1"><?php echo $row['mathuoc'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['tenthuoc'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['hamluong'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['nhacungcap'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $ngayhethan ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['gia'] ?></td>
+                                <td style="text-align: left" class="col-1-4">
+                                    <a href="http://localhost/ManagerPatientPHP/medicalBox/sua/<?php echo $row['mathuoc'] ?>">
+                                        <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover" colors="primary:#4be1ec,secondary:#cb5eee" style="width:30px;height:30px">
+                                        </lord-icon>
+                                    </a>
+                                </td>
+                                <td style="text-align: left" class="col-1-4">
+                                    <a href="http://localhost/ManagerPatientPHP/medicalBox/delete/<?php echo $row['mathuoc'] ?>">
+                                        <lord-icon src="https://cdn.lordicon.com/tntmaygd.json" trigger="hover" colors="primary:#4be1ec,secondary:#cb5eee" style="width:30px;height:30px">
+                                        </lord-icon>
+                                    </a>
+                                </td>
+                            </tr>
                     <?php
                         }
                     }

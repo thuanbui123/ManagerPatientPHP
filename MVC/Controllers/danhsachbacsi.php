@@ -50,7 +50,11 @@ class DanhSachBacSi extends controller
 
     function thembacsi()
     {
-        $mabacsi = 'bs00' . (mysqli_num_rows($this->ls->getDataDoctors()) + 1);
+        $date = date("H:s:i");
+        $currentDateTime = new DateTime($date);
+        $seconds = $currentDateTime->getTimestamp();
+
+        $mabacsi = 'bs' . $seconds;
         $hoten = $_POST['hoten'];
         $ngaysinh = $_POST['ngaysinh'];
         $ngaysinh_date = new DateTime($ngaysinh);

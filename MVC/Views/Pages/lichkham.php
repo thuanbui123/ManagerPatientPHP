@@ -22,7 +22,7 @@
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/lichkham/timkiem" method="POST">
                         <label for="" class="search__label">Tìm kiếm</label>
-                        <input type="text" name="txtSearch" placeholder="Nhập mã lịch hẹn" value="<?php if(isset($data['mlh'])) echo $data['mlh'] ?>" id="txtSearch" class="search__input">
+                        <input type="text" name="txtSearch" placeholder="Nhập tên bệnh nhân" value="<?php if(isset($data['tbn'])) echo $data['tbn'] ?>" id="txtSearch" class="search__input">
                         <input class="btnSearch" name="btnSearch" type="submit" value="Tìm kiếm">
                     </form>
                 </div>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/donthuoc.css">
 </head>
+
 <body>
     <div class="main">
         <header class="header">
@@ -16,7 +18,7 @@
             <span class="btn--add">
                 Thêm đơn thuốc
             </span>
-            </header>
+        </header>
         <div class="container">
             <div class="container__header">
                 <div class="main-functions">
@@ -27,7 +29,7 @@
                 <div class="search">
                     <form class="form_search" action="http://localhost/ManagerPatientPHP/donthuoc/timkiem" method="POST">
                         <label for="" class="search__label">Tìm kiếm</label>
-                        <input type="text" name="txtSearch" placeholder="Nhập mã đơn thuốc" value="<?php if(isset($data['id'])) echo $data['id'] ?>" id="txtSearch" class="search__input">
+                        <input type="text" name="txtSearch" placeholder="Nhập tên bệnh nhân" value="<?php if (isset($data['tbn'])) echo $data['tbn'] ?>" id="txtSearch" class="search__input">
                         <input class="btnSearch" name="btnSearch" type="submit" value="Tìm kiếm">
                     </form>
                 </div>
@@ -36,13 +38,12 @@
                 <table class="donthuoc">
                     <tr>
                         <th style="text-align: left" class="col-1">Mã đơn thuốc</th>
-                        <th style="text-align: left" class="col-2">Tên bệnh nhân</th>
-                        <th style="text-align: left" class="col-2">Người kê đơn</th>
-                        <th style="text-align: left" class="col-1">Ngày kê đơn</th>
+                        <th style="text-align: left" class="col-1">Tên bệnh nhân</th>
+                        <th style="text-align: left" class="col-1">Người kê đơn</th>
                         <th style="text-align: left" class="col-1">Tên thuốc</th>
-                        <th style="text-align: left" class="col-1">Hàm <br> lượng</th>
-                        <th style="text-align: left" class="col-1">Số <br> lượng</th>
-                        <th style="text-align: left" class="col-2">Hướng dẫn</th>
+                        <th style="text-align: left" class="col-1">Ngày kê đơn</th>
+                        <th style="text-align: left" class="col-1">Hàm lượng</th>
+                        <th style="text-align: left" class="col-1">Số lượng</th>
                         <th class="col-1-4"></th>
                         <th class="col-1-4"></th>
                     </tr>
@@ -51,37 +52,32 @@
                     <?php
                     if (isset($data["data"]) && $data["data"] != null) {
                         while ($row = mysqli_fetch_array($data["data"])) {
+
+                            $ngaykedon = $row['ngaykedon'];
+                            $ngaykedon_date = new DateTime($ngaykedon);
+                            $ngaykedon = $ngaykedon_date->format("d-m-Y");
                     ?>
-                        <tr>
-                            <td style="text-align: left" class="col-1"><?php echo $row['madonthuoc'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['name'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['hoten'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['ngaykedon'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['tenthuoc'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['hamluong'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
-                            <td style="text-align: left" class="col-2"><?php echo $row['huongdan'] ?></td>
-                            <td style="text-align: left" class="col-1-4">
-                                <a href="http://localhost/ManagerPatientPHP/donthuoc/sua/<?php echo $row['madonthuoc'] ?>">
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/hiqmdfkt.json"
-                                        trigger="hover"
-                                        colors="primary:#4be1ec,secondary:#cb5eee"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
-                                </a>
-                            </td>
-                            <td style="text-align: left" class="col-1-4">
-                                <a href="http://localhost/ManagerPatientPHP/donthuoc/delete/<?php echo $row['madonthuoc'] ?>">
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/tntmaygd.json"
-                                        trigger="hover"
-                                        colors="primary:#4be1ec,secondary:#cb5eee"
-                                        style="width:30px;height:30px">
-                                    </lord-icon>
-                                </a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td style="text-align: left" class="col-1"><?php echo $row['madonthuoc'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['name'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['hoten'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['tenthuoc'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $ngaykedon ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['hamluong'] ?></td>
+                                <td style="text-align: left" class="col-1"><?php echo $row['soluong'] ?></td>
+                                <td style="text-align: left" class="col-1-4">
+                                    <a href="http://localhost/ManagerPatientPHP/donthuoc/sua/<?php echo $row['madonthuoc'] ?>">
+                                        <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover" colors="primary:#4be1ec,secondary:#cb5eee" style="width:30px;height:30px">
+                                        </lord-icon>
+                                    </a>
+                                </td>
+                                <td style="text-align: left" class="col-1-4">
+                                    <a href="http://localhost/ManagerPatientPHP/donthuoc/delete/<?php echo $row['madonthuoc'] ?>">
+                                        <lord-icon src="https://cdn.lordicon.com/tntmaygd.json" trigger="hover" colors="primary:#4be1ec,secondary:#cb5eee" style="width:30px;height:30px">
+                                        </lord-icon>
+                                    </a>
+                                </td>
+                            </tr>
                     <?php
                         }
                     }
@@ -105,15 +101,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="row__1">
-                        <div class="name_medicine">
-                            <div class="name_medicine__label">
-                                <p>Mã đơn thuốc</p>
-                                <span class="require">*</span>
-                            </div>
-                            <div class="name_medicine__input">
-                                <input type="text" name="txtMaDonThuoc" id="txtNameMedicine" required placeholder="DT001">
-                            </div>
-                        </div>
                         <div class="id_medicine">
                             <div class="id_medicine__label">
                                 <p>Tên bệnh nhân</p>
@@ -122,14 +109,14 @@
                             <div class="id_medicine__input">
                                 <select name="namebenhnhan" class="namebenhnhan">
                                     <?php
-                                        if(isset($data['name']) && $data['name'] != null) {
+                                    if (isset($data['name']) && $data['name'] != null) {
                                         $i = 0;
-                                            while($row1 = mysqli_fetch_array($data['name'])) {
+                                        while ($row1 = mysqli_fetch_array($data['name'])) {
                                     ?>
-                                        <option value="<?php echo $row1['name']?>"><?php echo $row1['name']?></option>
-                                        <?php
-                                            }
+                                            <option value="<?php echo $row1['name'] ?>"><?php echo $row1['name'] ?></option>
+                                    <?php
                                         }
+                                    }
                                     ?>
                                 </select>
                             </div>
@@ -144,14 +131,14 @@
                             <div class="dosage__forms__input">
                                 <select name="namebacsi" class="namebenhnhan">
                                     <?php
-                                            if(isset($data['hoten']) && $data['hoten'] != null) {
-                                            $i = 0;
-                                                while($row1 = mysqli_fetch_array($data['hoten'])) {
-                                        ?>
-                                            <option value="<?php echo $row1['hoten']?>"><?php echo $row1['hoten']?></option>
-                                            <?php
-                                                }
-                                            }
+                                    if (isset($data['hoten']) && $data['hoten'] != null) {
+                                        $i = 0;
+                                        while ($row1 = mysqli_fetch_array($data['hoten'])) {
+                                    ?>
+                                            <option value="<?php echo $row1['hoten'] ?>"><?php echo $row1['hoten'] ?></option>
+                                    <?php
+                                        }
+                                    }
                                     ?>
                                 </select>
                             </div>
@@ -173,14 +160,14 @@
                             <div class="supplier__input">
                                 <select name="tenthuoc" class="namebenhnhan">
                                     <?php
-                                            if(isset($data['tenthuoc']) && $data['tenthuoc'] != null) {
-                                            $i = 0;
-                                                while($row1 = mysqli_fetch_array($data['tenthuoc'])) {
-                                        ?>
-                                            <option value="<?php echo $row1['tenthuoc']?>"><?php echo $row1['tenthuoc']?></option>
-                                            <?php
-                                                }
-                                            }
+                                    if (isset($data['tenthuoc']) && $data['tenthuoc'] != null) {
+                                        $i = 0;
+                                        while ($row1 = mysqli_fetch_array($data['tenthuoc'])) {
+                                    ?>
+                                            <option value="<?php echo $row1['tenthuoc'] ?>"><?php echo $row1['tenthuoc'] ?></option>
+                                    <?php
+                                        }
+                                    }
                                     ?>
                                 </select>
                             </div>
@@ -225,4 +212,5 @@
     </form>
     <script src="http://localhost/ManagerPatientPHP/Public/js/medicalBox.js"></script>
 </body>
+
 </html>

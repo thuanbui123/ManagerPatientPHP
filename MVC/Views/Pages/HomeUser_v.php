@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <title>Document</title>
+<<<<<<< HEAD
 
 
     <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/homeUser.css">
@@ -30,6 +31,9 @@
         console.log(add);
     }
     </script>
+=======
+    <link rel="stylesheet" href="http://localhost/ManagerPatientPHP/Public/css/editdoctor.css">
+>>>>>>> b7675c2aea9c1be4cc36790ec6c2a96adb866a10
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -43,6 +47,7 @@
 </script>
 
 <body>
+<<<<<<< HEAD
 
     <div class="container info">
         <!-- User -->
@@ -302,6 +307,19 @@
     </div>
 
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+=======
+    <div class="main">
+        <header class="header">
+            <div class="page">
+                <h1 class="name__page">Trang chủ</h1>
+                <h3 class="desc __page">Thông tin mới</h3>
+            </div>
+        </header>
+
+        
+
+    </div>
+>>>>>>> b7675c2aea9c1be4cc36790ec6c2a96adb866a10
 
 </body>
 

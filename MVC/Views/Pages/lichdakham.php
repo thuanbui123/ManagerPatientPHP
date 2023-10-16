@@ -33,7 +33,7 @@
                         <th style="text-align: left" class="col-1-4">Mã lịch hẹn</th>
                         <th style="text-align: left" class="col-1">Tên bệnh nhân</th>
                         <th style="text-align: left" class="col-1">Tên bác sỹ</th>
-                        <th style="text-align: left" class="col-1">Ngày hẹn</th>
+                        <th style="text-align: left" class="col-1">Ngày khám</th>
                         <th style="text-align: left" class="col-1">Tình trạng</th>
                         <th style="text-align: left" class="col-1">Ngày khám</th>
                         <th style="text-align: left" class="col-1">Chuẩn đoán</th>
@@ -49,7 +49,7 @@
                             <td style="text-align: left" class="col-1-4"><?php echo $row['malichhen'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['name'] ?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['hoten'] ?></td>
-                            <td style="text-align: left" class="col-1"><?php echo $row['ngayhen'] ?></td>
+                            <td style="text-align: left" class="col-1"><?php echo $row['ngaykham'] ?></td>
                             <td style="text-align: left" class="col-1"><?php if($row['tinhtrang'] != "0") echo "Đã khám"?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['ngaykham']?></td>
                             <td style="text-align: left" class="col-1"><?php echo $row['chuandoan']?></td>

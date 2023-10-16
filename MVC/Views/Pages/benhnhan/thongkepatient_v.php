@@ -62,7 +62,7 @@ if (isset($_POST['excel'])) {
             </span>
 
             <form method="POST" action="http://localhost/ManagerPatientPHP/hosobenhnhan/xuatvien" class="modal needs-validation" id="discharge">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
@@ -80,7 +80,7 @@ if (isset($_POST['excel'])) {
                                     if (mysqli_num_rows($data['listNotYetDischarge']) > 0) {
                                         while ($row = mysqli_fetch_array($data['listNotYetDischarge'])) {
                                     ?>
-                                            <option value="<?php echo $row['mabenhnhan'] ?>"><?php echo $row['name'] ?></option>
+                                            <option value="<?php echo $row['mabenhnhannoitru'] ?>"><?php echo $row['name'] ?></option>
                                         <?php
                                         }
                                     } else {
@@ -93,7 +93,7 @@ if (isset($_POST['excel'])) {
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">Ngày xuất viện</label>
-                                <input required name="ngayxuatvien" type="date" class="form-control" id="date">
+                                <input required name="ngayxuatvien" type="date" max="<?php echo date('Y-m-d') ?>" min=" <?php echo date('Y-m-d') ?>" class="form-control" id="date">
                             </div>
 
                             <!-- Modal footer -->
@@ -152,18 +152,18 @@ if (isset($_POST['excel'])) {
                                 <td style="text-align: left" class="col-1"><?php echo $row['sogiuong'] ?></td>
                                 <td style="text-align: left" class="col-1"><?php echo $row['hoten'] ?></td>
                                 <td style="text-align: left" class="col-1-4">
-                                    <a href="http://localhost/ManagerPatientPHP/danhsachbenhnhan/suabenhnhan/?id=<?php echo $row['mabenhnhan']; ?>" class="btn--edit">
+                                    <a href="http://localhost/ManagerPatientPHP/hosobenhnhan/suabenhnhannhapvien/?id=<?php echo $row['mabenhnhannoitru']; ?>" class="btn--edit">
                                         <lord-icon src="https://cdn.lordicon.com/hiqmdfkt.json" trigger="hover" colors="primary:#26577C,secondary:#cb5eee" style="width:30px;height:30px">
                                         </lord-icon>
                                     </a>
                                 </td>
                                 <td style="text-align: left" class="col-1-4">
-                                    <a href="#" class="btn--remove" data-bs-toggle="modal" data-bs-target="#delete<?php echo $row['mabenhnhan']; ?>">
+                                    <a href="#" class="btn--remove" data-bs-toggle="modal" data-bs-target="#delete<?php echo $row['mabenhnhannoitru']; ?>">
                                         <lord-icon src="https://cdn.lordicon.com/tntmaygd.json" trigger="hover" colors="primary:#D80032,secondary:#cb5eee" style="width:30px;height:30px">
                                         </lord-icon>
                                     </a>
 
-                                    <div class=" modal fade" id="delete<?php echo $row['mabenhnhan']; ?>" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+                                    <div class=" modal fade" id="delete<?php echo $row['mabenhnhannoitru']; ?>" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -175,7 +175,7 @@ if (isset($_POST['excel'])) {
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                                    <a href="http://localhost/ManagerPatientPHP/danhsachbenhnhan/xoabenhnhan/?id=<?php echo $row['mabenhnhan']; ?>"> <button style="width: 200px;" type="button" class="btn btn-danger">Xác nhận</button></a>
+                                                    <a href="http://localhost/ManagerPatientPHP/hosobenhnhan/xoabenhnhannhapvien/?id=<?php echo $row['mabenhnhannoitru']; ?>"> <button style="width: 200px;" type="button" class="btn btn-danger">Xác nhận</button></a>
                                                 </div>
                                             </div>
                                         </div>
