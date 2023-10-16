@@ -62,7 +62,7 @@ class taikhoan extends controller
                         [
                             'page' => 'HomeUser_V',
                         ]
-                    );
+                        );
                 } else {
                     echo "<script> alert('Đăng nhập thất bại') </script>";
                     echo "<script>window.location.href= 'http://localhost/ManagerPatientPHP/taikhoan' </script>";
